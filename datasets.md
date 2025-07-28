@@ -1,8 +1,12 @@
 ---
-layout: page
+layout: default
 title: Datasets
+description: 利用可能なRDFデータセットの一覧を表示します
 permalink: /datasets/
 ---
+
+<h1 class="page-title">データセット</h1>
+<p class="page-description">利用可能なRDFデータセットの一覧です。各データセットをクリックすると詳細情報を確認できます。</p>
 
 <div id="loading" class="loading">
   <p>データセット情報を読み込み中...</p>

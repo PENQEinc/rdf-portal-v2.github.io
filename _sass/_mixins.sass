@@ -1,0 +1,94 @@
+// Mixins for common patterns
+@import 'variables'
+
+// Button mixin
+=button($bg-color: $primary-color, $text-color: $white, $hover-bg: darken($bg-color, 10%))
+  display: inline-block
+  padding: map-get($spacers, 2) map-get($spacers, 3)
+  background-color: $bg-color
+  color: $text-color
+  text-decoration: none
+  border: none
+  border-radius: $border-radius-sm
+  font-weight: $font-weight-medium
+  cursor: pointer
+  transition: $transition-base
+
+  &:hover
+    background-color: $hover-bg
+    color: $text-color
+    text-decoration: none
+    transform: translateY(-1px)
+
+  &:focus
+    outline: 2px solid $primary-color
+    outline-offset: 2px
+
+  &:disabled
+    opacity: 0.6
+    cursor: not-allowed
+    transform: none
+
+// Card shadow mixin
+=card-shadow($level: 1)
+  @if $level == 1
+    box-shadow: $shadow-sm
+  @else if $level == 2
+    box-shadow: $shadow
+  @else if $level == 3
+    box-shadow: $shadow-lg
+
+// Responsive breakpoint mixin
+=respond-to($breakpoint)
+  @if $breakpoint == mobile
+    @media (max-width: $mobile)
+      @content
+  @else if $breakpoint == tablet
+    @media (max-width: $tablet)
+      @content
+  @else if $breakpoint == desktop
+    @media (min-width: $desktop)
+      @content
+  @else if $breakpoint == large
+    @media (min-width: $large)
+      @content
+
+// Flexbox mixins
+=flex-center
+  display: flex
+  align-items: center
+  justify-content: center
+
+=flex-between
+  display: flex
+  align-items: center
+  justify-content: space-between
+
+// Text truncation mixin
+=text-truncate
+  overflow: hidden
+  text-overflow: ellipsis
+  white-space: nowrap
+
+// Grid mixin
+=grid($columns: auto-fit, $min-width: 250px, $gap: map-get($spacers, 4))
+  display: grid
+  grid-template-columns: repeat($columns, minmax($min-width, 1fr))
+  gap: $gap
+
+// Focus ring mixin
+=focus-ring($color: $primary-color, $offset: 2px)
+  outline: 2px solid $color
+  outline-offset: $offset
+
+// Visually hidden mixin (for screen readers)
+=visually-hidden
+  position: absolute !important
+  width: 1px !important
+  height: 1px !important
+  padding: 0 !important
+  margin: -1px !important
+  overflow: hidden !important
+  clip: rect(0, 0, 0, 0) !important
+  white-space: nowrap !important
+  border: 0 !important

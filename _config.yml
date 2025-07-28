@@ -2,9 +2,14 @@ title: RDF Portal
 description: RDFポータルサイトのリニューアル
 baseurl: "/rdf-portal-v2.github.io" # GitHub Pagesのサブディレクトリ
 url: "https://penqeinc.github.io" # GitHub Pagesのベース URL
-theme: minima
+# theme: minima
 plugins:
   - jekyll-feed
+
+# SCSS Configuration
+sass:
+  sass_dir: _sass
+  style: compressed
 
 # Navigation menu
 header_pages:

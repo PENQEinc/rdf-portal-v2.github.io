@@ -1,0 +1,123 @@
+// Header and navigation styles
+@import 'variables'
+
+.site-header
+  background-color: $white
+  border-bottom: 1px solid $border-color
+  padding: 0
+  position: sticky
+  top: 0
+  z-index: 100
+  box-shadow: $shadow-sm
+
+  .header-container
+    max-width: $container-max-width
+    margin: 0 auto
+    display: flex
+    align-items: center
+    padding: 0 map-get($spacers, 4)
+    height: $header-height
+
+  .site-title
+    font-size: $font-size-lg * 1.2
+    font-weight: $font-weight-bold
+    color: $gray-800
+    text-decoration: none
+    margin-right: map-get($spacers, 5)
+    transition: $transition-base
+
+    &:hover
+      text-decoration: none
+      color: $primary-color
+
+  .site-nav
+    display: flex
+    align-items: center
+    flex-grow: 1
+
+    .nav-list
+      display: flex
+      list-style: none
+      margin: 0
+      padding: 0
+      gap: 0
+
+    .nav-item
+      position: relative
+
+    .nav-link
+      display: block
+      padding: map-get($spacers, 4) map-get($spacers, 3)
+      color: $gray-800
+      text-decoration: none
+      font-weight: $font-weight-medium
+      transition: $transition-base
+      border-bottom: 3px solid transparent
+
+      &:hover
+        color: $primary-color
+        text-decoration: none
+        background-color: $gray-100
+        border-bottom-color: $primary-color
+
+      &.active
+        color: $primary-color
+        border-bottom-color: $primary-color
+        background-color: $gray-100
+
+  // Mobile menu toggle
+  .mobile-menu-toggle
+    display: none
+    background: none
+    border: none
+    font-size: $font-size-lg * 1.2
+    cursor: pointer
+    padding: map-get($spacers, 2)
+    color: $gray-700
+    transition: $transition-base
+
+    &:hover
+      color: $primary-color
+
+    &:focus
+      outline: 2px solid $primary-color
+      outline-offset: 2px
+
+// Mobile responsive styles
+@media (max-width: $tablet)
+  .site-header
+    .header-container
+      padding: 0 map-get($spacers, 3)
+    
+    .site-title
+      font-size: $font-size-lg
+      margin-right: map-get($spacers, 3)
+    
+    .mobile-menu-toggle
+      display: block
+    
+    .site-nav
+      display: none
+      position: absolute
+      top: 100%
+      left: 0
+      right: 0
+      background-color: $white
+      border-bottom: 1px solid $border-color
+      box-shadow: $shadow
+
+      &.active
+        display: block
+
+      .nav-list
+        flex-direction: column
+
+      .nav-link
+        padding: map-get($spacers, 3) map-get($spacers, 4)
+        border-bottom: 1px solid $border-color
+        border-left: none
+
+        &:hover,
+        &.active
+          border-bottom-color: $border-color
+          border-left: 3px solid $primary-color
