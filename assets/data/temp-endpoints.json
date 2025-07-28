@@ -1,0 +1,136 @@
+[
+  {
+    "id": "bioportal",
+    "dataset": [
+      "bioportal"
+    ]
+  },
+  {
+    "id": "covid",
+    "dataset": [
+      "uniprot-covid",
+      "kg-covid-19",
+      "pheknowlator"
+    ]
+  },
+  {
+    "id": "ddbj",
+    "dataset": [
+      "ddbj"
+    ]
+  },
+  {
+    "id": "ebi",
+    "dataset": [
+      "biosample",
+      "biomodels",
+      "chembl",
+      "expressionatlas",
+      "chebi",
+      "reactome",
+      "ensembl_grch37",
+      "ensembl_grch38",
+      "gwas-catalog",
+      "ensembl-glossary",
+      "ensembl_ontology",
+      "ensembl"
+    ]
+  },
+  {
+    "id": "kero",
+    "dataset": [
+      "kero"
+    ]
+  },
+  {
+    "id": "med2rdf",
+    "dataset": [
+      "dbnsfp",
+      "dbscsnv"
+    ]
+  },
+  {
+    "id": "ncbi",
+    "dataset": [
+      "pubmed",
+      "pubtator",
+      "clinvar",
+      "medgen",
+      "nlm-catalog",
+      "mesh",
+      "ncbigene"
+    ]
+  },
+  {
+    "id": "pdb",
+    "dataset": [
+      "pdb",
+      "bmrb"
+    ]
+  },
+  {
+    "id": "primary",
+    "dataset": [
+      "disgenet",
+      "ggdonto",
+      "nadd",
+      "naro_genebank",
+      "opentggates",
+      "paconto",
+      "pgdbj",
+      "quanto",
+      "refex",
+      "ssbd",
+      "famsbase",
+      "ligandbox",
+      "glycoepitope",
+      "glytoucan",
+      "hgnc",
+      "homologene",
+      "knapsack",
+      "polyinfo",
+      "icgc",
+      "mbgd",
+      "jcm",
+      "dbcatalog",
+      "nando",
+      "nikkaji",
+      "nbrc",
+      "pubcasefinder",
+      "wurcs",
+      "jpostdb",
+      "gtdb",
+      "massbank",
+      "glycosmos",
+      "togoid"
+    ]
+  },
+  {
+    "id": "proteinatlas",
+    "dataset": [
+      "proteinatlas"
+    ]
+  },
+  {
+    "id": "pubchem",
+    "dataset": [
+      "pubchem"
+    ]
+  },
+  {
+    "id": "sib",
+    "dataset": [
+      "bgee",
+      "nextprot",
+      "rhea",
+      "uniprot",
+      "oma"
+    ]
+  },
+  {
+    "id": "wikidata",
+    "dataset": [
+      "wikidata"
+    ]
+  }
+]
