@@ -51,10 +51,25 @@ permalink: /datasets/
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-.dataset-item h3 {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
+.dataset-item h3 a {
   color: #1976d2;
+  text-decoration: none;
+}
+
+.dataset-item h3 a:hover {
+  text-decoration: underline;
+}
+
+.view-details {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: #1976d2;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.view-details:hover {
+  text-decoration: underline;
 }
 
 .dataset-item p {
@@ -129,10 +144,11 @@ async function loadDatasets() {
     // データセット一覧を生成
     const datasetsHtml = datasetIds.map(id => `
       <div class="dataset-item">
-        <h3>${id}</h3>
+        <h3><a href="/dataset/?id=${id}">${id}</a></h3>
         <p><strong>ID:</strong> ${id}</p>
         <p><strong>設定ファイル:</strong> <a href="https://github.com/dbcls/rdf-config/tree/master/config/${id}" target="_blank">GitHub</a></p>
         <p><em>詳細なメタデータは今後のAPI開発により表示予定</em></p>
+        <p><a href="/dataset/?id=${id}" class="view-details">詳細を見る →</a></p>
       </div>
     `).join('');
     
