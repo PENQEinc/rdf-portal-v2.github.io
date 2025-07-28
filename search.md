@@ -1,12 +1,12 @@
 ---
-layout: page
+layout: default
 title: Search
+description: データセットとエンドポイントの検索機能
 permalink: /search/
 ---
 
-# 検索
-
-RDFデータの検索機能です。
+<h1 class="page-title">検索</h1>
+<p class="page-description">キーワードやタグを使って、データセットやエンドポイントを検索できます。</p>
 
 ## データ検索
 

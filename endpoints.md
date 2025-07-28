@@ -1,8 +1,12 @@
 ---
-layout: page
+layout: default
 title: Endpoints
+description: SPARQLエンドポイントの一覧を表示します
 permalink: /endpoints/
 ---
+
+<h1 class="page-title">エンドポイント</h1>
+<p class="page-description">利用可能なSPARQLエンドポイントの一覧です。各エンドポイントで提供されているデータセットを確認できます。</p>
 
 <div id="loading" class="loading">
   <p>エンドポイント情報を読み込み中...</p>

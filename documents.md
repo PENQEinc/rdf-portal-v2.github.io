@@ -1,12 +1,12 @@
 ---
-layout: page
+layout: default
 title: Documents
+description: RDFポータルサイトの利用方法とドキュメント
 permalink: /documents/
 ---
 
-# ドキュメント
-
-RDFポータルサイトの利用方法やドキュメントです。
+<h1 class="page-title">ドキュメント</h1>
+<p class="page-description">RDFポータルサイトの利用方法やドキュメントです。</p>
 
 ## 利用ガイド
 

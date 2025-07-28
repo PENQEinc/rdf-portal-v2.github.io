@@ -1,12 +1,12 @@
 ---
-layout: page
+layout: default
 title: Statistics
+description: RDFデータセットの統計情報を表示します
 permalink: /statistics/
 ---
 
-# 統計情報
-
-RDFデータの統計情報を表示します。
+<h1 class="page-title">統計情報</h1>
+<p class="page-description">RDFデータセットとエンドポイントの統計情報を表示します。</p>
 
 ## データ統計
 
