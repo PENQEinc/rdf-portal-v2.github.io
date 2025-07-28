@@ -3,3 +3,13 @@ description: RDFポータルサイトのリニューアル
 theme: minima
 plugins:
   - jekyll-feed
+
+# Navigation menu
+header_pages:
+  - index.md
+  - endpoints.md
+  - datasets.md
+  - statistics.md
+  - documents.md
+  - search.md
+  - about.md
