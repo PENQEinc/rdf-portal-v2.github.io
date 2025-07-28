@@ -1,6 +1,29 @@
+body
+  --gap: 12px
+  position: relative
+  &::before, &::after
+    content: ''
+    position: absolute
+    display: block
+    z-index: calc(var(--z-index-global-navigation) + 1)
+  &::before
+    width: 100vw
+    top: var(--gap)
+    left: 0
+    border-top: 1px solid #0005
+    box-shadow: 0 calc(100vh - var(--gap) * 2) 0 #0005
+  &::after
+    height: 100vh
+    top: 0
+    left: var(--gap)
+    border-left: 1px solid #0005
+    box-shadow: calc(100vw - var(--gap) * 2) 0 0 #0005
+      
 body > .global-navigation
+  --width: 274px
   position: fixed
-  top: 12px
-  left: 12px
-  width: 274px
+  top: var(--gap)
+  left: var(--gap)
+  width: var(--width)
+  height: calc(100% - var(--gap) * 2)
   z-index: var(--z-index-global-navigation)

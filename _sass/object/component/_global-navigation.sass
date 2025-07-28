@@ -1,2 +1,11 @@
 .global-navigation
   background-color: #FFFE
+  &::after
+    content: ''
+    position: absolute
+    display: block
+    height: 100vh
+    top: calc(var(--gap) * -1)
+    left: var(--width)
+    border-left: 1px solid #0005
+    box-shadow: calc(100vw - var(--gap) * 2) 0 0 #0005
