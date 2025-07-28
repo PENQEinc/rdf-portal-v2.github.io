@@ -11,41 +11,22 @@
 </head>
 
 <body>
-  <header class="l-header">
-    <div class="l-header__container">
-      <a class="l-header__title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
-
-      <button class="l-header__menu-toggle" onclick="toggleMobileMenu()">☰</button>
-
-      <nav class="l-header__nav c-nav" id="site-nav">
-        <ul class="c-nav__list">
-          <li class="c-nav__item">
-            <a class="c-nav__link {% if page.url == '/' %}is-active{% endif %}" href="{{ '/' | relative_url }}">Top</a>
-          </li>
-          <li class="c-nav__item">
-            <a class="c-nav__link {% if page.url contains '/endpoints' %}is-active{% endif %}"
-              href="{{ '/endpoints/' | relative_url }}">Endpoints</a>
-          </li>
-          <li class="c-nav__item">
-            <a class="c-nav__link {% if page.url contains '/datasets' %}is-active{% endif %}"
-              href="{{ '/datasets/' | relative_url }}">Datasets</a>
-          </li>
-          <li class="c-nav__item">
-            <a class="c-nav__link {% if page.url contains '/statistics' %}is-active{% endif %}"
-              href="{{ '/statistics/' | relative_url }}">Statistics</a>
-          </li>
-          <li class="c-nav__item">
-            <a class="c-nav__link {% if page.url contains '/documents' %}is-active{% endif %}"
-              href="{{ '/documents/' | relative_url }}">Documents</a>
-          </li>
-          <li class="c-nav__item">
-            <a class="c-nav__link {% if page.url contains '/search' %}is-active{% endif %}"
-              href="{{ '/search/' | relative_url }}">Search</a>
-          </li>
-          <li class="c-nav__item">
-            <a class="c-nav__link {% if page.url contains '/about' %}is-active{% endif %}"
-              href="{{ '/about/' | relative_url }}">About</a>
-          </li>
+  <header class="l-header global-navigation">
+    <div class="inner">
+      <h1><a>RDF<br>Portal</a></h1>
+      <ul class="stats">
+        <li><span>40</span><span>RDF dataset</span></li>
+        <li><span>858</span><span>million inter-datasets links</span></li>
+        <li><span>160</span><span>billion triples</span></li>
+      </ul>
+      <nav>
+        <ul>
+          <li><a href="{{ '/endpoints/' | relative_url }}">Endpoints</a></li>
+          <li><a href="{{ '/datasets/' | relative_url }}">Datasets</a></li>
+          <li><a href="{{ '/statistics/' | relative_url }}">Statistics</a></li>
+          <li><a href="{{ '/documents/' | relative_url }}">Documents</a></li>
+          <li><a href="{{ '/search/' | relative_url }}">Search</a></li>
+          <li><a href="{{ '/about/' | relative_url }}">About</a></li>
         </ul>
       </nav>
     </div>
