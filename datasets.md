@@ -109,57 +109,65 @@ document.addEventListener('DOMContentLoaded', function() {
   loadDatasets();
 });
 
-async function loadDatasets() {
+function loadDatasets() {
   const loadingEl = document.getElementById('loading');
   const errorEl = document.getElementById('error');
   const listEl = document.getElementById('dataset-list');
   
-  try {
-    // 現在は assets/data/temp-datasets.txt からIDリストを読み込み（テンポラリファイル）
-    // 将来的にはAPIエンドポイントに変更予定
-    const response = await fetch('/assets/data/temp-datasets.txt');
-    if (!response.ok) {
-      throw new Error('Failed to fetch dataset list');
-    }
-    
-    const text = await response.text();
-    const datasetIds = text.trim().split('\n').filter(id => id.trim());
-    
-    loadingEl.style.display = 'none';
-    
-    if (datasetIds.length === 0) {
-      errorEl.innerHTML = '<p>データセットが見つかりませんでした。</p>';
+  // 現在は assets/data/temp-datasets.txt からIDリストを読み込み（テンポラリファイル）
+  // 将来的にはAPIエンドポイントに変更予定
+  const baseUrl = '{{ site.baseurl }}' || '';
+  const fetchUrl = `${baseUrl}/assets/data/temp-datasets.txt`;
+  
+  fetch(fetchUrl)
+    .then(function(response) {
+      if (!response.ok) {
+        throw new Error(`Failed to fetch dataset list: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(function(text) {
+      const datasetIds = text.trim().split('\n').filter(id => id.trim());
+      
+      loadingEl.style.display = 'none';
+      
+      if (datasetIds.length === 0) {
+        errorEl.innerHTML = '<p>データセットが見つかりませんでした。</p>';
+        errorEl.style.display = 'block';
+        return;
+      }
+      
+      // データセット統計を表示
+      const statsHtml = `
+        <div class="dataset-stats">
+          <h3>データセット統計</h3>
+          <p><strong>総データセット数:</strong> ${datasetIds.length}</p>
+        </div>
+      `;
+      
+      // データセット一覧を生成
+      const datasetsHtml = datasetIds.map(id => `
+        <div class="dataset-item">
+          <h3><a href="${baseUrl}/dataset/?id=${id}">${id}</a></h3>
+          <p><strong>ID:</strong> ${id}</p>
+          <p><strong>設定ファイル:</strong> <a href="https://github.com/dbcls/rdf-config/tree/master/config/${id}" target="_blank">GitHub</a></p>
+          <p><em>詳細なメタデータは今後のAPI開発により表示予定</em></p>
+          <p><a href="${baseUrl}/dataset/?id=${id}" class="view-details">詳細を見る →</a></p>
+        </div>
+      `).join('');
+      
+      listEl.innerHTML = statsHtml + datasetsHtml;
+      listEl.style.display = 'block';
+    })
+    .catch(function(error) {
+      console.error('Error loading datasets:', error);
+      loadingEl.style.display = 'none';
+      errorEl.innerHTML = `
+        <p>データセットの読み込みに失敗しました。</p>
+        <p>エラー: ${error.message}</p>
+      `;
       errorEl.style.display = 'block';
-      return;
-    }
-    
-    // データセット統計を表示
-    const statsHtml = `
-      <div class="dataset-stats">
-        <h3>データセット統計</h3>
-        <p><strong>総データセット数:</strong> ${datasetIds.length}</p>
-      </div>
-    `;
-    
-    // データセット一覧を生成
-    const datasetsHtml = datasetIds.map(id => `
-      <div class="dataset-item">
-        <h3><a href="/dataset/?id=${id}">${id}</a></h3>
-        <p><strong>ID:</strong> ${id}</p>
-        <p><strong>設定ファイル:</strong> <a href="https://github.com/dbcls/rdf-config/tree/master/config/${id}" target="_blank">GitHub</a></p>
-        <p><em>詳細なメタデータは今後のAPI開発により表示予定</em></p>
-        <p><a href="/dataset/?id=${id}" class="view-details">詳細を見る →</a></p>
-      </div>
-    `).join('');
-    
-    listEl.innerHTML = statsHtml + datasetsHtml;
-    listEl.style.display = 'block';
-    
-  } catch (error) {
-    console.error('Error loading datasets:', error);
-    loadingEl.style.display = 'none';
-    errorEl.style.display = 'block';
-  }
+    });
 }
 
 // 将来のAPI対応用の関数（コメントアウト）

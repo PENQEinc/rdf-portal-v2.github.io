@@ -197,7 +197,8 @@ async function loadEndpoints() {
   try {
     // temp-endpoints.json からエンドポイント情報を読み込み（テンポラリファイル）
     // 将来的にはAPIエンドポイントに変更予定
-    const response = await fetch('/assets/data/temp-endpoints.json');
+    const baseUrl = '{{ site.baseurl }}' || '';
+    const response = await fetch(`${baseUrl}/assets/data/temp-endpoints.json`);
     if (!response.ok) {
       throw new Error('Failed to fetch endpoints list');
     }
@@ -228,6 +229,7 @@ async function loadEndpoints() {
 
 function renderEndpoints(endpoints) {
   const listEl = document.getElementById('endpoints-list');
+  const baseUrl = '{{ site.baseurl }}' || '';
   
   // 統計情報を計算
   const totalEndpoints = endpoints.length;
@@ -267,7 +269,7 @@ function renderEndpoints(endpoints) {
       <div class="datasets-grid">
         ${endpoint.dataset.map(datasetId => `
           <div class="dataset-item">
-            <a href="/dataset/?id=${datasetId}" class="dataset-name">${datasetId}</a>
+            <a href="${baseUrl}/dataset/?id=${datasetId}" class="dataset-name">${datasetId}</a>
             <div class="dataset-id">${datasetId}</div>
           </div>
         `).join('')}

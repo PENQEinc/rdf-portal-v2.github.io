@@ -202,7 +202,8 @@ async function loadDatasetDetails() {
   
   if (!datasetId) {
     loadingEl.style.display = 'none';
-    errorEl.innerHTML = '<p>データセットIDが指定されていません。</p><p><a href="/datasets/">データセット一覧に戻る</a></p>';
+    const baseUrl = '{{ site.baseurl }}' || '';
+    errorEl.innerHTML = `<p>データセットIDが指定されていません。</p><p><a href="${baseUrl}/datasets/">データセット一覧に戻る</a></p>`;
     errorEl.style.display = 'block';
     return;
   }
@@ -229,10 +230,11 @@ async function loadDatasetDetails() {
   } catch (error) {
     console.error('Error loading dataset details:', error);
     loadingEl.style.display = 'none';
+    const baseUrl = '{{ site.baseurl }}' || '';
     errorEl.innerHTML = `
       <p>データセットの読み込みに失敗しました。</p>
       <p>エラー: ${error.message}</p>
-      <p><a href="/datasets/">データセット一覧に戻る</a></p>
+      <p><a href="${baseUrl}/datasets/">データセット一覧に戻る</a></p>
     `;
     errorEl.style.display = 'block';
   }
@@ -310,9 +312,10 @@ function parseSimpleYaml(yamlText) {
 
 function renderDatasetDetails(datasetId, metadata, rawYaml) {
   const detailsEl = document.getElementById('dataset-details');
+  const baseUrl = '{{ site.baseurl }}' || '';
   
   const html = `
-    <a href="/datasets/" class="back-link">データセット一覧に戻る</a>
+    <a href="${baseUrl}/datasets/" class="back-link">データセット一覧に戻る</a>
     
     <div class="dataset-header">
       <h1>${metadata.title || datasetId}</h1>
