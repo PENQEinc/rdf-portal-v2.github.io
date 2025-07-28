@@ -11,39 +11,39 @@
 </head>
 
 <body>
-  <header class="site-header">
-    <div class="header-container">
-      <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+  <header class="l-header">
+    <div class="l-header__container">
+      <a class="l-header__title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
 
-      <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+      <button class="l-header__menu-toggle" onclick="toggleMobileMenu()">☰</button>
 
-      <nav class="site-nav" id="site-nav">
-        <ul class="nav-list">
-          <li class="nav-item">
-            <a class="nav-link {% if page.url == '/' %}active{% endif %}" href="{{ '/' | relative_url }}">Top</a>
+      <nav class="l-header__nav c-nav" id="site-nav">
+        <ul class="c-nav__list">
+          <li class="c-nav__item">
+            <a class="c-nav__link {% if page.url == '/' %}is-active{% endif %}" href="{{ '/' | relative_url }}">Top</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link {% if page.url contains '/endpoints' %}active{% endif %}"
+          <li class="c-nav__item">
+            <a class="c-nav__link {% if page.url contains '/endpoints' %}is-active{% endif %}"
               href="{{ '/endpoints/' | relative_url }}">Endpoints</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link {% if page.url contains '/datasets' %}active{% endif %}"
+          <li class="c-nav__item">
+            <a class="c-nav__link {% if page.url contains '/datasets' %}is-active{% endif %}"
               href="{{ '/datasets/' | relative_url }}">Datasets</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link {% if page.url contains '/statistics' %}active{% endif %}"
+          <li class="c-nav__item">
+            <a class="c-nav__link {% if page.url contains '/statistics' %}is-active{% endif %}"
               href="{{ '/statistics/' | relative_url }}">Statistics</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link {% if page.url contains '/documents' %}active{% endif %}"
+          <li class="c-nav__item">
+            <a class="c-nav__link {% if page.url contains '/documents' %}is-active{% endif %}"
               href="{{ '/documents/' | relative_url }}">Documents</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link {% if page.url contains '/search' %}active{% endif %}"
+          <li class="c-nav__item">
+            <a class="c-nav__link {% if page.url contains '/search' %}is-active{% endif %}"
               href="{{ '/search/' | relative_url }}">Search</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link {% if page.url contains '/about' %}active{% endif %}"
+          <li class="c-nav__item">
+            <a class="c-nav__link {% if page.url contains '/about' %}is-active{% endif %}"
               href="{{ '/about/' | relative_url }}">About</a>
           </li>
         </ul>
@@ -51,30 +51,30 @@
     </div>
   </header>
 
-  <main class="main-content">
+  <main class="l-main">
     {{ content }}
   </main>
 
   <script>
     function toggleMobileMenu() {
       const nav = document.getElementById('site-nav');
-      nav.classList.toggle('active');
+      nav.classList.toggle('is-active');
     }
 
     // Close mobile menu when clicking outside
     document.addEventListener('click', function (event) {
       const nav = document.getElementById('site-nav');
-      const toggle = document.querySelector('.mobile-menu-toggle');
+      const toggle = document.querySelector('.l-header__menu-toggle');
 
       if (!nav.contains(event.target) && !toggle.contains(event.target)) {
-        nav.classList.remove('active');
+        nav.classList.remove('is-active');
       }
     });
 
     // Close mobile menu when window is resized to desktop
     window.addEventListener('resize', function () {
       if (window.innerWidth > 768) {
-        document.getElementById('site-nav').classList.remove('active');
+        document.getElementById('site-nav').classList.remove('is-active');
       }
     });
   </script>

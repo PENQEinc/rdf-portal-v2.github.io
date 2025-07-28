@@ -1,12 +1,18 @@
-// Base styles and reset
-@import 'variables'
+// ==========================================================================
+// Foundation - Reset & Base
+// ==========================================================================
 
-// Reset and normalize
+// Reset
 *
   box-sizing: border-box
   margin: 0
   padding: 0
 
+*::before,
+*::after
+  box-sizing: border-box
+
+// Base
 html
   font-size: 100%
   -webkit-text-size-adjust: 100%
@@ -16,42 +22,41 @@ body
   font-family: $font-family-base
   font-size: $font-size-base
   line-height: $line-height-base
-  color: $gray-800
-  background-color: $body-bg
+  color: $color-gray-800
+  background-color: $color-bg-body
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
 
 // Typography
 h1, h2, h3, h4, h5, h6
-  margin-bottom: map-get($spacers, 2)
+  margin-bottom: $space-sm
   font-weight: $font-weight-bold
   line-height: 1.3
-  color: $gray-900
+  color: $color-gray-900
 
 p
-  margin-bottom: map-get($spacers, 3)
+  margin-bottom: $space-md
 
 // Links
 a
-  color: $primary-color
+  color: $color-primary
   text-decoration: none
   transition: $transition-base
 
   &:hover
-    color: $primary-hover
+    color: $color-primary-hover
     text-decoration: underline
 
   &:focus
-    outline: 2px solid $primary-color
-    outline-offset: 2px
+    +focus-ring
 
 // Lists
 ul, ol
-  margin-bottom: map-get($spacers, 3)
-  padding-left: map-get($spacers, 4)
+  margin-bottom: $space-md
+  padding-left: $space-lg
 
 li
-  margin-bottom: map-get($spacers, 1)
+  margin-bottom: $space-xs
 
 // Images
 img
@@ -61,17 +66,17 @@ img
 // Code
 code
   font-family: 'Monaco', 'Consolas', 'Courier New', monospace
-  background-color: $gray-100
+  background-color: $color-gray-100
   padding: 2px 4px
   border-radius: $border-radius-sm
   font-size: 0.9em
 
 pre
-  background-color: $gray-100
-  padding: map-get($spacers, 3)
+  background-color: $color-gray-100
+  padding: $space-md
   border-radius: $border-radius
   overflow-x: auto
-  margin-bottom: map-get($spacers, 3)
+  margin-bottom: $space-md
 
   code
     background: none

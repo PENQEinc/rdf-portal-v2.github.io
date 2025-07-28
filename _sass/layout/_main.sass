@@ -1,0 +1,15 @@
+// ==========================================================================
+// Layout - Main
+// ==========================================================================
+
+.l-main
+  max-width: $container-max-width
+  margin: 0 auto
+  padding: $space-xl $space-lg
+  background-color: $color-bg-white
+  min-height: calc(100vh - #{$header-height})
+
+// Mobile responsive
++mq-down(md)
+  .l-main
+    padding: $space-lg $space-md

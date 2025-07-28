@@ -1,0 +1,78 @@
+// ==========================================================================
+// Layout - Header
+// ==========================================================================
+
+.l-header
+  background-color: $color-bg-white
+  border-bottom: 1px solid $color-border
+  padding: 0
+  position: sticky
+  top: 0
+  z-index: $z-index-header
+  box-shadow: $shadow-sm
+
+.l-header__container
+  max-width: $container-max-width
+  margin: 0 auto
+  display: flex
+  align-items: center
+  padding: 0 $space-lg
+  height: $header-height
+
+.l-header__title
+  font-size: $font-size-lg * 1.2
+  font-weight: $font-weight-bold
+  color: $color-gray-800
+  text-decoration: none
+  margin-right: $space-xl
+  transition: $transition-base
+
+  &:hover
+    text-decoration: none
+    color: $color-primary
+
+.l-header__nav
+  display: flex
+  align-items: center
+  flex-grow: 1
+
+.l-header__menu-toggle
+  display: none
+  background: none
+  border: none
+  font-size: $font-size-lg * 1.2
+  cursor: pointer
+  padding: $space-sm
+  color: $color-gray-700
+  transition: $transition-base
+
+  &:hover
+    color: $color-primary
+
+  &:focus
+    +focus-ring
+
+// Mobile responsive
++mq-down(md)
+  .l-header__container
+    padding: 0 $space-md
+  
+  .l-header__title
+    font-size: $font-size-lg
+    margin-right: $space-md
+  
+  .l-header__menu-toggle
+    display: block
+  
+  .l-header__nav
+    display: none
+    position: absolute
+    top: 100%
+    left: 0
+    right: 0
+    background-color: $color-bg-white
+    border-bottom: 1px solid $color-border
+    box-shadow: $shadow-md
+
+    &.is-active
+      display: block

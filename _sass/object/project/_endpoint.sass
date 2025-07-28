@@ -1,0 +1,142 @@
+// ==========================================================================
+// Project - Endpoint
+// ==========================================================================
+
+@import 'foundation/variables'
+@import 'foundation/mixins'
+
+// Endpoint card component
+.p-endpoint
+  &__card
+    border: 1px solid $color-border
+    border-radius: $border-radius
+    margin-bottom: $space-xl
+    background-color: $color-gray-100
+    overflow: hidden
+    box-shadow: $shadow-sm
+
+  &__header
+    background-color: $color-primary
+    color: $color-bg-white
+    padding: $space-lg
+    position: relative
+
+    h3
+      margin: 0
+      font-size: $font-size-lg * 1.2
+      text-transform: capitalize
+
+  &__id
+    font-family: $font-family-mono
+    font-size: $font-size-base
+    opacity: 0.9
+    margin-top: $space-xs
+
+  &__url
+    font-family: $font-family-mono
+    background-color: rgba(255, 255, 255, 0.1)
+    padding: $space-sm $space-md
+    border-radius: $border-radius-sm
+    margin-top: $space-sm
+    font-size: $font-size-sm
+    word-break: break-all
+
+  &__dataset-count
+    position: absolute
+    top: $space-lg
+    right: $space-lg
+    background-color: rgba(255, 255, 255, 0.2)
+    padding: $space-xs $space-md
+    border-radius: 12px
+    font-size: $font-size-sm
+
+// Datasets grid within endpoint card
+.p-endpoint-datasets
+  &__grid
+    padding: $space-lg
+    display: grid
+    gap: $space-md
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
+
+  &__item
+    background-color: $color-bg-white
+    border: 1px solid $color-gray-300
+    border-radius: $border-radius-sm
+    padding: $space-md
+    transition: $transition-base
+    text-align: center
+
+    &:hover
+      border-color: $color-primary
+      box-shadow: 0 2px 8px rgba(25, 118, 210, 0.2)
+      transform: translateY(-2px)
+
+  &__name
+    font-weight: $font-weight-semibold
+    color: $color-primary
+    text-decoration: none
+    font-size: $font-size-base
+    display: block
+    margin-bottom: $space-sm
+
+    &:hover
+      text-decoration: underline
+
+  &__id
+    font-family: $font-family-mono
+    font-size: $font-size-sm
+    color: $color-gray-600
+    background-color: $color-gray-100
+    padding: 2px $space-sm
+    border-radius: 3px
+    display: inline-block
+
+// Endpoint statistics section
+.p-endpoint-stats
+  background-color: lighten($color-primary, 45%)
+  padding: $space-lg
+  border-radius: $border-radius
+  margin-bottom: $space-xl
+  text-align: center
+
+  h3
+    margin-bottom: $space-md
+
+  &__grid
+    display: grid
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr))
+    gap: $space-md
+    margin-top: $space-md
+
+  &__item
+    background-color: $color-bg-white
+    padding: $space-md
+    border-radius: $border-radius-sm
+    border: 1px solid lighten($color-primary, 30%)
+
+  &__number
+    font-size: $font-size-lg * 1.5
+    font-weight: $font-weight-bold
+    color: $color-primary
+    display: block
+
+  &__label
+    color: $color-gray-600
+    font-size: $font-size-sm
+    margin-top: $space-xs
+
+// Responsive adjustments
++respond-to(mobile)
+  .p-endpoint-datasets
+    &__grid
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr))
+      padding: $space-md
+
+  .p-endpoint
+    &__header
+      padding: $space-md
+
+    &__dataset-count
+      position: static
+      display: inline-block
+      margin-top: $space-sm

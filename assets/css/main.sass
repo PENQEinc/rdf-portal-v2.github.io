@@ -2,9 +2,31 @@
 # Front matter to process Sass
 ---
 
-@import 'variables'
-@import 'mixins'
-@import 'base'
-@import 'header'
-@import 'layout'
-@import 'utilities'
+// ==========================================================================
+// FLOCSS Architecture
+// ==========================================================================
+
+// Foundation
+@import 'foundation/variables'
+@import 'foundation/mixins'
+@import 'foundation/base'
+
+// Layout
+@import 'layout/header'
+@import 'layout/main'
+
+// Object - Component
+@import 'object/component/nav'
+@import 'object/component/card'
+@import 'object/component/btn'
+
+// Object - Project
+@import 'object/project/hero'
+@import 'object/project/feature'
+@import 'object/project/state'
+@import 'object/project/endpoint'
+
+// Object - Utility
+@import 'object/utility/spacing'
+@import 'object/utility/text'
+@import 'object/utility/layout'

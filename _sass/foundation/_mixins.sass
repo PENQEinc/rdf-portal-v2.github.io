@@ -1,0 +1,118 @@
+// ==========================================================================
+// Foundation - Mixins
+// ==========================================================================
+
+// Media Query Mixins
+=mq-up($breakpoint)
+  @if $breakpoint == sm
+    @media (min-width: $breakpoint-sm)
+      @content
+  @else if $breakpoint == md
+    @media (min-width: $breakpoint-md)
+      @content
+  @else if $breakpoint == lg
+    @media (min-width: $breakpoint-lg)
+      @content
+  @else if $breakpoint == xl
+    @media (min-width: $breakpoint-xl)
+      @content
+
+=mq-down($breakpoint)
+  @if $breakpoint == sm
+    @media (max-width: $breakpoint-sm - 1)
+      @content
+  @else if $breakpoint == md
+    @media (max-width: $breakpoint-md - 1)
+      @content
+  @else if $breakpoint == lg
+    @media (max-width: $breakpoint-lg - 1)
+      @content
+  @else if $breakpoint == xl
+    @media (max-width: $breakpoint-xl - 1)
+      @content
+
+// Responsive breakpoint mixin
+=respond-to($breakpoint)
+  @if $breakpoint == mobile
+    @media (max-width: $breakpoint-md - 1)
+      @content
+  @else if $breakpoint == tablet
+    @media (max-width: $breakpoint-lg - 1)
+      @content
+  @else if $breakpoint == desktop
+    @media (min-width: $breakpoint-lg)
+      @content
+  @else if $breakpoint == large
+    @media (min-width: $breakpoint-xl)
+      @content
+
+// Button Mixin
+=btn($bg-color: $color-primary, $text-color: $color-white, $hover-bg: darken($bg-color, 10%))
+  display: inline-block
+  padding: $space-sm $space-md
+  background-color: $bg-color
+  color: $text-color
+  text-decoration: none
+  border: none
+  border-radius: $border-radius-sm
+  font-weight: $font-weight-medium
+  cursor: pointer
+  transition: $transition-base
+
+  &:hover
+    background-color: $hover-bg
+    color: $text-color
+    text-decoration: none
+    transform: translateY(-1px)
+
+  &:focus
+    outline: 2px solid $color-primary
+    outline-offset: 2px
+
+  &:disabled
+    opacity: 0.6
+    cursor: not-allowed
+    transform: none
+
+// Card Shadow Mixin
+=shadow($level: md)
+  @if $level == sm
+    box-shadow: $shadow-sm
+  @else if $level == md
+    box-shadow: $shadow-md
+  @else if $level == lg
+    box-shadow: $shadow-lg
+
+// Flexbox Utilities
+=flex-center
+  display: flex
+  align-items: center
+  justify-content: center
+
+=flex-between
+  display: flex
+  align-items: center
+  justify-content: space-between
+
+// Text Utilities
+=text-truncate
+  overflow: hidden
+  text-overflow: ellipsis
+  white-space: nowrap
+
+// Visually Hidden (for screen readers)
+=visually-hidden
+  position: absolute !important
+  width: 1px !important
+  height: 1px !important
+  padding: 0 !important
+  margin: -1px !important
+  overflow: hidden !important
+  clip: rect(0, 0, 0, 0) !important
+  white-space: nowrap !important
+  border: 0 !important
+
+// Focus Ring
+=focus-ring($color: $color-primary, $offset: 2px)
+  outline: 2px solid $color
+  outline-offset: $offset

@@ -1,0 +1,60 @@
+// ==========================================================================
+// Component - Card
+// ==========================================================================
+
+.c-card
+  background: $color-bg-white
+  border: 1px solid $color-border
+  border-radius: $border-radius
+  padding: $space-lg
+  transition: $transition-base
+
+  &:hover
+    +shadow(md)
+    transform: translateY(-2px)
+
+  &__title
+    font-size: $font-size-lg
+    font-weight: $font-weight-semibold
+    margin-bottom: $space-sm
+    color: $color-gray-900
+
+    a
+      color: inherit
+      text-decoration: none
+
+      &:hover
+        color: $color-primary
+        text-decoration: none
+
+  &__description
+    color: $color-gray-600
+    margin-bottom: $space-md
+    line-height: 1.5
+
+  &__meta
+    display: flex
+    gap: $space-md
+    font-size: $font-size-sm
+    color: $color-gray-500
+
+    span
+      display: flex
+      align-items: center
+      gap: $space-xs
+
+// Card Grid
+.c-card-grid
+  display: grid
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr))
+  gap: $space-lg
+  margin-top: $space-xl
+
+// Mobile responsive
++mq-down(md)
+  .c-card-grid
+    grid-template-columns: 1fr
+    gap: $space-md
+  
+  .c-card
+    padding: $space-md

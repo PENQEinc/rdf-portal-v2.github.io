@@ -1,0 +1,44 @@
+// ==========================================================================
+// Project - State
+// ==========================================================================
+
+.p-loading
+  text-align: center
+  padding: $space-xl
+  color: $color-gray-600
+  font-size: $font-size-lg
+
+.p-error
+  background-color: lighten($color-danger, 45%)
+  border: 1px solid lighten($color-danger, 30%)
+  color: darken($color-danger, 10%)
+  padding: $space-lg
+  border-radius: $border-radius
+  margin: $space-lg 0
+
+  p
+    margin-bottom: $space-sm
+
+    &:last-child
+      margin-bottom: 0
+
+.p-tag
+  &__list
+    display: flex
+    flex-wrap: wrap
+    gap: $space-sm
+    margin-top: $space-md
+
+  &__item
+    background-color: lighten($color-primary, 45%)
+    color: darken($color-primary, 10%)
+    padding: $space-xs $space-sm
+    border-radius: $border-radius-sm
+    font-size: $font-size-sm
+    text-decoration: none
+    transition: $transition-base
+
+    &:hover
+      background-color: lighten($color-primary, 35%)
+      text-decoration: none
+      transform: translateY(-1px)
