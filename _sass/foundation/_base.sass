@@ -33,7 +33,7 @@ body
   position: relative
   &::before, &::after
     content: ''
-    position: absolute
+    position: fixed
     display: block
     z-index: calc(var(--z-index-global-navigation) + 1)
   &::before
@@ -68,12 +68,14 @@ p
 
 // Links
 a
-  color: $color-primary
+  // color: $color-primary
+  color: black
   text-decoration: none
   transition: $transition-base
 
   &:hover
-    color: $color-primary-hover
+    // color: $color-primary-hover
+    color: #000D
     text-decoration: underline
 
   &:focus
