@@ -1,0 +1,34 @@
+// ============================================================================
+// Top Page Tiling Background - Project Component
+// ============================================================================
+
+#TopTilingBackground
+  position: relative
+  min-height: 100vh
+  overflow: hidden
+
+  > .dataset-tiles
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    pointer-events: none
+    z-index: 1
+    opacity: 0.1
+
+  > .content
+    position: relative
+    z-index: 2
+    background: rgba(255, 255, 255, 0.95)
+    min-height: 100vh
+    backdrop-filter: blur(2px)
+
+// レスポンシブ対応
+@media (max-width: 768px)
+  #TopTilingBackground
+    > .content
+      background: rgba(255, 255, 255, 0.98)
+    
+    > .dataset-tiles
+      opacity: 0.05
