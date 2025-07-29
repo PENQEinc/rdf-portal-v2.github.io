@@ -44,7 +44,9 @@
   <script>
     function toggleMobileMenu() {
       const nav = document.getElementById('site-nav');
-      nav.classList.toggle('is-active');
+      if (nav) {
+        nav.classList.toggle('is-active');
+      }
     }
 
     // Close mobile menu when clicking outside
@@ -52,15 +54,17 @@
       const nav = document.getElementById('site-nav');
       const toggle = document.querySelector('.l-header__menu-toggle');
 
-      if (!nav.contains(event.target) && !toggle.contains(event.target)) {
+      // nav要素が存在し、toggle要素も存在する場合のみ処理
+      if (nav && toggle && !nav.contains(event.target) && !toggle.contains(event.target)) {
         nav.classList.remove('is-active');
       }
     });
 
     // Close mobile menu when window is resized to desktop
     window.addEventListener('resize', function () {
-      if (window.innerWidth > 768) {
-        document.getElementById('site-nav').classList.remove('is-active');
+      const nav = document.getElementById('site-nav');
+      if (nav && window.innerWidth > 768) {
+        nav.classList.remove('is-active');
       }
     });
   </script>
