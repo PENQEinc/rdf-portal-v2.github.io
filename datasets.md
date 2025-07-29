@@ -32,49 +32,66 @@ function loadDatasets() {
   const errorEl = document.getElementById('error');
   const listEl = document.getElementById('dataset-list');
   
-  // 現在は assets/data/temp-datasets.txt からIDリストを読み込み（テンポラリファイル）
+  // temp-datasets.json ファイルから詳細なデータセット情報を読み込み
   // 将来的にはAPIエンドポイントに変更予定
   const baseUrl = '{{ site.baseurl }}' || '';
-  const fetchUrl = `${baseUrl}/assets/data/temp-datasets.txt`;
+  const fetchUrl = `${baseUrl}/assets/data/temp-datasets.json`;
   
   fetch(fetchUrl)
     .then(function(response) {
       if (!response.ok) {
         throw new Error(`Failed to fetch dataset list: ${response.status}`);
       }
-      return response.text();
+      return response.json();
     })
-    .then(function(text) {
-      const datasetIds = text.trim().split('\n').filter(id => id.trim());
-      
+    .then(function(datasets) {
       loadingEl.style.display = 'none';
       
-      if (datasetIds.length === 0) {
+      if (datasets.length === 0) {
         errorEl.innerHTML = '<p>データセットが見つかりませんでした。</p>';
         errorEl.style.display = 'block';
         return;
       }
       
+      // メタデータがあるデータセットとないデータセットを分類
+      const withMetadata = datasets.filter(d => d.title && d.title.length > 0);
+      const withoutMetadata = datasets.filter(d => !d.title || d.title.length === 0);
+      
       // データセット統計を表示
       const statsHtml = `
         <div class="u-text-center u-mb-lg">
           <h3>データセット統計</h3>
-          <p><strong>総データセット数:</strong> ${datasetIds.length}</p>
+          <p><strong>総データセット数:</strong> ${datasets.length}</p>
+          <p><strong>メタデータあり:</strong> ${withMetadata.length}</p>
+          <p><strong>メタデータなし:</strong> ${withoutMetadata.length}</p>
         </div>
       `;
       
       // データセット一覧を生成
-      const datasetsHtml = datasetIds.map(id => `
-        <div class="c-card">
-          <h3 class="c-card__title"><a href="${baseUrl}/dataset/?id=${id}">${id}</a></h3>
-          <div class="c-card__description">
-            <p><strong>ID:</strong> ${id}</p>
-            <p><strong>設定ファイル:</strong> <a href="https://github.com/dbcls/rdf-config/tree/master/config/${id}" target="_blank">GitHub</a></p>
-            <p><em>詳細なメタデータは今後のAPI開発により表示予定</em></p>
+      const datasetsHtml = datasets.map(dataset => {
+        const title = dataset.title || dataset.id;
+        const description = dataset.description || 'メタデータは準備中です';
+        const tagsHtml = dataset.tags && dataset.tags.length > 0 
+          ? `<div class="c-card__tags">${dataset.tags.map(tag => `<span class="c-tag">${tag}</span>`).join('')}</div>`
+          : '';
+        
+        return `
+          <div class="c-card ${dataset.title ? 'c-card--with-metadata' : 'c-card--no-metadata'}">
+            <h3 class="c-card__title">
+              <a href="${baseUrl}/dataset/?id=${dataset.id}">${title}</a>
+            </h3>
+            <div class="c-card__description">
+              <p>${description}</p>
+              ${tagsHtml}
+            </div>
+            <div class="c-card__meta">
+              <p><strong>ID:</strong> ${dataset.id}</p>
+              <p><strong>設定ファイル:</strong> <a href="https://github.com/dbcls/rdf-config/tree/master/config/${dataset.id}" target="_blank">GitHub</a></p>
+            </div>
+            <p><a href="${baseUrl}/dataset/?id=${dataset.id}" class="c-btn c-btn--outline-primary">詳細を見る →</a></p>
           </div>
-          <p><a href="${baseUrl}/dataset/?id=${id}" class="c-btn c-btn--outline-primary">詳細を見る →</a></p>
-        </div>
-      `).join('');
+        `;
+      }).join('');
       
       listEl.innerHTML = statsHtml + datasetsHtml;
       listEl.style.display = 'grid';

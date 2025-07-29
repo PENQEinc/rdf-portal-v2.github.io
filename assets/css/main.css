@@ -1,8 +1,0 @@
----
-# Front matter to process SCSS
----
-
-@import 'variables';
-@import 'base';
-@import 'header';
-@import 'layout';

@@ -32,16 +32,49 @@
     margin-bottom: $space-md
     line-height: 1.5
 
+  &__tags
+    display: flex
+    flex-wrap: wrap
+    gap: $space-xs
+    margin-top: $space-sm
+
   &__meta
     display: flex
     gap: $space-md
     font-size: $font-size-sm
     color: $color-gray-500
+    margin-top: $space-md
+    padding-top: $space-md
+    border-top: 1px solid $color-gray-200
 
     span
       display: flex
       align-items: center
       gap: $space-xs
+
+  // カードの状態による視覚的な区別
+  &--with-metadata
+    border-left: 4px solid $color-success
+
+  &--no-metadata
+    border-left: 4px solid $color-gray-300
+    opacity: 0.8
+
+// Tag Component
+.c-tag
+  display: inline-block
+  padding: $space-xs $space-sm
+  background-color: $color-primary
+  color: $color-white
+  font-size: $font-size-xs
+  font-weight: $font-weight-medium
+  border-radius: $border-radius-sm
+  text-decoration: none
+
+  &:hover
+    background-color: $color-primary-hover
+    color: $color-white
+    text-decoration: none
 
 // Card Grid
 .c-card-grid
