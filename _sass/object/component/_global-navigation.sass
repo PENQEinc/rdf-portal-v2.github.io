@@ -1,0 +1,86 @@
+.global-navigation
+  background-color: #FFFE
+  &::after
+    content: ''
+    position: absolute
+    display: block
+    height: 100vh
+    top: calc(var(--gap) * -1)
+    left: var(--width)
+    border-left: 1px solid #0005
+    box-shadow: calc(100vw - var(--gap) * 2) 0 0 #0005
+  > .inner
+    padding: 12px
+    display: flex
+    flex-direction: column
+    height: 100%
+    min-height: fit-content
+    ul
+      list-style: none
+      margin: 0
+      padding: 0
+    > h1
+      padding: 18px 0 12px
+      font-size: 48px
+      font-weight: 500
+      line-height: 0.8
+      letter-spacing: -0.04em
+      > a
+        color: #000
+        text-decoration: none
+    > .stats
+      margin-bottom: 16px
+      > li
+        position: relative
+        // &::after
+        //   content: ''
+        //   position: absolute
+        //   display: block
+        //   width: 100%
+        //   border-bottom: 1px solid #0002
+        //   bottom: 0.4em
+        > span
+          line-height: 0.8
+          &:nth-child(1)
+            font-size: 36px
+            font-weight: 500
+            letter-spacing: -0.04em
+          &:nth-child(2)
+            margin-left: 0.2em
+            font-size: 16px
+    > nav
+      > ul
+        > li
+          > a
+            display: block
+            font-size: 16px
+            font-weight: 500
+            position: relative
+            &:hover
+              text-decoration: none
+            &::before, &::after
+              content: ''
+              position: absolute
+              display: block
+              border-top: 1px solid #000
+            &::before
+              width: 100%
+              bottom: 7px
+              left: 0
+            &::after
+              width: 7px
+              rotate: 45deg
+              right: 0
+              bottom: 10px
+    > .space
+      flex-grow: 1
+    > .copyrightandpolicy
+      display: flex
+      font-size: 12px
+      > p
+        margin: 0
+        padding: 0
+        + p
+          &::before
+            content: '/'
+            padding: 0 0.4em

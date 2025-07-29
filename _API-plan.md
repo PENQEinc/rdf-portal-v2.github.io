@@ -27,3 +27,6 @@
   props:
     datasets:
     id:
+
+- statistics:
+  desc: 統計情報の取得
