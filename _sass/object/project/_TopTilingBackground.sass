@@ -23,14 +23,11 @@
     // Stage 3: パララックス効果の準備
     transform: translateZ(0)
 
-  > .content
+  // メインコンテンツは透明な背景で前面に表示
+  > .p-hero,
+  > .p-feature__grid
     position: relative
     z-index: 2
-    background: rgba(255, 255, 255, 0.92)
-    min-height: 100vh
-    backdrop-filter: blur(3px) saturate(1.2)
-    // Stage 3: ボックスシャドウでより立体的に
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3), 0 0 40px rgba(0, 0, 0, 0.1)
 
 // Stage 3: 背景グラデーションアニメーション
 @keyframes gradientShift
@@ -49,30 +46,19 @@
 @media (max-width: 1200px)
   #TopTilingBackground
     background-size: 300% 300%
-    
-  #TopTilingBackground > .content
-    backdrop-filter: blur(2px) saturate(1.1)
 
 @media (max-width: 768px)
   #TopTilingBackground
     background-size: 200% 200%
     animation-duration: 20s
     
-  #TopTilingBackground > .content
-    background: rgba(255, 255, 255, 0.95)
-    backdrop-filter: blur(1px)
-    
-  #TopTilingBackground > .dataset-tiles
-    opacity: 0.08
+    > .dataset-tiles
+      opacity: 0.08
 
 @media (max-width: 480px)
   #TopTilingBackground
     background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)
     background-size: 150% 150%
-    
-  #TopTilingBackground > .content
-    background: rgba(255, 255, 255, 0.97)
-    backdrop-filter: none
 
 // プリファードモーション設定に対応
 @media (prefers-reduced-motion: reduce)

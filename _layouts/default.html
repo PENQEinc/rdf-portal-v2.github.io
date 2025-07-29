@@ -71,6 +71,10 @@
 
   <!-- トップページ専用のJavaScript -->
   {% if page.title == 'Top' %}
+  <script>
+    // ベースURLをJavaScriptで利用可能にする
+    window.SITE_BASE_URL = '{{ site.baseurl }}';
+  </script>
   <script src="{{ '/assets/js/top-page-tiles.js' | relative_url }}"></script>
   {% endif %}
 </body>
