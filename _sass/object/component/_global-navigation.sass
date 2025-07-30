@@ -1,14 +1,22 @@
 .global-navigation
   background-color: #FFFE
+
+  position: fixed
+  top: var(--margin-global-navigation)
+  left: var(--margin-global-navigation)
+  width: var(--width-global-navigation)
+  height: calc(100% - var(--margin-global-navigation) * 2)
+  z-index: var(--z-index-global-navigation)
+
   &::after
     content: ''
     position: absolute
     display: block
     height: 100vh
-    top: calc(var(--gap) * -1)
-    left: var(--width)
+    top: calc(var(--margin-global-navigation) * -1)
+    left: var(--width-global-navigation)
     border-left: 1px solid #0005
-    box-shadow: calc(100vw - var(--gap) * 2) 0 0 #0005
+    box-shadow: calc(100vw - var(--margin-global-navigation) * 2) 0 0 #0005
   > .inner
     padding: 12px
     display: flex

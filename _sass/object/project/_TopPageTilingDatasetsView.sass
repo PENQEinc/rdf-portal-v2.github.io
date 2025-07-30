@@ -2,7 +2,7 @@
 // Top Page Tiling Background - Project Component
 // ============================================================================
 
-#TopTilingBackground
+#TopPageTilingDatasetsView
   position: relative
   min-height: 100vh
   overflow: hidden
@@ -38,16 +38,16 @@
     background-position: 0% 50%
 
 // Stage 3: パララックス効果（スクロール時）
-.has-parallax #TopTilingBackground > .dataset-tiles
+.has-parallax #TopPageTilingDatasetsView > .dataset-tiles
   transform: translateY(var(--parallax-offset, 0)) translateZ(0)
 
 // レスポンシブ対応（強化）
 @media (max-width: 1200px)
-  #TopTilingBackground
+  #TopPageTilingDatasetsView
     background-size: 300% 300%
 
 @media (max-width: 768px)
-  #TopTilingBackground
+  #TopPageTilingDatasetsView
     background-size: 200% 200%
     animation-duration: 20s
     
@@ -55,15 +55,15 @@
       opacity: 0.08
 
 @media (max-width: 480px)
-  #TopTilingBackground
+  #TopPageTilingDatasetsView
     background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)
     background-size: 150% 150%
 
 // プリファードモーション設定に対応
 @media (prefers-reduced-motion: reduce)
-  #TopTilingBackground
+  #TopPageTilingDatasetsView
     animation: none
     background-position: 0% 50%
     
-  .has-parallax #TopTilingBackground > .dataset-tiles
+  .has-parallax #TopPageTilingDatasetsView > .dataset-tiles
     transform: none

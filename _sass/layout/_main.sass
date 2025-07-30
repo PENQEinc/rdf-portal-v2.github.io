@@ -2,6 +2,24 @@
 // Layout - Main
 // ==========================================================================
 
+body
+
+  // Top page styles
+  &[data-page-id='top']
+    > main
+      > .intro
+        position: absolute
+        top: 40px
+        left: calc(var(--width-global-navigation) + var(--margin-global-navigation) + 16px)
+        z-index: calc(var(--z-index-main) + 1)
+        > span
+          background-color: #000D
+          color: #fff
+          font-size: 24px
+          line-height: 1
+      > #TopPageTilingDatasetsView
+        z-index: var(--z-index-main)
+
 .l-main
   max-width: $container-max-width
   margin: 0 auto
