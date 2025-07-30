@@ -18,30 +18,50 @@ class TopPageTilingDatasetsViewController {
   }
 
   async init() {
-    console.log("初期化開始");
-
     try {
       const data = await this.loadDatasetsData();
-      console.log("データ読み込み成功:", data);
-      console.log("データ件数:", data.length);
 
       // 最初の3件をログ出力
       if (data.length > 0) {
-        console.log("最初の3件のデータ:");
-        data.slice(0, 3).forEach((dataset, index) => {
-          console.log(`${index + 1}:`, dataset);
-        });
+        // データを画面に表示
+        this.displayDatasets(data);
       }
     } catch (error) {
       console.error("データ読み込み失敗:", error);
     }
   }
 
+  displayDatasets(datasets) {
+    // コンテナをクリア
+    this.container.innerHTML = "";
+
+    // 最初の10件を表示
+    datasets.forEach((dataset, index) => {
+      const tile = this.createTile(dataset, index);
+      this.container.appendChild(tile);
+    });
+  }
+
+  createTile(dataset) {
+    const tile = document.createElement("div");
+    tile.className = "dataset-tile";
+
+    // タイトルと説明を取得（フォールバック付き）
+    const title = dataset.title || dataset.id;
+    const description = dataset.description || "No description available";
+
+    // HTML構造を作成
+    tile.innerHTML = `
+      <div class="title">${title}</div>
+      <div class="description">${description}</div>
+    `;
+
+    return tile;
+  }
+
   async loadDatasetsData() {
     const baseUrl = window.SITE_BASE_URL || "";
     const url = `${baseUrl}/assets/data/temp-datasets.json`;
-
-    console.log("読み込み先URL:", url);
 
     const response = await fetch(url);
     console.log("レスポンス状態:", response.status, response.statusText);
