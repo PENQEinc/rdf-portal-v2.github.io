@@ -15,7 +15,7 @@ description: RDFポータルサイトへようこそ。データセットやエ�
 
 <div id="TopPageTilingDatasetsView">
   <!-- 背景データセットタイル -->
-  <div class="dataset-tiles">
+  <div class="container">
     <!-- JavaScriptで動的に生成 -->
   </div>
 </div>
