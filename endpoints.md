@@ -36,7 +36,7 @@ async function loadEndpoints() {
   try {
     // temp-endpoints.json からエンドポイント情報を読み込み（テンポラリファイル）
     // 将来的にはAPIエンドポイントに変更予定
-    const baseUrl = '/rdf-portal-v2.github.io' || '';
+    const baseUrl = window.SITE_BASE_URL || '';
     const response = await fetch(`${baseUrl}/assets/data/temp-endpoints.json`);
     if (!response.ok) {
       throw new Error('Failed to fetch endpoints list');
@@ -68,7 +68,7 @@ async function loadEndpoints() {
 
 function renderEndpoints(endpoints) {
   const listEl = document.getElementById('endpoints-list');
-  const baseUrl = '/rdf-portal-v2.github.io' || '';
+  const baseUrl = window.SITE_BASE_URL || '';
   
   // 統計情報を計算
   const totalEndpoints = endpoints.length;

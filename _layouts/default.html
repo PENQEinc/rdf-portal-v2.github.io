@@ -69,12 +69,13 @@
     });
   </script>
 
-  <!-- トップページ専用のJavaScript -->
-  {% if page.title == 'Top' %}
+  <!-- ベースURLをJavaScriptで利用可能にする（全ページ共通） -->
   <script>
-    // ベースURLをJavaScriptで利用可能にする
     window.SITE_BASE_URL = '{{ site.baseurl }}';
   </script>
+
+  <!-- トップページ専用のJavaScript -->
+  {% if page.title == 'Top' %}
   <script src="{{ '/assets/js/top-page-tiles.js' | relative_url }}"></script>
   {% endif %}
 </body>
