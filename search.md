@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Search
+pageId: search
 description: データセットとエンドポイントの検索機能
 permalink: /search/
 ---

@@ -40,13 +40,6 @@
       margin-bottom: 16px
       > li
         position: relative
-        // &::after
-        //   content: ''
-        //   position: absolute
-        //   display: block
-        //   width: 100%
-        //   border-bottom: 1px solid #0002
-        //   bottom: 0.4em
         > span
           line-height: 0.8
           &:nth-child(1)
@@ -59,6 +52,9 @@
     > nav
       > ul
         > li
+          transition: opacity 0.3s ease
+          &:hover
+            opacity: 1 !important
           > a
             display: block
             font-size: 16px
@@ -92,3 +88,17 @@
           &::before
             content: '/'
             padding: 0 0.4em
+
+// ページID別ナビゲーションフェードアウト
+// 現在のページと一致しないナビゲーション項目を薄くする
+
+// ページIDのリスト
+$page-ids: "top", "endpoints", "datasets", "statistics", "documents", "search", "about"
+
+// 各ページIDに対してルールを生成
+@each $page-id in $page-ids
+  body[data-page-id="#{$page-id}"] .global-navigation > .inner > nav > ul > li
+    @if $page-id != "top"
+      // その他のページの場合は一致しない項目をフェードアウト
+      &:not([data-page-id="#{$page-id}"])
+        opacity: 0.4

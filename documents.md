@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Documents
+pageId: documents
 description: RDFポータルサイトの利用方法とドキュメント
 permalink: /documents/
 ---

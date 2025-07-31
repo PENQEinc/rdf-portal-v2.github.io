@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Endpoints
+pageId: endpoints
 description: SPARQLエンドポイントの一覧を表示します
 permalink: /endpoints/
 ---

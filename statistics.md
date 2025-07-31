@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Statistics
+pageId: statistics
 description: RDFデータセットの統計情報を表示します
 permalink: /statistics/
 ---

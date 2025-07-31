@@ -14,8 +14,5 @@ description: RDFポータルサイトへようこそ。データセットやエ�
 <span>downloadable files and a SPARQL endpoint.</span></p>
 
 <div id="TopPageTilingDatasetsView">
-  <!-- 背景データセットタイル -->
-  <div class="container">
-    <!-- JavaScriptで動的に生成 -->
-  </div>
+  <div class="container"></div>
 </div>

@@ -1,6 +1,7 @@
 ---
 layout: default
 title: About
+pageId: about
 description: RDFポータルサイトについて
 permalink: /about/
 ---
