@@ -3,13 +3,8 @@
 // ============================================================================
 
 .dataset-tile
-  position: absolute
-  background: #f8f7f6
+  background: var(--color-off-white)
   border: 1px solid #0001
-  padding: 16px 12px
-  width: 300px
-  height: 300px
-  overflow: hidden
   transform-origin: center
 
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1)
@@ -18,8 +13,9 @@
     font-weight: 600
     font-size: 24px
     line-height: 1
-    margin-bottom: 5px
+    margin: 0 0 5px 0
 
   > .description
+    margin: 0
     font-size: 16px
     line-height: 1.1

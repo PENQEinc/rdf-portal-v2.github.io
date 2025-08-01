@@ -1,0 +1,18 @@
+#CommonPageView
+  margin: var(--margin-global-navigation) var(--margin-global-navigation) var(--margin-global-navigation) calc(var(--margin-global-navigation) + var(--width-global-navigation))
+  padding: calc(var(--margin-global-navigation) + 8px)
+  min-height: calc(100vh - var(--margin-global-navigation) * 2)
+  background-color: white
+  > .title
+    margin: 10px 0 18px
+    font-size: 40px
+    font-weight: 500
+    line-height: 0.8
+    letter-spacing: -0.04em
+    &::after
+      content: ''
+      display: block
+      width: 100%
+      border-top: 1px solid #000
+      margin-top: -3px
+  > .content

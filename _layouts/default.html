@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 </head>
 
-<body{% if page.pageId %} data-page-id="{{ page.pageId }}"{% endif %}>
+<body{% if page.pageId %} data-page-id="{{ page.pageId }}" {% endif %}>
   <header class="global-navigation">
     <div class="inner">
       <h1><a href="{{ '/' | relative_url }}">RDF<br>Portal</a></h1>
@@ -21,6 +21,7 @@
       </ul>
       <nav>
         <ul>
+          <li data-page-id="access_methods"><a href="{{ '/access_methods/' | relative_url }}">Access methods</a></li>
           <li data-page-id="endpoints"><a href="{{ '/endpoints/' | relative_url }}">Endpoints</a></li>
           <li data-page-id="datasets"><a href="{{ '/datasets/' | relative_url }}">Datasets</a></li>
           <li data-page-id="statistics"><a href="{{ '/statistics/' | relative_url }}">Statistics</a></li>
@@ -78,6 +79,6 @@
   {% if page.title == 'Top' %}
   <script src="{{ '/assets/js/top-page-tiles.js' | relative_url }}"></script>
   {% endif %}
-</body>
+  </body>
 
 </html>

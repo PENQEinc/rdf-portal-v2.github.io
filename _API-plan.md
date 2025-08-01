@@ -23,6 +23,8 @@
   props:
 
 - endpoints:
+  labe:
+  url: なくても良いかも
   desc: エンドポイント情報の取得
   props:
     datasets:
