@@ -1,11 +1,11 @@
 /**
- * DatasetTile Component - データセットタイルコンポーネント
- * 各ページで使用される dataset-tile の統一されたJavaScriptクラス
+ * DatasetCard Component - データセットカードコンポーネント
+ * 各ページで使用される dataset-card の統一されたJavaScriptクラス
  */
 
-class DatasetTile {
+class DatasetCard {
   // 定数定義
-  static TILE_CLASS = 'dataset-tile';
+  static CARD_CLASS = 'dataset-card';
   static TITLE_CLASS = 'title';
   static DESCRIPTION_CLASS = 'description';
   static TAGS_CLASS = 'tags';
@@ -41,31 +41,31 @@ class DatasetTile {
 
   /**
    * DOM要素を作成
-   * @returns {HTMLElement} 作成されたタイル要素
+   * @returns {HTMLElement} 作成されたカード要素
    */
   #createElement() {
-    const tile = document.createElement('div');
+    const card = document.createElement('div');
 
     // クラス名を設定
-    const classes = [DatasetTile.TILE_CLASS, ...this.#options.customClasses];
-    tile.className = classes.join(' ');
+    const classes = [DatasetCard.CARD_CLASS, ...this.#options.customClasses];
+    card.className = classes.join(' ');
 
     // データ属性を設定
     if (this.#dataset.id) {
-      tile.dataset.datasetId = this.#dataset.id;
+      card.dataset.datasetId = this.#dataset.id;
     }
 
     // コンテンツを生成
-    tile.innerHTML = this.#generateContent();
+    card.innerHTML = this.#generateContent();
 
     // イベントリスナーを設定
-    this.#setupEventListeners(tile);
+    this.#setupEventListeners(card);
 
-    return tile;
+    return card;
   }
 
   /**
-   * タイルのHTMLコンテンツを生成
+   * カードのHTMLコンテンツを生成
    * @returns {string} HTML文字列
    */
   #generateContent() {
@@ -78,24 +78,24 @@ class DatasetTile {
     // タイトル部分
     if (this.#options.showLink && this.#dataset.id) {
       const linkUrl = `${this.#options.linkBaseUrl}/dataset/?id=${this.#dataset.id}`;
-      content += `<h3 class="${DatasetTile.TITLE_CLASS}">
-        <a href="${linkUrl}" class="${DatasetTile.LINK_CLASS}">${title}</a>
+      content += `<h3 class="${DatasetCard.TITLE_CLASS}">
+        <a href="${linkUrl}" class="${DatasetCard.LINK_CLASS}">${title}</a>
       </h3>`;
     } else {
-      content += `<div class="${DatasetTile.TITLE_CLASS}">${title}</div>`;
+      content += `<div class="${DatasetCard.TITLE_CLASS}">${title}</div>`;
     }
 
     // 説明文部分
     if (this.#options.showDescription && description) {
-      content += `<div class="${DatasetTile.DESCRIPTION_CLASS}">${description}</div>`;
+      content += `<div class="${DatasetCard.DESCRIPTION_CLASS}">${description}</div>`;
     }
 
     // タグ部分
     if (this.#options.showTags && tags.length > 0) {
       const tagsHtml = tags.map(tag =>
-        `<span class="${DatasetTile.TAG_CLASS}">${this.#escapeHtml(tag)}</span>`
+        `<span class="${DatasetCard.TAG_CLASS}">${this.#escapeHtml(tag)}</span>`
       ).join('');
-      content += `<div class="${DatasetTile.TAGS_CLASS}">${tagsHtml}</div>`;
+      content += `<div class="${DatasetCard.TAGS_CLASS}">${tagsHtml}</div>`;
     }
 
     return content;
@@ -108,7 +108,7 @@ class DatasetTile {
   #getTitle() {
     return this.#dataset.title ||
       this.#dataset.id ||
-      DatasetTile.DEFAULT_FALLBACK_TITLE;
+      DatasetCard.DEFAULT_FALLBACK_TITLE;
   }
 
   /**
@@ -119,7 +119,7 @@ class DatasetTile {
     if (!this.#options.showDescription) return '';
 
     return this.#dataset.description ||
-      (this.#options.showFallbackDescription ? DatasetTile.DEFAULT_FALLBACK_DESCRIPTION : '');
+      (this.#options.showFallbackDescription ? DatasetCard.DEFAULT_FALLBACK_DESCRIPTION : '');
   }
 
   /**
@@ -157,14 +157,14 @@ class DatasetTile {
 
   /**
    * DOM要素を取得（必要な場合のみ公開）
-   * @returns {HTMLElement} タイル要素
+   * @returns {HTMLElement} カード要素
    */
   getElement() {
     return this.#element;
   }
 
   /**
-   * タイルを指定のコンテナに追加
+   * カードを指定のコンテナに追加
    * @param {HTMLElement} container - 追加先のコンテナ
    */
   appendTo(container) {
@@ -172,7 +172,7 @@ class DatasetTile {
   }
 
   /**
-   * タイルのデータを更新
+   * カードのデータを更新
    * @param {Object} newDataset - 新しいデータセット情報
    */
   updateData(newDataset) {
@@ -186,7 +186,7 @@ class DatasetTile {
   }
 
   /**
-   * タイルを削除
+   * カードを削除
    */
   remove() {
     if (this.#element.parentNode) {
@@ -195,35 +195,35 @@ class DatasetTile {
   }
 
   /**
-   * 複数のタイルを一括生成
+   * 複数のカードを一括生成
    * @param {Array} datasets - データセット配列
    * @param {Object} options - オプション設定
-   * @returns {Array} DatasetTileインスタンスの配列
+   * @returns {Array} DatasetCardインスタンスの配列
    */
   static createMultiple(datasets, options = {}) {
-    return datasets.map(dataset => new DatasetTile(dataset, options));
+    return datasets.map(dataset => new DatasetCard(dataset, options));
   }
 
   /**
-   * 複数のタイルを指定のコンテナに一括追加
+   * 複数のカードを指定のコンテナに一括追加
    * @param {Array} datasets - データセット配列
    * @param {HTMLElement} container - 追加先のコンテナ
    * @param {Object} options - オプション設定
-   * @returns {Array} 作成されたDatasetTileインスタンスの配列
+   * @returns {Array} 作成されたDatasetCardインスタンスの配列
    */
   static renderMultiple(datasets, container, options = {}) {
     // コンテナをクリア
     container.innerHTML = '';
 
-    // タイルを作成して追加
-    const tiles = DatasetTile.createMultiple(datasets, options);
-    tiles.forEach(tile => {
-      tile.appendTo(container);
+    // カードを作成して追加
+    const cards = DatasetCard.createMultiple(datasets, options);
+    cards.forEach(card => {
+      card.appendTo(container);
     });
 
-    return tiles;
+    return cards;
   }
 }
 
 // グローバルスコープに公開
-window.DatasetTile = DatasetTile;
+window.DatasetCard = DatasetCard;

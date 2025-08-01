@@ -67,14 +67,14 @@ function renderEndpoints(endpoints, datasets) {
     const datasetsHtml = endpoint.dataset.map(datasetId => {
       const dataset = datasetMap[datasetId] || { id: datasetId };
       
-      // DatasetTileクラスを使用してタイルを作成
-      const datasetTile = new DatasetTile(dataset, {
+      // DatasetCardクラスを使用してカードを作成
+      const datasetCard = new DatasetCard(dataset, {
         showDescription: true,
         showLink: true,
         linkBaseUrl: baseUrl
       });
       
-      return `<li>${datasetTile.getElement().outerHTML}</li>`;
+      return `<li>${datasetCard.getElement().outerHTML}</li>`;
     }).join('');
 
     return `

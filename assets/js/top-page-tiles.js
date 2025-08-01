@@ -87,17 +87,15 @@ class TopPageTilingDatasetsViewController {
     const totalTiles = columns * rows;
 
     return { columns, rows, totalTiles };
-  }
-
-  #createTile(dataset) {
-    // DatasetTileクラスを使用
-    const datasetTile = new DatasetTile(dataset, {
+  } #createTile(dataset) {
+    // DatasetCardクラスを使用
+    const datasetCard = new DatasetCard(dataset, {
       showDescription: true,
       showFallbackDescription: true,
       customClasses: [] // 必要に応じて追加のクラスを指定
     });
 
-    const tile = datasetTile.getElement();
+    const tile = datasetCard.getElement();
 
     // 既存のスタイル設定（位置指定など）を維持
     return tile;
