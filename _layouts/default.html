@@ -89,6 +89,9 @@
     window.SITE_BASE_URL = '{{ site.baseurl }}';
   </script>
 
+  <!-- DatasetTileコンポーネント（全ページ共通） -->
+  <script src="{{ '/assets/js/DatasetTile.js' | relative_url }}"></script>
+
   <!-- トップページ専用のJavaScript -->
   {% if page.title == 'Top' %}
   <script src="{{ '/assets/js/top-page-tiles.js' | relative_url }}"></script>

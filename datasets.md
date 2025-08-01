@@ -23,6 +23,65 @@ permalink: /datasets/
   <!-- データセット一覧がここに動的に生成されます -->
 </div>
 
+<style>
+.datasets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.dataset-card-wrapper .dataset-tile {
+  height: auto;
+  padding: 1.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.dataset-card-wrapper .dataset-tile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.dataset-card-wrapper .dataset-tile .title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.dataset-card-wrapper .dataset-tile .title a {
+  color: #1976d2;
+  text-decoration: none;
+}
+
+.dataset-card-wrapper .dataset-tile .title a:hover {
+  text-decoration: underline;
+}
+
+.dataset-card-wrapper .dataset-tile .description {
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  color: #666;
+}
+
+.dataset-card-wrapper .dataset-tile .tags {
+  margin-bottom: 1rem;
+}
+
+.dataset-card-wrapper .dataset-tile .tag {
+  display: inline-block;
+  background-color: #e3f2fd;
+  color: #1976d2;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+</style>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   loadDatasets();
@@ -68,33 +127,41 @@ function loadDatasets() {
         </div>
       `;
       
-      // データセット一覧を生成
-      const datasetsHtml = datasets.map(dataset => {
-        const title = dataset.title || dataset.id;
-        const description = dataset.description || 'メタデータは準備中です';
-        const tagsHtml = dataset.tags && dataset.tags.length > 0 
-          ? `<div class="c-card__tags">${dataset.tags.map(tag => `<span class="c-tag">${tag}</span>`).join('')}</div>`
-          : '';
-        
-        return `
-          <div class="c-card ${dataset.title ? 'c-card--with-metadata' : 'c-card--no-metadata'}">
-            <h3 class="c-card__title">
-              <a href="${baseUrl}/dataset/?id=${dataset.id}">${title}</a>
-            </h3>
-            <div class="c-card__description">
-              <p>${description}</p>
-              ${tagsHtml}
-            </div>
-            <div class="c-card__meta">
-              <p><strong>ID:</strong> ${dataset.id}</p>
-              <p><strong>設定ファイル:</strong> <a href="https://github.com/dbcls/rdf-config/tree/master/config/${dataset.id}" target="_blank">GitHub</a></p>
-            </div>
-            <p><a href="${baseUrl}/dataset/?id=${dataset.id}" class="c-btn c-btn--outline-primary">詳細を見る →</a></p>
-          </div>
-        `;
-      }).join('');
+      // データセット一覧を生成（DatasetTileクラスを使用）
+      const datasetsContainer = document.createElement('div');
+      datasetsContainer.className = 'datasets-grid';
       
-      listEl.innerHTML = statsHtml + datasetsHtml;
+      datasets.forEach(dataset => {
+        const datasetTile = new DatasetTile(dataset, {
+          showDescription: true,
+          showTags: true,
+          showLink: true,
+          linkBaseUrl: baseUrl,
+          customClasses: ['c-card', dataset.title ? 'c-card--with-metadata' : 'c-card--no-metadata']
+        });
+        
+        // 追加情報（ID、GitHubリンク、詳細ボタン）を含むカードラッパーを作成
+        const cardWrapper = document.createElement('div');
+        cardWrapper.className = 'dataset-card-wrapper';
+        
+        const tile = datasetTile.getElement();
+        
+        // メタ情報とボタンを追加
+        const metaHtml = `
+          <div class="c-card__meta">
+            <p><strong>ID:</strong> ${dataset.id}</p>
+            <p><strong>設定ファイル:</strong> <a href="https://github.com/dbcls/rdf-config/tree/master/config/${dataset.id}" target="_blank">GitHub</a></p>
+          </div>
+          <p><a href="${baseUrl}/dataset/?id=${dataset.id}" class="c-btn c-btn--outline-primary">詳細を見る →</a></p>
+        `;
+        
+        tile.insertAdjacentHTML('beforeend', metaHtml);
+        cardWrapper.appendChild(tile);
+        datasetsContainer.appendChild(cardWrapper);
+      });
+      
+      listEl.innerHTML = statsHtml;
+      listEl.appendChild(datasetsContainer);
       listEl.style.display = 'grid';
     })
     .catch(function(error) {

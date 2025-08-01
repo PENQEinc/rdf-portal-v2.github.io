@@ -61,33 +61,38 @@ function renderEndpoints(endpoints, datasets) {
     });
   }
   
-  // エンドポイントカードのHTML（FLOCSSクラス使用）
-  const endpointsHtml = endpoints.map(endpoint => `
-    <ul class="endpoints">
-      <li class="endpoint">
-        <article>
-          <header>
-            <h2>${endpoint.title}</h2>
-            <a href="https://rdfportal.org/${endpoint.id}/sparql" target="endpoint">Link</a>
-          </header>
-          <ul class="datasets">
-            ${endpoint.dataset.map(datasetId => {
-              const dataset = datasetMap[datasetId];
-              const datasetTitle = dataset ? dataset.title || datasetId : datasetId;
-              return `
-                <li>
-                  <div class="dataset-tile">
-                    <h3 class="title">${datasetTitle}</h3>
-                    ${dataset && dataset.description ? `<p class="description">${dataset.description}</p>` : ''}
-                  </div>
-                </li>
-              `;
-            }).join('')}
-          </ul>
-        </article>
-      </li>
-    </ul>
-  `).join('');
+  // エンドポイントのHTMLを生成
+  const endpointsHtml = endpoints.map(endpoint => {
+    // データセットタイルのHTML生成
+    const datasetsHtml = endpoint.dataset.map(datasetId => {
+      const dataset = datasetMap[datasetId] || { id: datasetId };
+      
+      // DatasetTileクラスを使用してタイルを作成
+      const datasetTile = new DatasetTile(dataset, {
+        showDescription: true,
+        showLink: true,
+        linkBaseUrl: baseUrl
+      });
+      
+      return `<li>${datasetTile.getElement().outerHTML}</li>`;
+    }).join('');
+
+    return `
+      <ul class="endpoints">
+        <li class="endpoint">
+          <article>
+            <header>
+              <h2>${endpoint.title}</h2>
+              <a href="https://rdfportal.org/${endpoint.id}/sparql" target="endpoint">Link</a>
+            </header>
+            <ul class="datasets">
+              ${datasetsHtml}
+            </ul>
+          </article>
+        </li>
+      </ul>
+    `;
+  }).join('');
   
   endpointListView.innerHTML = endpointsHtml;
 }

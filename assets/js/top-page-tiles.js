@@ -7,11 +7,6 @@ class TopPageTilingDatasetsViewController {
   static TILE_SIZE = 300;
   static CONTAINER_SELECTOR = "#TopPageTilingDatasetsView > .container";
   static DATA_URL_PATH = "/assets/data/temp-datasets.json";
-  static TILE_CLASS = "dataset-tile";
-  static TITLE_CLASS = "title";
-  static DESCRIPTION_CLASS = "description";
-  static DEFAULT_FALLBACK_TITLE = "Unknown Dataset";
-  static DEFAULT_FALLBACK_DESCRIPTION = "No description available";
   static RESIZE_DEBOUNCE_DELAY = 150;
 
   // プライベートプロパティ
@@ -95,24 +90,16 @@ class TopPageTilingDatasetsViewController {
   }
 
   #createTile(dataset) {
-    const tile = document.createElement("div");
-    tile.className = TopPageTilingDatasetsViewController.TILE_CLASS;
+    // DatasetTileクラスを使用
+    const datasetTile = new DatasetTile(dataset, {
+      showDescription: true,
+      showFallbackDescription: true,
+      customClasses: [] // 必要に応じて追加のクラスを指定
+    });
 
-    // タイトルと説明を取得（フォールバック付き）
-    const title =
-      dataset.title ||
-      dataset.id ||
-      TopPageTilingDatasetsViewController.DEFAULT_FALLBACK_TITLE;
-    const description =
-      dataset.description ||
-      TopPageTilingDatasetsViewController.DEFAULT_FALLBACK_DESCRIPTION;
+    const tile = datasetTile.getElement();
 
-    // HTML構造を作成
-    tile.innerHTML = `
-      <div class="${TopPageTilingDatasetsViewController.TITLE_CLASS}">${title}</div>
-      <div class="${TopPageTilingDatasetsViewController.DESCRIPTION_CLASS}">${description}</div>
-    `;
-
+    // 既存のスタイル設定（位置指定など）を維持
     return tile;
   }
 
