@@ -1,12 +1,14 @@
 [
   {
     "id": "bioportal",
+    "title": "BioPortal",
     "dataset": [
       "bioportal"
     ]
   },
   {
     "id": "covid",
+    "title": "COVID-19",
     "dataset": [
       "uniprot-covid",
       "kg-covid-19",
@@ -15,12 +17,14 @@
   },
   {
     "id": "ddbj",
+    "title": "DDBJ",
     "dataset": [
       "ddbj"
     ]
   },
   {
     "id": "ebi",
+    "title": "EBI",
     "dataset": [
       "biosample",
       "biomodels",
@@ -38,12 +42,14 @@
   },
   {
     "id": "kero",
+    "title": "KERO",
     "dataset": [
       "kero"
     ]
   },
   {
     "id": "med2rdf",
+    "title": "Med2RDF",
     "dataset": [
       "dbnsfp",
       "dbscsnv"
@@ -51,6 +57,7 @@
   },
   {
     "id": "ncbi",
+    "title": "NCBI",
     "dataset": [
       "pubmed",
       "pubtator",
@@ -63,6 +70,7 @@
   },
   {
     "id": "pdb",
+    "title": "PDB",
     "dataset": [
       "pdb",
       "bmrb"
@@ -70,6 +78,7 @@
   },
   {
     "id": "primary",
+    "title": "Primary",
     "dataset": [
       "disgenet",
       "ggdonto",
@@ -107,18 +116,21 @@
   },
   {
     "id": "proteinatlas",
+    "title": "Protein Atlas",
     "dataset": [
       "proteinatlas"
     ]
   },
   {
     "id": "pubchem",
+    "title": "PubChem",
     "dataset": [
       "pubchem"
     ]
   },
   {
     "id": "sib",
+    "title": "SIB",
     "dataset": [
       "bgee",
       "nextprot",
@@ -129,6 +141,7 @@
   },
   {
     "id": "wikidata",
+    "title": "Wikidata",
     "dataset": [
       "wikidata"
     ]

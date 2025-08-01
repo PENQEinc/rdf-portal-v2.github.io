@@ -1,16 +1,33 @@
 #EndpointsListView
-  padding: calc(var(--margin-global-navigation) * 2) calc(var(--margin-global-navigation) * 2) calc(var(--margin-global-navigation) * 2) calc(var(--margin-global-navigation) * 2 + var(--width-global-navigation))
 
   > .endpoints
     padding-left: 0
     > .endpoint
       list-style: none
-      > h2
-        font-size: 24px
-      > .datasets
-        padding-left: 0
-        list-style: none
-        > li
+      > article
+        > header
+          display: flex
+          align-items: baseline
+          > h2
+            font-size: 24px
+            margin: 0
+          > a
+            display: inline-block
+            background-color: #000D
+            color: #fff
+            font-weight: 500
+            line-height: 1
+            position: relative
+            padding: 2px 5px
+            text-decoration: none
+            bottom: 3px
+            left: 7px
+            font-size: 12px
+        > .datasets
+          padding-left: 0
+          list-style: none
+          > li
+            margin: 0 0 -1px
 
-          > .dataset-tile
-            padding: 12px
+            > .dataset-tile
+              padding: 12px

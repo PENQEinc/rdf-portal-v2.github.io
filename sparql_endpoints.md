@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: page
 title: SPARQL endpoints
 pageId: sparql_endpoints
 description: SPARQLエンドポイントの一覧を表示します
@@ -65,21 +65,26 @@ function renderEndpoints(endpoints, datasets) {
   const endpointsHtml = endpoints.map(endpoint => `
     <ul class="endpoints">
       <li class="endpoint">
-        <h2>${endpoint.id}</h2>
-        <ul class="datasets">
-          ${endpoint.dataset.map(datasetId => {
-            const dataset = datasetMap[datasetId];
-            const datasetTitle = dataset ? dataset.title || datasetId : datasetId;
-            return `
-              <li>
-                <div class="dataset-tile">
-                  <h3 class="title">${datasetTitle}</h3>
-                  ${dataset && dataset.description ? `<p class="description">${dataset.description}</p>` : ''}
-                </div>
-              </li>
-            `;
-          }).join('')}
-        </ul>
+        <article>
+          <header>
+            <h2>${endpoint.title}</h2>
+            <a href="https://rdfportal.org/${endpoint.id}/sparql" target="endpoint">Link</a>
+          </header>
+          <ul class="datasets">
+            ${endpoint.dataset.map(datasetId => {
+              const dataset = datasetMap[datasetId];
+              const datasetTitle = dataset ? dataset.title || datasetId : datasetId;
+              return `
+                <li>
+                  <div class="dataset-tile">
+                    <h3 class="title">${datasetTitle}</h3>
+                    ${dataset && dataset.description ? `<p class="description">${dataset.description}</p>` : ''}
+                  </div>
+                </li>
+              `;
+            }).join('')}
+          </ul>
+        </article>
       </li>
     </ul>
   `).join('');
