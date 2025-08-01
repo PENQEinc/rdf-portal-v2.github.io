@@ -6,24 +6,16 @@ description: RDFデータへのアクセス方法について説明します
 permalink: /access_methods/
 ---
 
-## SPARQL エンドポイント
+## SPARQL endpoint
 
-各データセットは SPARQL エンドポイントを通じてアクセス可能です。
+Explanation of SPARQL endpoint
 
-### 基本的な使用方法
+[SPARQL endpoint]({{ '/endpoints/' | relative_url }})
 
-1. エンドポイント URL にアクセス
-2. SPARQL クエリを作成
-3. クエリを実行してデータを取得
+## GraphQL API
 
-## データダウンロード
+## MCP Interface
 
-一部のデータセットは直接ダウンロードも可能です。
+## LLM Chat Interface
 
-### サポートされる形式
-
-- RDF/XML
-- Turtle (TTL)
-- N-Triples
-- JSON-LD
-
+## Compare Access Methods

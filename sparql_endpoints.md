@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Endpoints
-pageId: endpoints
+title: SPARQL endpoints
+pageId: sparql_endpoints
 description: SPARQLエンドポイントの一覧を表示します
-permalink: /endpoints/
+permalink: /sparql_endpoints/
 ---
 
 <div id="EndpointsListView"></div>

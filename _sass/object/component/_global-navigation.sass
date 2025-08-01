@@ -76,6 +76,17 @@
               rotate: 45deg
               right: 0
               bottom: 10px
+          > ul
+            padding-left: 10px
+            > li
+              margin-bottom: 0
+              opacity: 0.4
+              &:hover
+                opacity: 1
+              > a
+                font-size: 14px
+                font-weight: 500
+                position: relative
     > .space
       flex-grow: 1
     > .copyrightandpolicy
@@ -93,7 +104,8 @@
 // 現在のページと一致しないナビゲーション項目を薄くする
 
 // ページIDのリスト
-$page-ids: "top", "access_methods", "endpoints", "datasets", "statistics", "documents", "search", "about"
+$page-ids: "top", "access_methods", "datasets", "statistics", "documents", "about"
+$sub-page-ids: "sparql_endpoints", "graphql", "mcp", "llm_chat_interface"
 
 // 各ページIDに対してルールを生成
 @each $page-id in $page-ids
@@ -102,3 +114,8 @@ $page-ids: "top", "access_methods", "endpoints", "datasets", "statistics", "docu
       // その他のページの場合は一致しない項目をフェードアウト
       &:not([data-page-id="#{$page-id}"])
         opacity: 0.4
+
+@each $sub-page-id in $sub-page-ids
+  body[data-page-id="#{$sub-page-id}"] .global-navigation > .inner > nav > ul > li > ul > li
+    &[data-page-id="#{$sub-page-id}"]
+      opacity: 1
