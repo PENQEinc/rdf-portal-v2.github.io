@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: page
 title: Datasets
 pageId: datasets
 description: 利用可能なRDFデータセットの一覧を表示します
@@ -30,7 +30,7 @@ permalink: /datasets/
   gap: 1.5rem;
 }
 
-.dataset-card-wrapper .dataset-tile {
+.dataset-card-wrapper .dataset-card {
   height: auto;
   padding: 1.5rem;
   border: 1px solid #e0e0e0;
@@ -40,37 +40,37 @@ permalink: /datasets/
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.dataset-card-wrapper .dataset-tile:hover {
+.dataset-card-wrapper .dataset-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-.dataset-card-wrapper .dataset-tile .title {
+.dataset-card-wrapper .dataset-card .title {
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
 }
 
-.dataset-card-wrapper .dataset-tile .title a {
+.dataset-card-wrapper .dataset-card .title a {
   color: #1976d2;
   text-decoration: none;
 }
 
-.dataset-card-wrapper .dataset-tile .title a:hover {
+.dataset-card-wrapper .dataset-card .title a:hover {
   text-decoration: underline;
 }
 
-.dataset-card-wrapper .dataset-tile .description {
+.dataset-card-wrapper .dataset-card .description {
   margin-bottom: 1rem;
   line-height: 1.5;
   color: #666;
 }
 
-.dataset-card-wrapper .dataset-tile .tags {
+.dataset-card-wrapper .dataset-card .tags {
   margin-bottom: 1rem;
 }
 
-.dataset-card-wrapper .dataset-tile .tag {
+.dataset-card-wrapper .dataset-card .tag {
   display: inline-block;
   background-color: #e3f2fd;
   color: #1976d2;
@@ -132,7 +132,7 @@ function loadDatasets() {
       datasetsContainer.className = 'datasets-grid';
       
       datasets.forEach(dataset => {
-        const datasetTile = new DatasetTile(dataset, {
+        const datasetCard = new DatasetCard(dataset, {
           showDescription: true,
           showTags: true,
           showLink: true,
@@ -144,7 +144,7 @@ function loadDatasets() {
         const cardWrapper = document.createElement('div');
         cardWrapper.className = 'dataset-card-wrapper';
         
-        const tile = datasetTile.getElement();
+        const card = datasetCard.getElement();
         
         // メタ情報とボタンを追加
         const metaHtml = `
@@ -155,8 +155,8 @@ function loadDatasets() {
           <p><a href="${baseUrl}/dataset/?id=${dataset.id}" class="c-btn c-btn--outline-primary">詳細を見る →</a></p>
         `;
         
-        tile.insertAdjacentHTML('beforeend', metaHtml);
-        cardWrapper.appendChild(tile);
+        card.insertAdjacentHTML('beforeend', metaHtml);
+        cardWrapper.appendChild(card);
         datasetsContainer.appendChild(cardWrapper);
       });
       

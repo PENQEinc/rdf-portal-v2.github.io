@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: page
 title: Documents
 pageId: documents
 description: RDFポータルサイトの利用方法とドキュメント

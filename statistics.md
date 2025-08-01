@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: page
 title: Statistics
 pageId: statistics
 description: RDFデータセットの統計情報を表示します

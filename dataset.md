@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: page
 title: Dataset Details
 description: データセットの詳細情報を表示します
 permalink: /dataset/
