@@ -15,6 +15,7 @@ class DatasetsManager {
   #datasets = null;
   #cacheTimestamp = null;
   #loadingPromise = null;
+  #styleElement = null; // 動的スタイルシート用
 
   /**
    * プライベートコンストラクタ
@@ -79,6 +80,17 @@ class DatasetsManager {
    */
   async getDatasets() {
     const datasets = await this.loadDatasets();
+
+    // 全タグの色を収集してスタイルシートを生成
+    const allTags = new Set();
+    datasets.forEach((dataset) => {
+      if (Array.isArray(dataset.tags)) {
+        dataset.tags.forEach((tag) => allTags.add(tag));
+      }
+    });
+
+    // スタイルシートを更新
+    this.#updateTagStyles(Array.from(allTags));
 
     return datasets.map((dataset) => {
       if (!Array.isArray(dataset.tags)) {
@@ -161,6 +173,35 @@ class DatasetsManager {
   clearCache() {
     this.#datasets = null;
     this.#cacheTimestamp = null;
+  }
+
+  /**
+   * タグ用の動的スタイルシートを更新
+   * @param {Array<string>} tags - タグIDの配列
+   */
+  #updateTagStyles(tags) {
+    // 既存のスタイル要素を削除
+    if (this.#styleElement) {
+      this.#styleElement.remove();
+    }
+
+    // 新しいスタイル要素を作成
+    this.#styleElement = document.createElement("style");
+    this.#styleElement.id = "datasets-manager-tag-styles";
+
+    // CSSルールを生成
+    const cssRules = tags
+      .map((tagId) => {
+        const color = this.getTagColor(tagId);
+        const escapedTagId = CSS.escape(tagId);
+        return `[data-tag="${escapedTagId}"] { background-color: ${color} !important; color: white !important; }`;
+      })
+      .join("\n");
+
+    this.#styleElement.textContent = cssRules;
+
+    // ドキュメントのheadに追加
+    document.head.appendChild(this.#styleElement);
   }
 
   /**

@@ -151,26 +151,20 @@ class DatasetCard {
     return tags
       .map((tag) => {
         if (typeof tag === "string") {
-          // 従来の文字列タグの場合 - DatasetsManagerから色を取得
-          const datasetLoader = DatasetsManager.getInstance();
-          const color = datasetLoader.getTagColor(tag);
-          const style = `style="background-color: ${color}; color: ${this.#getContrastColor(
-            color
-          )};"`;
+          // 従来の文字列タグの場合 - data-tag属性を使用
           return `<span class="${
             DatasetCard.TAG_CLASS
-          }" ${style}>${this.#escapeHtml(tag)}</span>`;
+          }" data-tag="${this.#escapeHtml(tag)}">${this.#escapeHtml(
+            tag
+          )}</span>`;
         } else if (typeof tag === "object" && tag.id) {
-          // 色付きタグオブジェクトの場合
+          // 色付きタグオブジェクトの場合 - data-tag属性を使用
           const tagText = this.#getTagDisplayText(tag);
-          const style = tag.color
-            ? `style="background-color: ${
-                tag.color
-              }; color: ${this.#getContrastColor(tag.color)};"`
-            : "";
           return `<span class="${
             DatasetCard.TAG_CLASS
-          }" ${style}>${this.#escapeHtml(tagText)}</span>`;
+          }" data-tag="${this.#escapeHtml(tag.id)}">${this.#escapeHtml(
+            tagText
+          )}</span>`;
         }
         return "";
       })
