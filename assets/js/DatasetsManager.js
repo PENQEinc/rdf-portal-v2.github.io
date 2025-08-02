@@ -177,10 +177,10 @@ class DatasetsManager {
       hash = hash & hash; // 32bit整数に変換
     }
 
-    // HSLを使用して適度に明るく飽和した色を生成
+    // HSLを使用して白い文字が読みやすいダークな色を生成
     const hue = Math.abs(hash) % 360;
-    const saturation = 60 + (Math.abs(hash) % 30); // 60-90%
-    const lightness = 45 + (Math.abs(hash) % 20); // 45-65%
+    const saturation = 65 + (Math.abs(hash) % 25); // 65-90% (彩度を高めに)
+    const lightness = 25 + (Math.abs(hash) % 20); // 25-45% (明度を低めに)
 
     return this.#hslToHex(hue, saturation, lightness);
   }
