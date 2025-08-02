@@ -89,6 +89,9 @@
     window.SITE_BASE_URL = '{{ site.baseurl }}';
   </script>
 
+  <!-- DatasetLoaderシングルトンクラス（全ページ共通） -->
+  <script src="{{ '/assets/js/DatasetLoader.js' | relative_url }}"></script>
+
   <!-- DatasetCardコンポーネント（全ページ共通） -->
   <script src="{{ '/assets/js/DatasetCard.js' | relative_url }}"></script>
 

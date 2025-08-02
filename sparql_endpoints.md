@@ -18,23 +18,19 @@ async function loadEndpoints() {
   
   try {
     const baseUrl = window.SITE_BASE_URL || '';
+    const datasetLoader = DatasetLoader.getInstance();
     
     // エンドポイント情報とデータセット情報を並行して読み込み
-    const [endpointsResponse, datasetsResponse] = await Promise.all([
+    const [endpointsResponse, datasets] = await Promise.all([
       fetch(`${baseUrl}/assets/data/temp-endpoints.json`),
-      fetch(`${baseUrl}/assets/data/temp-datasets.json`)
+      datasetLoader.loadDatasets()
     ]);
     
     if (!endpointsResponse.ok) {
       throw new Error('Failed to fetch endpoints list');
     }
     
-    if (!datasetsResponse.ok) {
-      throw new Error('Failed to fetch datasets list');
-    }
-    
     const endpoints = await endpointsResponse.json();
-    const datasets = await datasetsResponse.json();
     
     if (!endpoints || endpoints.length === 0) {
       return;

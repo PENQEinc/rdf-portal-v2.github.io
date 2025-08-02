@@ -17,16 +17,8 @@ async function loadDatasets() {
   const datasetsListView = document.getElementById('DatasetsListView');
   
   try {
-    const baseUrl = window.SITE_BASE_URL || '';
-    
-    // データセット情報を読み込み
-    const response = await fetch(`${baseUrl}/assets/data/temp-datasets.json`);
-    
-    if (!response.ok) {
-      throw new Error('Failed to fetch datasets list');
-    }
-    
-    const datasets = await response.json();
+    const datasetLoader = DatasetLoader.getInstance();
+    const datasets = await datasetLoader.loadDatasets();
     
     if (!datasets || datasets.length === 0) {
       return;

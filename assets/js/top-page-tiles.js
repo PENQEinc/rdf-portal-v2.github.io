@@ -6,18 +6,19 @@ class TopPageTilingDatasetsViewController {
   // 定数定義
   static TILE_SIZE = 300;
   static CONTAINER_SELECTOR = "#TopPageTilingDatasetsView > .container";
-  static DATA_URL_PATH = "/assets/data/temp-datasets.json";
   static RESIZE_DEBOUNCE_DELAY = 150;
 
   // プライベートプロパティ
   #container;
   #datasets = [];
   #resizeTimeout;
+  #datasetLoader;
 
   constructor() {
     this.#container = document.querySelector(
       TopPageTilingDatasetsViewController.CONTAINER_SELECTOR
     );
+    this.#datasetLoader = DatasetLoader.getInstance();
 
     if (this.#container) {
       this.#init();
@@ -48,7 +49,7 @@ class TopPageTilingDatasetsViewController {
 
   async #init() {
     try {
-      const data = await this.#loadDatasetsData();
+      const data = await this.#datasetLoader.loadDatasets();
       this.#datasets = data;
 
       if (data.length > 0) {
@@ -87,32 +88,19 @@ class TopPageTilingDatasetsViewController {
     const totalTiles = columns * rows;
 
     return { columns, rows, totalTiles };
-  } #createTile(dataset) {
+  }
+  #createTile(dataset) {
     // DatasetCardクラスを使用
     const datasetCard = new DatasetCard(dataset, {
       showDescription: true,
       showFallbackDescription: true,
-      customClasses: [] // 必要に応じて追加のクラスを指定
+      customClasses: [], // 必要に応じて追加のクラスを指定
     });
 
     const tile = datasetCard.getElement();
 
     // 既存のスタイル設定（位置指定など）を維持
     return tile;
-  }
-
-  async #loadDatasetsData() {
-    const baseUrl = window.SITE_BASE_URL || "";
-    const url = `${baseUrl}${TopPageTilingDatasetsViewController.DATA_URL_PATH}`;
-
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    return data;
   }
 }
 
