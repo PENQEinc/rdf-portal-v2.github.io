@@ -18,7 +18,7 @@ class TopPageTilingDatasetsViewController {
     this.#container = document.querySelector(
       TopPageTilingDatasetsViewController.CONTAINER_SELECTOR
     );
-    this.#datasetLoader = DatasetLoader.getInstance();
+    this.#datasetLoader = DatasetsManager.getInstance();
 
     if (this.#container) {
       this.#init();

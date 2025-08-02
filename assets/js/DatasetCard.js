@@ -151,8 +151,8 @@ class DatasetCard {
     return tags
       .map((tag) => {
         if (typeof tag === "string") {
-          // 従来の文字列タグの場合 - DatasetLoaderから色を取得
-          const datasetLoader = DatasetLoader.getInstance();
+          // 従来の文字列タグの場合 - DatasetsManagerから色を取得
+          const datasetLoader = DatasetsManager.getInstance();
           const color = datasetLoader.getTagColor(tag);
           const style = `style="background-color: ${color}; color: ${this.#getContrastColor(
             color

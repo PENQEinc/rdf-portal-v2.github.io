@@ -17,7 +17,7 @@ async function loadDatasets() {
   const datasetsListView = document.getElementById('DatasetsListView');
   
   try {
-    const datasetLoader = DatasetLoader.getInstance();
+    const datasetLoader = DatasetsManager.getInstance();
     const datasets = await datasetLoader.getDatasets();
     
     if (!datasets || datasets.length === 0) {

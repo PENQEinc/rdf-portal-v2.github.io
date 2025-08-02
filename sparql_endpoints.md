@@ -18,7 +18,7 @@ async function loadEndpoints() {
   
   try {
     const baseUrl = window.SITE_BASE_URL || '';
-    const datasetLoader = DatasetLoader.getInstance();
+    const datasetLoader = DatasetsManager.getInstance();
     
     // エンドポイント情報とデータセット情報を並行して読み込み
     const [endpointsResponse, datasetsWithColors] = await Promise.all([

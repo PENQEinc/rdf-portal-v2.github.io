@@ -1,9 +1,9 @@
 /**
- * DatasetLoader - データセット読み込み用シングルトンクラス
- * temp-datasets.jsonの読み込み処理を一元化し、キャッシュ機能を提供
+ * DatasetsManager - データセット管理用シングルトンクラス
+ * temp-datasets.jsonの読み込み処理を一元化し、キャッシュ、検索、統計機能を提供
  */
 
-class DatasetLoader {
+class DatasetsManager {
   // シングルトンインスタンス
   static #instance = null;
 
@@ -20,22 +20,22 @@ class DatasetLoader {
    * プライベートコンストラクタ
    */
   constructor() {
-    if (DatasetLoader.#instance) {
+    if (DatasetsManager.#instance) {
       throw new Error(
-        "DatasetLoader is a singleton class. Use getInstance() instead."
+        "DatasetsManager is a singleton class. Use getInstance() instead."
       );
     }
   }
 
   /**
    * シングルトンインスタンスを取得
-   * @returns {DatasetLoader} DatasetLoaderのインスタンス
+   * @returns {DatasetsManager} DatasetsManagerのインスタンス
    */
   static getInstance() {
-    if (!DatasetLoader.#instance) {
-      DatasetLoader.#instance = new DatasetLoader();
+    if (!DatasetsManager.#instance) {
+      DatasetsManager.#instance = new DatasetsManager();
     }
-    return DatasetLoader.#instance;
+    return DatasetsManager.#instance;
   }
 
   /**
@@ -180,7 +180,7 @@ class DatasetLoader {
     }
 
     const now = Date.now();
-    return now - this.#cacheTimestamp < DatasetLoader.CACHE_DURATION;
+    return now - this.#cacheTimestamp < DatasetsManager.CACHE_DURATION;
   }
 
   /**
@@ -189,7 +189,7 @@ class DatasetLoader {
    */
   async #fetchDatasets() {
     const baseUrl = window.SITE_BASE_URL || "";
-    const url = `${baseUrl}${DatasetLoader.DATA_URL_PATH}`;
+    const url = `${baseUrl}${DatasetsManager.DATA_URL_PATH}`;
 
     const response = await fetch(url);
 
@@ -299,4 +299,4 @@ class DatasetLoader {
 }
 
 // グローバルスコープに公開
-window.DatasetLoader = DatasetLoader;
+window.DatasetsManager = DatasetsManager;
