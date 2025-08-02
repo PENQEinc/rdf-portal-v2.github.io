@@ -1,6 +1,6 @@
 /**
  * DatasetsManager - データセット管理用シングルトンクラス
- * temp-datasets.jsonの読み込み処理を一元化し、キャッシュ、検索、統計機能を提供
+ * temp-datasets.jsonの読み込み処理を一元化し、キャッシュ機能とタグ色生成を提供
  */
 
 class DatasetsManager {
@@ -110,21 +110,6 @@ class DatasetsManager {
   }
 
   /**
-   * 複数のタグIDに対して色を一括取得
-   * @param {Array<string>} tagIds - タグIDの配列
-   * @returns {Map<string, string>} タグIDをキー、色を値とするMap
-   */
-  getTagColors(tagIds) {
-    const colorMap = new Map();
-
-    tagIds.forEach((tagId) => {
-      colorMap.set(tagId, this.getTagColor(tagId));
-    });
-
-    return colorMap;
-  }
-
-  /**
    * データセットを指定のIDで検索
    * @param {string} id - データセットID
    * @returns {Promise<Object|null>} 見つかったデータセット、または null
@@ -132,42 +117,6 @@ class DatasetsManager {
   async findDatasetById(id) {
     const datasets = await this.loadDatasets();
     return datasets.find((dataset) => dataset.id === id) || null;
-  }
-
-  /**
-   * 複数のIDでデータセットを検索
-   * @param {Array<string>} ids - データセットIDの配列
-   * @returns {Promise<Array>} 見つかったデータセットの配列
-   */
-  async findDatasetsByIds(ids) {
-    const datasets = await this.loadDatasets();
-    const datasetMap = new Map(
-      datasets.map((dataset) => [dataset.id, dataset])
-    );
-
-    return ids
-      .map((id) => datasetMap.get(id))
-      .filter((dataset) => dataset !== undefined);
-  }
-
-  /**
-   * タグでデータセットをフィルタリング
-   * @param {Array<string>} tags - フィルタリングするタグの配列
-   * @param {boolean} matchAll - すべてのタグにマッチする必要があるか（デフォルト: false）
-   * @returns {Promise<Array>} フィルタリングされたデータセット配列
-   */
-  async filterDatasetsByTags(tags, matchAll = false) {
-    const datasets = await this.loadDatasets();
-
-    return datasets.filter((dataset) => {
-      if (!Array.isArray(dataset.tags)) return false;
-
-      if (matchAll) {
-        return tags.every((tag) => dataset.tags.includes(tag));
-      } else {
-        return tags.some((tag) => dataset.tags.includes(tag));
-      }
-    });
   }
 
   /**
@@ -212,47 +161,6 @@ class DatasetsManager {
   clearCache() {
     this.#datasets = null;
     this.#cacheTimestamp = null;
-  }
-
-  /**
-   * キャッシュの状態を取得（デバッグ用）
-   * @returns {Object} キャッシュ状態の情報
-   */
-  getCacheInfo() {
-    return {
-      hasCache: !!this.#datasets,
-      cacheTimestamp: this.#cacheTimestamp,
-      isValid: this.#isCacheValid(),
-      datasetCount: this.#datasets ? this.#datasets.length : 0,
-    };
-  }
-
-  /**
-   * データセットの統計情報を取得
-   * @returns {Promise<Object>} 統計情報
-   */
-  async getStatistics() {
-    const datasets = await this.loadDatasets();
-
-    const tagCounts = {};
-    let totalDatasets = datasets.length;
-
-    datasets.forEach((dataset) => {
-      if (Array.isArray(dataset.tags)) {
-        dataset.tags.forEach((tag) => {
-          tagCounts[tag] = (tagCounts[tag] || 0) + 1;
-        });
-      }
-    });
-
-    return {
-      totalDatasets,
-      tagCounts,
-      mostCommonTags: Object.entries(tagCounts)
-        .sort(([, a], [, b]) => b - a)
-        .slice(0, 10)
-        .map(([tag, count]) => ({ tag, count })),
-    };
   }
 
   /**
