@@ -21,9 +21,9 @@ async function loadEndpoints() {
     const datasetLoader = DatasetLoader.getInstance();
     
     // エンドポイント情報とデータセット情報を並行して読み込み
-    const [endpointsResponse, datasets] = await Promise.all([
+    const [endpointsResponse, datasetsWithColors] = await Promise.all([
       fetch(`${baseUrl}/assets/data/temp-endpoints.json`),
-      datasetLoader.loadDatasets()
+      datasetLoader.getDatasets()
     ]);
     
     if (!endpointsResponse.ok) {
@@ -37,7 +37,7 @@ async function loadEndpoints() {
     }
     
     // 両方のデータが読み込まれてからレンダリング
-    renderEndpoints(endpoints, datasets);
+    renderEndpoints(endpoints, datasetsWithColors);
     endpointListView.style.display = 'block';
     
   } catch (error) {

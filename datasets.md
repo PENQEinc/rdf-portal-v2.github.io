@@ -18,7 +18,7 @@ async function loadDatasets() {
   
   try {
     const datasetLoader = DatasetLoader.getInstance();
-    const datasets = await datasetLoader.loadDatasets();
+    const datasets = await datasetLoader.getDatasets();
     
     if (!datasets || datasets.length === 0) {
       return;

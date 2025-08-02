@@ -74,6 +74,57 @@ class DatasetLoader {
   }
 
   /**
+   * データセット配列を取得（タグに色情報を付加）
+   * @returns {Promise<Array>} 色情報付きのデータセット配列
+   */
+  async getDatasets() {
+    const datasets = await this.loadDatasets();
+
+    return datasets.map((dataset) => {
+      if (!Array.isArray(dataset.tags)) {
+        return dataset;
+      }
+
+      const tagsWithColors = dataset.tags.map((tagId) => {
+        return {
+          id: tagId,
+          color: this.getTagColor(tagId),
+          label: { en: tagId, ja: tagId },
+        };
+      });
+
+      return {
+        ...dataset,
+        tagsWithColors,
+      };
+    });
+  }
+
+  /**
+   * 指定したタグIDの色を取得（ハッシュベース）
+   * @param {string} tagId - タグID
+   * @returns {string} タグの色（#付きの16進数）
+   */
+  getTagColor(tagId) {
+    return this.#generateHashBasedColor(tagId);
+  }
+
+  /**
+   * 複数のタグIDに対して色を一括取得
+   * @param {Array<string>} tagIds - タグIDの配列
+   * @returns {Map<string, string>} タグIDをキー、色を値とするMap
+   */
+  getTagColors(tagIds) {
+    const colorMap = new Map();
+
+    tagIds.forEach((tagId) => {
+      colorMap.set(tagId, this.getTagColor(tagId));
+    });
+
+    return colorMap;
+  }
+
+  /**
    * データセットを指定のIDで検索
    * @param {string} id - データセットID
    * @returns {Promise<Object|null>} 見つかったデータセット、または null
@@ -202,6 +253,48 @@ class DatasetLoader {
         .slice(0, 10)
         .map(([tag, count]) => ({ tag, count })),
     };
+  }
+
+  /**
+   * タグIDからハッシュベースの色を生成
+   * @param {string} tagId - タグID
+   * @returns {string} 生成された色（#付きの16進数）
+   */
+  #generateHashBasedColor(tagId) {
+    // タグIDから一意な色を生成（ハッシュベース）
+    let hash = 0;
+    for (let i = 0; i < tagId.length; i++) {
+      const char = tagId.charCodeAt(i);
+      hash = (hash << 5) - hash + char;
+      hash = hash & hash; // 32bit整数に変換
+    }
+
+    // HSLを使用して適度に明るく飽和した色を生成
+    const hue = Math.abs(hash) % 360;
+    const saturation = 60 + (Math.abs(hash) % 30); // 60-90%
+    const lightness = 45 + (Math.abs(hash) % 20); // 45-65%
+
+    return this.#hslToHex(hue, saturation, lightness);
+  }
+
+  /**
+   * HSL色をHEX色に変換
+   * @param {number} h - 色相 (0-360)
+   * @param {number} s - 彩度 (0-100)
+   * @param {number} l - 明度 (0-100)
+   * @returns {string} HEX色文字列
+   */
+  #hslToHex(h, s, l) {
+    l /= 100;
+    const a = (s * Math.min(l, 1 - l)) / 100;
+    const f = (n) => {
+      const k = (n + h / 30) % 12;
+      const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+      return Math.round(255 * color)
+        .toString(16)
+        .padStart(2, "0");
+    };
+    return `#${f(0)}${f(8)}${f(4)}`;
   }
 }
 

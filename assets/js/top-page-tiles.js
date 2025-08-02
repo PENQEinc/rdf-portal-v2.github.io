@@ -49,7 +49,7 @@ class TopPageTilingDatasetsViewController {
 
   async #init() {
     try {
-      const data = await this.#datasetLoader.loadDatasets();
+      const data = await this.#datasetLoader.getDatasets();
       this.#datasets = data;
 
       if (data.length > 0) {
