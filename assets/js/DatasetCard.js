@@ -11,8 +11,21 @@ class DatasetCard {
   static TAGS_CLASS = "tags";
   static TAG_CLASS = "tag";
   static LINK_CLASS = "link";
-  static DEFAULT_FALLBACK_TITLE = "Unknown Dataset";
-  static DEFAULT_FALLBACK_DESCRIPTION = "No description available";
+
+  // デフォルト値
+  static DEFAULTS = {
+    FALLBACK_TITLE: "Unknown Dataset",
+    FALLBACK_DESCRIPTION: "No description available",
+    OPTIONS: {
+      showLink: false,
+      showTags: false,
+      showDescription: true,
+      showFallbackDescription: false,
+      linkBaseUrl: "",
+      customClasses: [],
+      onClick: null,
+    },
+  };
 
   // プライベートフィールド
   #dataset;
@@ -26,16 +39,7 @@ class DatasetCard {
    */
   constructor(dataset, options = {}) {
     this.#dataset = dataset;
-    this.#options = {
-      showLink: options.showLink || false,
-      showTags: options.showTags || false,
-      showDescription: options.showDescription !== false, // デフォルトはtrue
-      linkBaseUrl: options.linkBaseUrl || "",
-      customClasses: options.customClasses || [],
-      onClick: options.onClick || null,
-      ...options,
-    };
-
+    this.#options = { ...DatasetCard.DEFAULTS.OPTIONS, ...options };
     this.#element = this.#createElement();
   }
 
@@ -46,16 +50,17 @@ class DatasetCard {
   #createElement() {
     const card = document.createElement("div");
 
-    // クラス名を設定
-    const classes = [DatasetCard.CARD_CLASS, ...this.#options.customClasses];
-    card.className = classes.join(" ");
+    // 基本属性を設定
+    card.className = [
+      DatasetCard.CARD_CLASS,
+      ...this.#options.customClasses,
+    ].join(" ");
 
-    // データ属性を設定
     if (this.#dataset.id) {
       card.dataset.datasetId = this.#dataset.id;
     }
 
-    // コンテンツを生成
+    // コンテンツを生成して設定
     card.innerHTML = this.#generateContent();
 
     // イベントリスナーを設定
@@ -69,36 +74,59 @@ class DatasetCard {
    * @returns {string} HTML文字列
    */
   #generateContent() {
+    const parts = [
+      this.#generateTitle(),
+      this.#generateDescription(),
+      this.#generateTags(),
+    ].filter(Boolean);
+
+    return parts.join("");
+  }
+
+  /**
+   * タイトル部分のHTMLを生成
+   * @returns {string} タイトルHTML
+   */
+  #generateTitle() {
     const title = this.#getTitle();
-    const description = this.#getDescription();
-    const tags = this.#getTags();
 
-    let content = "";
-
-    // タイトル部分
     if (this.#options.showLink && this.#dataset.id) {
       const linkUrl = `${this.#options.linkBaseUrl}/dataset/?id=${
         this.#dataset.id
       }`;
-      content += `<h3 class="${DatasetCard.TITLE_CLASS}">
+      return `<h3 class="${DatasetCard.TITLE_CLASS}">
         <a href="${linkUrl}" class="${DatasetCard.LINK_CLASS}">${title}</a>
       </h3>`;
-    } else {
-      content += `<div class="${DatasetCard.TITLE_CLASS}">${title}</div>`;
     }
 
-    // 説明文部分
-    if (this.#options.showDescription && description) {
-      content += `<div class="${DatasetCard.DESCRIPTION_CLASS}">${description}</div>`;
-    }
+    return `<div class="${DatasetCard.TITLE_CLASS}">${title}</div>`;
+  }
 
-    // タグ部分
-    if (this.#options.showTags && tags.length > 0) {
-      const tagsHtml = this.#generateTagsHtml(tags);
-      content += `<div class="${DatasetCard.TAGS_CLASS}">${tagsHtml}</div>`;
-    }
+  /**
+   * 説明文部分のHTMLを生成
+   * @returns {string} 説明文HTML
+   */
+  #generateDescription() {
+    if (!this.#options.showDescription) return "";
 
-    return content;
+    const description = this.#getDescription();
+    return description
+      ? `<div class="${DatasetCard.DESCRIPTION_CLASS}">${description}</div>`
+      : "";
+  }
+
+  /**
+   * タグ部分のHTMLを生成
+   * @returns {string} タグHTML
+   */
+  #generateTags() {
+    if (!this.#options.showTags) return "";
+
+    const tags = this.#getTags();
+    if (tags.length === 0) return "";
+
+    const tagsHtml = this.#generateTagsHtml(tags);
+    return `<div class="${DatasetCard.TAGS_CLASS}">${tagsHtml}</div>`;
   }
 
   /**
@@ -109,7 +137,7 @@ class DatasetCard {
     return (
       this.#dataset.title ||
       this.#dataset.id ||
-      DatasetCard.DEFAULT_FALLBACK_TITLE
+      DatasetCard.DEFAULTS.FALLBACK_TITLE
     );
   }
 
@@ -118,12 +146,10 @@ class DatasetCard {
    * @returns {string} 説明文
    */
   #getDescription() {
-    if (!this.#options.showDescription) return "";
-
     return (
       this.#dataset.description ||
       (this.#options.showFallbackDescription
-        ? DatasetCard.DEFAULT_FALLBACK_DESCRIPTION
+        ? DatasetCard.DEFAULTS.FALLBACK_DESCRIPTION
         : "")
     );
   }
@@ -137,7 +163,6 @@ class DatasetCard {
     if (Array.isArray(this.#dataset.tagsWithColors)) {
       return this.#dataset.tagsWithColors;
     }
-
     // 従来の文字列タグ配列の場合
     return Array.isArray(this.#dataset.tags) ? this.#dataset.tags : [];
   }
@@ -149,26 +174,33 @@ class DatasetCard {
    */
   #generateTagsHtml(tags) {
     return tags
-      .map((tag) => {
-        if (typeof tag === "string") {
-          // 従来の文字列タグの場合 - data-tag属性を使用
-          return `<span class="${
-            DatasetCard.TAG_CLASS
-          }" data-tag="${this.#escapeHtml(tag)}">${this.#escapeHtml(
-            tag
-          )}</span>`;
-        } else if (typeof tag === "object" && tag.id) {
-          // 色付きタグオブジェクトの場合 - data-tag属性を使用
-          const tagText = this.#getTagDisplayText(tag);
-          return `<span class="${
-            DatasetCard.TAG_CLASS
-          }" data-tag="${this.#escapeHtml(tag.id)}">${this.#escapeHtml(
-            tagText
-          )}</span>`;
-        }
-        return "";
-      })
+      .map((tag) => this.#generateSingleTagHtml(tag))
+      .filter(Boolean)
       .join("");
+  }
+
+  /**
+   * 単一タグのHTMLを生成
+   * @param {string|Object} tag - タグ（文字列またはオブジェクト）
+   * @returns {string} タグHTML
+   */
+  #generateSingleTagHtml(tag) {
+    if (typeof tag === "string") {
+      return `<span class="${
+        DatasetCard.TAG_CLASS
+      }" data-tag="${this.#escapeHtml(tag)}">${this.#escapeHtml(tag)}</span>`;
+    }
+
+    if (typeof tag === "object" && tag.id) {
+      const tagText = this.#getTagDisplayText(tag);
+      return `<span class="${
+        DatasetCard.TAG_CLASS
+      }" data-tag="${this.#escapeHtml(tag.id)}">${this.#escapeHtml(
+        tagText
+      )}</span>`;
+    }
+
+    return "";
   }
 
   /**
@@ -177,12 +209,10 @@ class DatasetCard {
    * @returns {string} 表示テキスト
    */
   #getTagDisplayText(tag) {
-    // 言語設定に基づいてラベルを選択（日本語優先）
-    if (tag.label) {
-      const lang = document.documentElement.lang || "ja";
-      return tag.label[lang] || tag.label.ja || tag.label.en || tag.id;
-    }
-    return tag.id;
+    if (!tag.label) return tag.id;
+
+    const lang = document.documentElement.lang || "ja";
+    return tag.label[lang] || tag.label.ja || tag.label.en || tag.id;
   }
 
   /**
@@ -209,14 +239,46 @@ class DatasetCard {
   }
 
   /**
-   * HTMLエスケープ
+   * HTMLをエスケープ
    * @param {string} text - エスケープするテキスト
    * @returns {string} エスケープされたテキスト
    */
   #escapeHtml(text) {
-    const div = document.createElement("div");
-    div.textContent = text;
-    return div.innerHTML;
+    if (typeof text !== "string") return "";
+
+    return text
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  /**
+   * 文字列を切り詰める
+   * @param {string} str - 切り詰める文字列
+   * @param {number} maxLength - 最大長
+   * @returns {string} 切り詰められた文字列
+   */
+  #truncateString(str, maxLength) {
+    if (!str || typeof str !== "string") return "";
+    return str.length <= maxLength ? str : str.slice(0, maxLength) + "...";
+  }
+
+  /**
+   * URLが有効かチェック
+   * @param {string} url - チェックするURL
+   * @returns {boolean} 有効な場合true
+   */
+  #isValidUrl(url) {
+    if (!url || typeof url !== "string") return false;
+
+    try {
+      new URL(url);
+      return true;
+    } catch {
+      return false;
+    }
   }
 
   /**
@@ -273,7 +335,46 @@ class DatasetCard {
   }
 
   /**
-   * 複数のカードを一括生成
+   * 複数のカードを一括生成（DocumentFragmentを使用）
+   * @param {Array} datasets - データセット配列
+   * @param {Object} options - オプション設定
+   * @returns {DocumentFragment} カード要素群を含むフラグメント
+   */
+  static createCards(datasets, options = {}) {
+    const fragment = document.createDocumentFragment();
+
+    if (!Array.isArray(datasets)) {
+      console.warn("DatasetCard.createCards: datasets should be an array");
+      return fragment;
+    }
+
+    datasets.forEach((dataset) => {
+      const card = new DatasetCard(dataset, options);
+      const element = card.render();
+      if (element) fragment.appendChild(element);
+    });
+
+    return fragment;
+  }
+
+  /**
+   * 指定された要素にデータセットカードを描画
+   * @param {Element} container - 描画先のコンテナ要素
+   * @param {Array} datasets - データセット配列
+   * @param {Object} options - 描画オプション
+   */
+  static renderToContainer(container, datasets, options = {}) {
+    if (!container || typeof container.appendChild !== "function") {
+      console.error("DatasetCard.renderToContainer: Invalid container element");
+      return;
+    }
+
+    const fragment = DatasetCard.createCards(datasets, options);
+    container.appendChild(fragment);
+  }
+
+  /**
+   * 複数のカードを一括生成（従来の方式）
    * @param {Array} datasets - データセット配列
    * @param {Object} options - オプション設定
    * @returns {Array} DatasetCardインスタンスの配列
