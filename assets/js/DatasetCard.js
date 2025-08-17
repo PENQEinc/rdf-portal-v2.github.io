@@ -42,6 +42,7 @@ class DatasetCard {
     LENGTH_COMPRESS: 0.12,
     SINGLE_TAG_PETALS: 6,
     ZERO_TAG_COLOR: "#e2e8f0",
+    FULL_CIRCLE_THRESHOLD: 8, // この枚数以上で 360° 均等配置
   };
 
   #dataset;
@@ -237,10 +238,16 @@ class DatasetCard {
     // 2+ タグ: 多花弁
     const arr = tags.slice(0, P.MAX_PETALS);
     const n = arr.length;
-    const dynamicSpan =
-      n <= 3 ? (n <= 1 ? 0 : 70) : Math.min(70 + (n - 3) * 25, 300);
-    const step = n === 1 ? 0 : dynamicSpan / (n - 1);
-    const start = -dynamicSpan / 2;
+    const fullCircle = n >= P.FULL_CIRCLE_THRESHOLD;
+    const dynamicSpan = fullCircle
+      ? 360
+      : n <= 3
+      ? n <= 1
+        ? 0
+        : 70
+      : Math.min(70 + (n - 3) * 25, 300);
+    const step = n === 1 ? 0 : fullCircle ? 360 / n : dynamicSpan / (n - 1);
+    const start = fullCircle ? 0 : -dynamicSpan / 2;
     const lightenBase = 8,
       lightenExtra = 8;
     const lightenL = Math.min(lightenBase + (1 - t2) * lightenExtra, 20);
