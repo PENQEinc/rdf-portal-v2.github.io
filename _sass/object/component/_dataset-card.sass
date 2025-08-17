@@ -15,6 +15,34 @@
     line-height: 1
     margin: 0 0 5px 0
 
+  > .dataset-card__head
+    display: flex
+    align-items: center
+    gap: 8px
+    > .dataset-card__icon
+      flex: 0 0 auto
+      width: 48px
+      height: 48px
+      border-radius: 50%
+      /* 見やすさ向上のための軽い枠 */
+      box-shadow: 0 0 0 1px #0002, 0 2px 4px -1px #0003
+      background: radial-gradient(circle at 30% 30%, #fff, #f0f4f8)
+      image-rendering: crisp-edges
+      canvas:focus &
+        outline: 2px solid #2563eb
+        outline-offset: 2px
+      &.dataset-card__icon--svg
+        background: none
+        box-shadow: none
+        border-radius: 0
+        > g, path
+          isolation: isolate
+    > .title
+      flex: 1 1 auto
+      margin: 0
+      font-size: 22px
+      line-height: 1.1
+
   > .description
     margin: 0
     font-size: 16px

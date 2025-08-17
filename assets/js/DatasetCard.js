@@ -24,6 +24,9 @@ class DatasetCard {
       linkBaseUrl: "",
       customClasses: [],
       onClick: null,
+      showIcon: true, // 花弁型アイコン表示
+      iconSize: 48, // CSS表示サイズ(px)
+      iconRendering: "svgOverlap", // 'svgOverlap' | 'canvasFloral'
     },
   };
 
@@ -63,6 +66,13 @@ class DatasetCard {
     // コンテンツを生成して設定
     card.innerHTML = this.#generateContent();
 
+    // アイコンCanvas描画 (DOM挿入後に描画)
+    try {
+      this.#renderIconIfNeeded(card);
+    } catch (e) {
+      console.warn("DatasetCard icon render failed", e);
+    }
+
     // イベントリスナーを設定
     this.#setupEventListeners(card);
 
@@ -75,12 +85,411 @@ class DatasetCard {
    */
   #generateContent() {
     const parts = [
-      this.#generateTitle(),
+      this.#generateHeader(),
       this.#generateDescription(),
       this.#generateTags(),
     ].filter(Boolean);
-
     return parts.join("");
+  }
+  /**
+   * ヘッダー(アイコン+タイトル)生成
+   */
+  #generateHeader() {
+    const titleHtml = this.#generateTitle();
+    if (!this.#options.showIcon) return titleHtml;
+    const iconHtml =
+      this.#options.iconRendering === "svgOverlap"
+        ? this.#generateIconSvgHtml()
+        : this.#generateIconCanvasHtml();
+    return `<div class="dataset-card__head">${iconHtml}${titleHtml}</div>`;
+  }
+
+  /**
+   * アイコン用Canvas要素HTML (後で描画)
+   */
+  #generateIconCanvasHtml() {
+    const size = this.#options.iconSize || 48;
+    const tags = this.#extractTagStrings(this.#getTags());
+    const aria = tags.length
+      ? `data-icon-tags="${this.#escapeHtml(tags.join(","))}"`
+      : "";
+    return `<canvas class="dataset-card__icon" width="${size}" height="${size}" ${aria} aria-label="Dataset tags icon" role="img"></canvas>`;
+  }
+
+  /** SVG重なり花弁バージョン */
+  #generateIconSvgHtml() {
+    const size = this.#options.iconSize || 48;
+    const tags = this.#extractTagStrings(this.#getTags());
+    if (tags.length === 0) {
+      return `<svg class="dataset-card__icon" width="${size}" height="${size}" viewBox="0 0 100 100" role="img" aria-label="No tags"><circle cx="50" cy="50" r="46" fill="#e2e8f0"/></svg>`;
+    }
+    const limited = tags.slice(0, 10); // 上限
+    const n = limited.length;
+    // 角度計算（密度に応じて間隔を自動縮小）
+    const baseAngle = n === 1 ? 0 : Math.min(28, 70 / (n - 1));
+    const start = (-baseAngle * (n - 1)) / 2;
+    const gradients = [];
+    const petals = [];
+    const apexY = 78; // 下部先端
+    const scale = 0.82; // 余白確保
+    limited.forEach((tag, i) => {
+      const angle = start + baseAngle * i; // deg
+      const colorHsl = this.#colorForTag(tag);
+      const { h, s, l } = this.#parseHsl(colorHsl);
+      const topHex = this.#hslToHex(h, s, Math.min(100, l + 5));
+      const id = `g_${Math.abs(this.#hashString(tag))}_${i}_${Math.floor(
+        Math.random() * 1e5
+      )}`;
+      gradients.push(`<linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="${topHex}" stop-opacity="1"/>
+        <stop offset="100%" stop-color="${topHex}" stop-opacity="0"/>
+      </linearGradient>`);
+      // 花弁パス（ティアドロップ）座標: 原点(0,0)中心扱いで後で移動
+      const path = `M0 ${apexY} C 32 55, 32 20, 0 10 C -32 20, -32 55, 0 ${apexY}Z`;
+      petals.push(
+        `<path d="${path}" fill="url(#${id})" transform="rotate(${angle} 0 78)" style="mix-blend-mode:multiply"/>`
+      );
+    });
+    const svg = `<svg class="dataset-card__icon dataset-card__icon--svg" width="${size}" height="${size}" viewBox="-50 0 100 100" role="img" aria-label="Tags: ${this.#escapeHtml(
+      limited.join(", ")
+    )}">
+      <defs>${gradients.join("")}</defs>
+      <g transform="scale(${scale}) translate(0, -4)">${petals.join("")}</g>
+    </svg>`;
+    return svg;
+  }
+
+  /**
+   * Canvasアイコン描画実行
+   * @param {HTMLElement} card
+   */
+  #renderIconIfNeeded(card) {
+    if (!this.#options.showIcon) return;
+    if (this.#options.iconRendering === "svgOverlap") return; // SVGは静的
+    const canvas = card.querySelector("canvas.dataset-card__icon");
+    if (!canvas) return; // 他レンダリング
+    const tags = this.#extractTagStrings(this.#getTags());
+    this.#drawFlowerIcon(canvas, tags);
+  }
+
+  /**
+   * タグ配列から文字列配列へ統一
+   */
+  #extractTagStrings(rawTags) {
+    if (!Array.isArray(rawTags)) return [];
+    return rawTags
+      .map((t) => {
+        if (typeof t === "string") return t;
+        if (t && typeof t === "object") return t.id || "";
+        return "";
+      })
+      .filter(Boolean);
+  }
+
+  /**
+   * 花弁型アイコン描画
+   * @param {HTMLCanvasElement} canvas
+   * @param {string[]} tags
+   */
+  #drawFlowerIcon(canvas, tags) {
+    const displaySize = this.#options.iconSize || 48;
+    const dpr = window.devicePixelRatio || 1;
+    // 高解像度描画: 内部解像度
+    const base = 256; // 設計ベース
+    canvas.width = base * dpr; // 物理解像度
+    canvas.height = base * dpr;
+    canvas.style.width = displaySize + "px";
+    canvas.style.height = displaySize + "px";
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    ctx.scale(dpr, dpr); // Retinaスケール
+
+    // 背景クリア
+    ctx.clearRect(0, 0, base, base);
+
+    const centerX = base / 2;
+    const centerY = base / 2;
+    const petalCount = Math.min(tags.length, 10); // 最大10花弁
+    const extraCount = tags.length - petalCount;
+
+    // 0タグ→グレー単色円
+    if (tags.length === 0) {
+      const grd = ctx.createRadialGradient(
+        centerX - 10,
+        centerY - 10,
+        10,
+        centerX,
+        centerY,
+        120
+      );
+      grd.addColorStop(0, "#f5f5f5");
+      grd.addColorStop(1, "#c7c7c7");
+      ctx.fillStyle = grd;
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, 100, 0, Math.PI * 2);
+      ctx.fill();
+      return;
+    }
+
+    // ソート（安定：タグ文字列昇順）
+    const sorted = [...tags].sort((a, b) => a.localeCompare(b, "en"));
+    const petals = sorted.slice(0, petalCount);
+
+    // ペタル形状パラメータ
+    const innerR = 46; // 中心部開始半径
+    const petalLen = 80; // 長さ
+    const petalWidth = 46; // 幅
+
+    // 背景の淡いグロウ
+    const bgGrad = ctx.createRadialGradient(
+      centerX,
+      centerY,
+      10,
+      centerX,
+      centerY,
+      140
+    );
+    bgGrad.addColorStop(0, "rgba(255,255,255,0.9)");
+    bgGrad.addColorStop(1, "rgba(255,255,255,0)");
+    ctx.fillStyle = bgGrad;
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, 140, 0, Math.PI * 2);
+    ctx.fill();
+
+    // 各花弁描画
+    petals.forEach((tag, i) => {
+      const angle = (Math.PI * 2 * i) / petalCount;
+      const col = this.#colorForTag(tag);
+      this.#drawPetal(
+        ctx,
+        centerX,
+        centerY,
+        angle,
+        innerR,
+        petalLen,
+        petalWidth,
+        col
+      );
+    });
+
+    // 中心コア
+    const mainColor = this.#colorForTag(petals[0]);
+    this.#drawCore(ctx, centerX, centerY, 52, mainColor);
+
+    // 追加タグ +n 表示
+    if (extraCount > 0) {
+      ctx.fillStyle = "rgba(255,255,255,0.85)";
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, 34, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = "#333";
+      ctx.font = "bold 60px system-ui, sans-serif";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText("+" + extraCount, centerX, centerY + 4);
+    }
+
+    // ハイライトリング
+    const highlight = ctx.createRadialGradient(
+      centerX,
+      centerY,
+      30,
+      centerX,
+      centerY,
+      120
+    );
+    highlight.addColorStop(0, "rgba(255,255,255,0.0)");
+    highlight.addColorStop(1, "rgba(0,0,0,0.15)");
+    ctx.strokeStyle = highlight;
+    ctx.lineWidth = 6;
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, 120, 0, Math.PI * 2);
+    ctx.stroke();
+
+    // 透明フォールバック検出 (理論上ほぼ起きないが安全策)
+    try {
+      const pixel = ctx.getImageData(centerX | 0, centerY | 0, 1, 1).data;
+      if (pixel[3] === 0) {
+        ctx.clearRect(0, 0, base, base);
+        ctx.fillStyle = "#ddd";
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, 100, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    } catch (_) {}
+  }
+
+  /**
+   * 花弁描画
+   */
+  #drawPetal(ctx, cx, cy, angle, innerR, len, width, baseColor) {
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(angle);
+
+    const x0 = 0;
+    const y0 = -innerR;
+    const y1 = -(innerR + len);
+
+    // グラデーション (上=明, 下=濃)
+    const grad = ctx.createLinearGradient(0, y1, 0, y0);
+    const { h, s, l } = this.#parseHsl(baseColor);
+    const lighter = this.#hslToHex(h, s, Math.min(100, l + 12));
+    const mid = this.#hslToHex(h, s, l);
+    const darker = this.#hslToHex(h, s, Math.max(0, l - 18));
+    grad.addColorStop(0, lighter);
+    grad.addColorStop(0.5, mid);
+    grad.addColorStop(1, darker);
+
+    ctx.fillStyle = grad;
+    ctx.strokeStyle = this.#hslToHex(h, s, Math.max(0, l - 30));
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(x0, y0);
+    ctx.bezierCurveTo(
+      width / 2,
+      (y0 + y1) / 2,
+      width / 2,
+      (y0 + y1) / 2,
+      0,
+      y1
+    );
+    ctx.bezierCurveTo(
+      -width / 2,
+      (y0 + y1) / 2,
+      -width / 2,
+      (y0 + y1) / 2,
+      x0,
+      y0
+    );
+    ctx.closePath();
+    ctx.shadowColor = "rgba(0,0,0,0.15)";
+    ctx.shadowBlur = 8;
+    ctx.shadowOffsetY = 4;
+    ctx.fill();
+    ctx.shadowColor = "transparent";
+    ctx.stroke();
+
+    // ハイライト
+    ctx.globalCompositeOperation = "screen";
+    const hl = ctx.createLinearGradient(0, y1, 0, y0);
+    hl.addColorStop(0, "rgba(255,255,255,0.5)");
+    hl.addColorStop(0.4, "rgba(255,255,255,0.0)");
+    ctx.fillStyle = hl;
+    ctx.beginPath();
+    ctx.moveTo(x0, y0);
+    ctx.bezierCurveTo(
+      width / 2,
+      (y0 + y1) / 2,
+      width / 2,
+      (y0 + y1) / 2,
+      0,
+      y1
+    );
+    ctx.bezierCurveTo(
+      -width / 2,
+      (y0 + y1) / 2,
+      -width / 2,
+      (y0 + y1) / 2,
+      x0,
+      y0
+    );
+    ctx.closePath();
+    ctx.fill();
+    ctx.globalCompositeOperation = "source-over";
+
+    ctx.restore();
+  }
+
+  /** 中心コア描画 */
+  #drawCore(ctx, cx, cy, r, baseColor) {
+    const { h, s, l } = this.#parseHsl(baseColor);
+    const lighter = this.#hslToHex(h, s, Math.min(100, l + 15));
+    const mid = this.#hslToHex(h, s, l);
+    const darker = this.#hslToHex(h, s, Math.max(0, l - 25));
+    const grad = ctx.createRadialGradient(
+      cx - r / 3,
+      cy - r / 3,
+      r / 6,
+      cx,
+      cy,
+      r
+    );
+    grad.addColorStop(0, lighter);
+    grad.addColorStop(0.7, mid);
+    grad.addColorStop(1, darker);
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = this.#hslToHex(h, s, Math.max(0, l - 35));
+    ctx.lineWidth = 4;
+    ctx.stroke();
+  }
+
+  /** タグ文字列→色 (HSL文字列) */
+  #colorForTag(tag) {
+    // 既存構造に color プロパティがある場合考慮 (tagsWithColors 未使用時安全)
+    if (tag && typeof tag === "object" && tag.color) return tag.color;
+    const h = this.#hashString(tag) % 360;
+    const s = 58; // 彩度%
+    const l = 55; // 輝度%
+    return `hsl(${h}, ${s}%, ${l}%)`;
+  }
+
+  #parseHsl(hsl) {
+    // スペース区切りもカンマ区切りに正規化
+    const normalized = hsl.replace(
+      /hsl\((\d+) (\d+)% (\d+)%\)/,
+      "hsl($1,$2%,$3%)"
+    );
+    const m =
+      /hsl\(\s*(\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)%\s*,\s*(\d+(?:\.\d+)?)%\s*\)/i.exec(
+        normalized
+      );
+    if (!m) return { h: 0, s: 0, l: 50 };
+    return { h: +m[1], s: +m[2], l: +m[3] };
+  }
+
+  #hslToHex(h, s, l) {
+    s /= 100;
+    l /= 100;
+    const k = (n) => (n + h / 30) % 12;
+    const a = s * Math.min(l, 1 - l);
+    const f = (n) =>
+      l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
+    const toHex = (x) =>
+      Math.round(x * 255)
+        .toString(16)
+        .padStart(2, "0");
+    return `#${toHex(f(0))}${toHex(f(8))}${toHex(f(4))}`;
+  }
+
+  /** 文字列ハッシュ(FNV-1a 32bit) */
+  #hashString(str) {
+    let h = 0x811c9dc5;
+    for (let i = 0; i < str.length; i++) {
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 0x01000193);
+      h >>>= 0;
+    }
+    return h >>> 0;
+  }
+
+  /** HSL表記の lightness 調整 (簡易パーサ) */
+  #adjustHslLightness(hsl, delta) {
+    // 形式: hsl(H S% L%) or hsl(H, S%, L%) 両対応
+    const m =
+      /hsl\(\s*(\d+(?:\.\d+)?)\s*,?\s*(\d+(?:\.\d+)?)%\s*,?\s*(\d+(?:\.\d+)?)%\s*\)/.exec(
+        hsl
+      );
+    if (!m) return hsl;
+    const h = +m[1];
+    const s = +m[2];
+    let l = +m[3];
+    l = Math.max(0, Math.min(100, l + delta));
+    return `hsl(${h}, ${s}%, ${l}%)`;
   }
 
   /**
@@ -318,6 +727,8 @@ class DatasetCard {
   updateData(newDataset) {
     this.#dataset = { ...this.#dataset, ...newDataset };
     this.#element.innerHTML = this.#generateContent();
+    // アイコン再描画
+    this.#renderIconIfNeeded(this.#element);
 
     // データ属性も更新
     if (this.#dataset.id) {
@@ -350,8 +761,7 @@ class DatasetCard {
 
     datasets.forEach((dataset) => {
       const card = new DatasetCard(dataset, options);
-      const element = card.render();
-      if (element) fragment.appendChild(element);
+      fragment.appendChild(card.getElement());
     });
 
     return fragment;

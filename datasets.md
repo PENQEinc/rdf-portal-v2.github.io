@@ -34,41 +34,38 @@ async function loadDatasets() {
 }
 
 function renderDatasets(datasets) {
-  const datasetsListView = document.getElementById('DatasetsListView');
+  const container = document.getElementById('DatasetsListView');
   const baseUrl = window.SITE_BASE_URL || '';
-  
-  // データセットのHTMLを生成
-  const datasetsHtml = datasets.map(dataset => {
-    // DatasetCardクラスを使用してカードを作成
+  // 既存内容クリア
+  container.innerHTML = '';
+  const ul = document.createElement('ul');
+  ul.className = 'datasets';
+
+  datasets.forEach(dataset => {
+    const li = document.createElement('li');
+    li.className = 'dataset';
     const datasetCard = new DatasetCard(dataset, {
       showDescription: true,
       showTags: true,
       showLink: true,
-      linkBaseUrl: baseUrl
+  linkBaseUrl: baseUrl,
+  iconRendering: 'svgOverlap'
     });
-    
-    const cardElement = datasetCard.getElement();
-    
-    // メタ情報を追加
-    const metaHtml = `
+    const cardEl = datasetCard.getElement();
+    const metaWrapper = document.createElement('div');
+    metaWrapper.className = 'c-card__meta-wrapper';
+    metaWrapper.innerHTML = `
       <div class="c-card__meta">
         <p><strong>ID:</strong> ${dataset.id}</p>
-        <p><strong>設定ファイル:</strong> <a href="https://github.com/dbcls/rdf-config/tree/master/config/${dataset.id}" target="_blank">GitHub</a></p>
+        <p><strong>設定ファイル:</strong> <a href="https://github.com/dbcls/rdf-config/tree/master/config/${dataset.id}" target="_blank" rel="noopener">GitHub</a></p>
       </div>
       <p><a href="${baseUrl}/dataset/?id=${dataset.id}" class="c-btn c-btn--outline-primary">詳細を見る →</a></p>
     `;
-    
-    cardElement.insertAdjacentHTML('beforeend', metaHtml);
-    
-    return `<li class="dataset">${cardElement.outerHTML}</li>`;
-  }).join('');
+    cardEl.appendChild(metaWrapper);
+    li.appendChild(cardEl);
+    ul.appendChild(li);
+  });
 
-  const html = `
-    <ul class="datasets">
-      ${datasetsHtml}
-    </ul>
-  `;
-  
-  datasetsListView.innerHTML = html;
+  container.appendChild(ul);
 }
 </script>
