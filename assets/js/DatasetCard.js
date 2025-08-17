@@ -1,9 +1,7 @@
 /**
- * DatasetCard - 再構築版 (最小安定実装 + SVG花弁アイコン)
- * 目的: 破損ファイルを置換してページ復旧。今後拡張しやすいシンプル構造。
+ * DatasetCard - 花弁アイコン (0/1 タグも統一フォルム)
  */
 class DatasetCard {
-  /* =================== 定数 =================== */
   static CARD_CLASS = "dataset-card";
   static TITLE_CLASS = "title";
   static DESCRIPTION_CLASS = "description";
@@ -26,7 +24,6 @@ class DatasetCard {
       iconRendering: "svgOverlap",
     },
   };
-  // SVG花弁パラメータ (必要最低限 + 動的スパンロジック)
   static SVG = {
     MAX_PETALS: 10,
     SCALE: 0.82,
@@ -39,22 +36,25 @@ class DatasetCard {
     GRAD_OPACITY_START: 0.85,
     GRAD_OPACITY_END: 0.05,
     USE_RANDOM_ID: true,
+    WIDTH_MAX: 32,
+    WIDTH_MIN: 12,
+    WIDTH_EXP: 1.25,
+    LENGTH_COMPRESS: 0.12,
+    SINGLE_TAG_PETALS: 6,
+    ZERO_TAG_COLOR: "#e2e8f0",
   };
 
   #dataset;
   #options;
   #element;
-
   constructor(dataset = {}, options = {}) {
     try {
       this.#dataset = dataset || {};
       this.#options = { ...DatasetCard.DEFAULTS.OPTIONS, ...(options || {}) };
-
       const el = document.createElement("div");
       el.className = DatasetCard.CARD_CLASS;
-      if (Array.isArray(this.#options.customClasses)) {
+      if (Array.isArray(this.#options.customClasses))
         this.#options.customClasses.forEach((c) => c && el.classList.add(c));
-      }
       if (this.#dataset.id) el.dataset.datasetId = this.#dataset.id;
       el.innerHTML = this.#generateContent();
       this.#setupEventListeners(el);
@@ -69,7 +69,17 @@ class DatasetCard {
     }
   }
 
-  /* ============== Public API ============== */
+  static createCards(datasets, options = {}) {
+    const frag = document.createDocumentFragment();
+    if (!Array.isArray(datasets)) return frag;
+    datasets.forEach((ds) => {
+      const c = new DatasetCard(ds, options);
+      const el = c.getElement();
+      if (el) frag.appendChild(el);
+    });
+    return frag;
+  }
+
   getElement() {
     return this.#element;
   }
@@ -82,85 +92,57 @@ class DatasetCard {
       this.#element.parentNode.removeChild(this.#element);
   }
 
-  static createCards(datasets, options = {}) {
-    const frag = document.createDocumentFragment();
-    if (!Array.isArray(datasets)) return frag;
-    datasets.forEach((ds) => {
-      const c = new DatasetCard(ds, options);
-      const el = c.getElement();
-      if (el) frag.appendChild(el);
-    });
-    return frag;
-  }
-  static renderToContainer(container, datasets, options = {}) {
-    if (!container?.appendChild) return;
-    container.appendChild(DatasetCard.createCards(datasets, options));
-  }
-
-  /* ============== HTML生成 ============== */
   #generateContent() {
-    return [
-      this.#generateHeader(),
-      this.#generateDescription(),
-      this.#generateTags(),
-    ]
-      .filter(Boolean)
-      .join("");
-  }
-
-  #generateHeader() {
+    const iconHtml = this.#options.showIcon
+      ? `<div class="dataset-card__icon-wrapper">${this.#buildPetalSvg()}</div>`
+      : "";
     const titleHtml = this.#generateTitle();
-    if (!this.#options.showIcon)
-      return `<div class="dataset-card__head">${titleHtml}</div>`;
-    if (this.#options.iconRendering !== "svgOverlap") {
-      // 他方式は未実装: プレースホルダ
-      const size = this.#options.iconSize || 48;
-      return `<div class="dataset-card__head"><svg class="dataset-card__icon" width="${size}" height="${size}" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#e2e8f0"/></svg>${titleHtml}</div>`;
-    }
-    return `<div class="dataset-card__head">${this.#buildPetalSvg()}${titleHtml}</div>`;
+    const descHtml = this.#generateDescription();
+    const tagsHtml = this.#options.showTags ? this.#generateTags() : "";
+    return `${iconHtml}<div class="dataset-card__body">${titleHtml}${descHtml}${tagsHtml}</div>`;
   }
-
   #generateTitle() {
-    const t =
+    const ttl =
       this.#dataset.title ||
       this.#dataset.id ||
       DatasetCard.DEFAULTS.FALLBACK_TITLE;
-    if (this.#options.showLink && this.#dataset.id) {
-      const url = `${this.#options.linkBaseUrl}/dataset/?id=${
-        this.#dataset.id
-      }`;
-      return `<h3 class="${DatasetCard.TITLE_CLASS}"><a class="${
-        DatasetCard.LINK_CLASS
-      }" href="${url}">${this.#escapeHtml(t)}</a></h3>`;
+    const safe = this.#escapeHtml(ttl);
+    if (
+      this.#options.showLink &&
+      this.#dataset.id &&
+      this.#options.linkBaseUrl
+    ) {
+      const href = this.#escapeHtml(
+        this.#options.linkBaseUrl.replace(/\/$/, "") +
+          "/" +
+          encodeURIComponent(this.#dataset.id)
+      );
+      return `<a class="${DatasetCard.TITLE_CLASS} ${DatasetCard.LINK_CLASS}" href="${href}">${safe}</a>`;
     }
-    return `<div class="${DatasetCard.TITLE_CLASS}">${this.#escapeHtml(
-      t
-    )}</div>`;
+    return `<div class="${DatasetCard.TITLE_CLASS}">${safe}</div>`;
   }
-
   #generateDescription() {
     if (!this.#options.showDescription) return "";
-    const d =
-      this.#dataset.description ||
-      (this.#options.showFallbackDescription
-        ? DatasetCard.DEFAULTS.FALLBACK_DESCRIPTION
-        : "");
-    return d
-      ? `<div class="${DatasetCard.DESCRIPTION_CLASS}">${this.#escapeHtml(
-          d
-        )}</div>`
-      : "";
+    const desc = this.#dataset.description?.trim();
+    if (desc)
+      return `<div class="${DatasetCard.DESCRIPTION_CLASS}">${this.#escapeHtml(
+        desc
+      )}</div>`;
+    if (this.#options.showFallbackDescription)
+      return `<div class="${
+        DatasetCard.DESCRIPTION_CLASS
+      } is-fallback">${this.#escapeHtml(
+        DatasetCard.DEFAULTS.FALLBACK_DESCRIPTION
+      )}</div>`;
+    return "";
   }
-
   #generateTags() {
-    if (!this.#options.showTags) return "";
-    const tags = this.#getTags();
+    const tags = this.#extractTagStrings(this.#getTags());
     if (!tags.length) return "";
     return `<div class="${DatasetCard.TAGS_CLASS}">${tags
       .map((t) => this.#renderTag(t))
       .join("")}</div>`;
   }
-
   #renderTag(tag) {
     if (typeof tag === "string")
       return `<span class="${
@@ -178,23 +160,90 @@ class DatasetCard {
     return "";
   }
 
-  /* ============== SVG花弁生成 ============== */
+  // === helpers (復元) ===
+  #getTags() {
+    if (Array.isArray(this.#dataset.tagsWithColors))
+      return this.#dataset.tagsWithColors;
+    return Array.isArray(this.#dataset.tags) ? this.#dataset.tags : [];
+  }
+  #extractTagStrings(list) {
+    return Array.isArray(list)
+      ? list
+          .map((t) => (typeof t === "string" ? t : t?.id || ""))
+          .filter(Boolean)
+      : [];
+  }
+  #escapeHtml(str) {
+    return typeof str === "string"
+      ? str
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;")
+      : "";
+  }
+  #hashString(str) {
+    let h = 0x811c9dc5;
+    for (let i = 0; i < str.length; i++) {
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 0x01000193);
+      h >>> 0;
+    }
+    return h >>> 0;
+  }
+
   #buildPetalSvg() {
     const P = DatasetCard.SVG;
     const size = this.#options.iconSize || 48;
     const tags = this.#extractTagStrings(this.#getTags());
-    if (!tags.length)
-      return `<svg class="dataset-card__icon" width="${size}" height="${size}" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#e2e8f0"/></svg>`;
+    const rawCount = tags.length;
+    // 共通形状計算 (n=0/1 でも最大幅でふんわりさせる)
+    const effectiveN = Math.min(Math.max(rawCount, 1), P.MAX_PETALS);
+    const tRaw = (effectiveN - 2) / (P.MAX_PETALS - 2);
+    const t = Math.max(0, Math.min(1, tRaw));
+    const t2 = Math.pow(t, P.WIDTH_EXP);
+    const ctrlX = P.WIDTH_MAX - (P.WIDTH_MAX - P.WIDTH_MIN) * t2;
+    const lenFactor = 1 - P.LENGTH_COMPRESS * t2;
+    const APEX_Y = P.APEX_Y * lenFactor;
+    const CTRL_LOW_Y = P.PETAL_CTRL_LOW_Y * lenFactor;
+    const path = `M0 ${APEX_Y} C ${ctrlX} ${CTRL_LOW_Y}, ${ctrlX} ${P.PETAL_CTRL_TOP_Y}, 0 ${P.PETAL_TOP_Y} C -${ctrlX} ${P.PETAL_CTRL_TOP_Y}, -${ctrlX} ${CTRL_LOW_Y}, 0 ${APEX_Y}Z`;
+    // 0 タグ: フラット灰色一枚
+    if (rawCount === 0) {
+      return `<svg class="dataset-card__icon dataset-card__icon--svg" width="${size}" height="${size}" viewBox="-50 0 100 100" role="img" aria-label="No tags"><g transform="scale(${P.SCALE}) translate(0,-4)"><path d="${path}" fill="${P.ZERO_TAG_COLOR}"/></g></svg>`;
+    }
+    // 1 タグ: 単一グラデ花弁
+    if (rawCount === 1) {
+      const baseHex =
+        window.DatasetsManager && window.DatasetsManager.getColor
+          ? window.DatasetsManager.getColor(tags[0])
+          : "#999999";
+      const hsl =
+        window.DatasetsManager && window.DatasetsManager.hexToHsl
+          ? window.DatasetsManager.hexToHsl(baseHex)
+          : { h: 0, s: 0, l: 55 };
+      const topHex = this.#hslToHex(hsl.h, hsl.s, Math.min(100, hsl.l + 14));
+      const idBase = `g_${Math.abs(this.#hashString(tags[0]))}_single`;
+      const id = P.USE_RANDOM_ID
+        ? `${idBase}_${Math.floor(Math.random() * 1e5)}`
+        : idBase;
+      const grad = `<linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="${topHex}" stop-opacity="${P.GRAD_OPACITY_START}"/><stop offset="100%" stop-color="${baseHex}" stop-opacity="${P.GRAD_OPACITY_END}"/></linearGradient>`;
+      return `<svg class="dataset-card__icon dataset-card__icon--svg" width="${size}" height="${size}" viewBox="-50 0 100 100" role="img" aria-label="Tag: ${this.#escapeHtml(
+        tags[0]
+      )}"><defs>${grad}</defs><g transform="scale(${
+        P.SCALE
+      }) translate(0,-4)"><path d="${path}" fill="url(#${id})" style="mix-blend-mode:multiply"/></g></svg>`;
+    }
+    // 2+ タグ: 多花弁
     const arr = tags.slice(0, P.MAX_PETALS);
     const n = arr.length;
     const dynamicSpan =
-      n <= 1 ? 0 : n <= 3 ? 70 : Math.min(70 + (n - 3) * 25, 300);
+      n <= 3 ? (n <= 1 ? 0 : 70) : Math.min(70 + (n - 3) * 25, 300);
     const step = n === 1 ? 0 : dynamicSpan / (n - 1);
     const start = -dynamicSpan / 2;
-    const ctrlX =
-      n > 6 ? Math.max(14, P.PETAL_CTRL_X * (6 / n)) : P.PETAL_CTRL_X;
-    const lightenL = Math.min(P.GRAD_LIGHTEN_L + (n - 1) * 0.6, 20);
-    const path = `M0 ${P.APEX_Y} C ${ctrlX} ${P.PETAL_CTRL_LOW_Y}, ${ctrlX} ${P.PETAL_CTRL_TOP_Y}, 0 ${P.PETAL_TOP_Y} C -${ctrlX} ${P.PETAL_CTRL_TOP_Y}, -${ctrlX} ${P.PETAL_CTRL_LOW_Y}, 0 ${P.APEX_Y}Z`;
+    const lightenBase = 8,
+      lightenExtra = 8;
+    const lightenL = Math.min(lightenBase + (1 - t2) * lightenExtra, 20);
     const gradients = [];
     const petals = [];
     arr.forEach((tag, i) => {
@@ -220,7 +269,7 @@ class DatasetCard {
         `<linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="${topHex}" stop-opacity="${P.GRAD_OPACITY_START}"/><stop offset="100%" stop-color="${baseHex}" stop-opacity="${P.GRAD_OPACITY_END}"/></linearGradient>`
       );
       petals.push(
-        `<path d="${path}" fill="url(#${id})" transform="rotate(${angle} 0 ${P.APEX_Y})" style="mix-blend-mode:multiply"/>`
+        `<path d="${path}" fill="url(#${id})" transform="rotate(${angle} 0 ${APEX_Y})" style="mix-blend-mode:multiply"/>`
       );
     });
     return `<svg class="dataset-card__icon dataset-card__icon--svg" width="${size}" height="${size}" viewBox="-50 0 100 100" role="img" aria-label="Tags: ${this.#escapeHtml(
@@ -229,41 +278,6 @@ class DatasetCard {
       P.SCALE
     }) translate(0,-4)">${petals.join("")}</g></svg>`;
   }
-
-  /* ============== Data helpers ============== */
-  #getTags() {
-    if (Array.isArray(this.#dataset.tagsWithColors))
-      return this.#dataset.tagsWithColors;
-    return Array.isArray(this.#dataset.tags) ? this.#dataset.tags : [];
-  }
-  #extractTagStrings(list) {
-    return Array.isArray(list)
-      ? list
-          .map((t) => (typeof t === "string" ? t : t?.id || ""))
-          .filter(Boolean)
-      : [];
-  }
-
-  /* ============== Utils ============== */
-  #escapeHtml(s) {
-    return typeof s === "string"
-      ? s
-          .replace(/&/g, "&amp;")
-          .replace(/</g, "&lt;")
-          .replace(/>/g, "&gt;")
-          .replace(/"/g, "&quot;")
-          .replace(/'/g, "&#39;")
-      : "";
-  }
-  #hashString(str) {
-    let h = 0x811c9dc5;
-    for (let i = 0; i < str.length; i++) {
-      h ^= str.charCodeAt(i);
-      h = Math.imul(h, 0x01000193);
-      h >>> 0;
-    }
-    return h >>> 0;
-  }
   #hslToHex(h, s, l) {
     s /= 100;
     l /= 100;
@@ -271,11 +285,16 @@ class DatasetCard {
     const a = s * Math.min(l, 1 - l);
     const f = (n) =>
       l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
-    const toHex = (x) =>
-      Math.round(x * 255)
-        .toString(16)
-        .padStart(2, "0");
-    return `#${toHex(f(0))}${toHex(f(8))}${toHex(f(4))}`;
+    const r = Math.round(f(0) * 255)
+      .toString(16)
+      .padStart(2, "0");
+    const g = Math.round(f(8) * 255)
+      .toString(16)
+      .padStart(2, "0");
+    const b = Math.round(f(4) * 255)
+      .toString(16)
+      .padStart(2, "0");
+    return `#${r}${g}${b}`;
   }
   #setupEventListeners(el) {
     if (typeof this.#options.onClick === "function") {
@@ -288,5 +307,4 @@ class DatasetCard {
   }
 }
 
-// 公開
 window.DatasetCard = DatasetCard;
