@@ -30,6 +30,23 @@ class DatasetCard {
     },
   };
 
+  // SVGオーバーラップ花弁アイコン用パラメータ（調整しやすいようにまとめ）
+  static SVG_OVERLAP_PARAMS = {
+    MAX_PETALS: 10, // 表示する最大花弁数（超過は切り捨て）
+    DISTRIBUTION_SPAN_DEG: 70, // 花弁全体を左右に広げる目標角度幅（タグ数>1時）
+    MAX_SINGLE_STEP_DEG: 28, // 隣接花弁の最大角度間隔（詰まり防止）
+    SCALE: 0.82, // 全体スケール（SVG viewBox 内での余白調整）
+    APEX_Y: 78, // 花弁の一番下（先端）Y座標
+    PETAL_TOP_Y: 10, // 花弁上部Y（中心側）
+    PETAL_CTRL_TOP_Y: 20, // 上部ベジェ制御点Y
+    PETAL_CTRL_LOW_Y: 55, // 下部ベジェ制御点Y
+    PETAL_CTRL_X: 32, // ベジェ制御点X（左右対称）
+    GRAD_LIGHTEN_L: 5, // グラデ上部の明度補正 (+L)
+    GRAD_OPACITY_START: 1.0, // 上端不透明度
+    GRAD_OPACITY_END: 0.0, // 下端不透明度
+    USE_RANDOM_ID: true, // <defs> gradient id に乱数サフィックス付与
+  };
+
   // プライベートフィールド
   #dataset;
   #options;
@@ -95,68 +112,47 @@ class DatasetCard {
    * ヘッダー(アイコン+タイトル)生成
    */
   #generateHeader() {
-    const titleHtml = this.#generateTitle();
-    if (!this.#options.showIcon) return titleHtml;
-    const iconHtml =
-      this.#options.iconRendering === "svgOverlap"
-        ? this.#generateIconSvgHtml()
-        : this.#generateIconCanvasHtml();
-    return `<div class="dataset-card__head">${iconHtml}${titleHtml}</div>`;
-  }
-
-  /**
-   * アイコン用Canvas要素HTML (後で描画)
-   */
-  #generateIconCanvasHtml() {
     const size = this.#options.iconSize || 48;
-    const tags = this.#extractTagStrings(this.#getTags());
-    const aria = tags.length
-      ? `data-icon-tags="${this.#escapeHtml(tags.join(","))}"`
-      : "";
-    return `<canvas class="dataset-card__icon" width="${size}" height="${size}" ${aria} aria-label="Dataset tags icon" role="img"></canvas>`;
-  }
-
-  /** SVG重なり花弁バージョン */
-  #generateIconSvgHtml() {
-    const size = this.#options.iconSize || 48;
+    const P = DatasetCard.SVG_OVERLAP_PARAMS;
     const tags = this.#extractTagStrings(this.#getTags());
     if (tags.length === 0) {
       return `<svg class="dataset-card__icon" width="${size}" height="${size}" viewBox="0 0 100 100" role="img" aria-label="No tags"><circle cx="50" cy="50" r="46" fill="#e2e8f0"/></svg>`;
     }
-    const limited = tags.slice(0, 10); // 上限
+    const limited = tags.slice(0, P.MAX_PETALS);
     const n = limited.length;
-    // 角度計算（密度に応じて間隔を自動縮小）
-    const baseAngle = n === 1 ? 0 : Math.min(28, 70 / (n - 1));
-    const start = (-baseAngle * (n - 1)) / 2;
     const gradients = [];
     const petals = [];
-    const apexY = 78; // 下部先端
-    const scale = 0.82; // 余白確保
+    // 角度配置: n==1 は 0°, それ以外は span を (n-1) 分割
+    const span = Math.min(
+      P.DISTRIBUTION_SPAN_DEG,
+      P.MAX_SINGLE_STEP_DEG * (n - 1)
+    );
+    const step = n === 1 ? 0 : span / (n - 1);
+    const start = -span / 2;
+    // 花弁パス（ベジェティアドロップ）
+    const path = `M0 ${P.APEX_Y} C ${P.PETAL_CTRL_X} ${P.PETAL_CTRL_LOW_Y}, ${P.PETAL_CTRL_X} ${P.PETAL_CTRL_TOP_Y}, 0 ${P.PETAL_TOP_Y} C -${P.PETAL_CTRL_X} ${P.PETAL_CTRL_TOP_Y}, -${P.PETAL_CTRL_X} ${P.PETAL_CTRL_LOW_Y}, 0 ${P.APEX_Y}Z`;
     limited.forEach((tag, i) => {
-      const angle = start + baseAngle * i; // deg
+      const angle = start + step * i;
       const colorHsl = this.#colorForTag(tag);
       const { h, s, l } = this.#parseHsl(colorHsl);
-      const topHex = this.#hslToHex(h, s, Math.min(100, l + 5));
-      const id = `g_${Math.abs(this.#hashString(tag))}_${i}_${Math.floor(
-        Math.random() * 1e5
-      )}`;
+      const topHex = this.#hslToHex(h, s, Math.min(100, l + P.GRAD_LIGHTEN_L));
+      const idBase = `g_${Math.abs(this.#hashString(tag))}_${i}`;
+      const id = P.USE_RANDOM_ID
+        ? `${idBase}_${Math.floor(Math.random() * 1e5)}`
+        : idBase;
       gradients.push(`<linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="${topHex}" stop-opacity="1"/>
-        <stop offset="100%" stop-color="${topHex}" stop-opacity="0"/>
+        <stop offset="0%" stop-color="${topHex}" stop-opacity="${P.GRAD_OPACITY_START}"/>
+        <stop offset="100%" stop-color="${topHex}" stop-opacity="${P.GRAD_OPACITY_END}"/>
       </linearGradient>`);
-      // 花弁パス（ティアドロップ）座標: 原点(0,0)中心扱いで後で移動
-      const path = `M0 ${apexY} C 32 55, 32 20, 0 10 C -32 20, -32 55, 0 ${apexY}Z`;
       petals.push(
-        `<path d="${path}" fill="url(#${id})" transform="rotate(${angle} 0 78)" style="mix-blend-mode:multiply"/>`
+        `<path d="${path}" fill="url(#${id})" transform="rotate(${angle} 0 ${P.APEX_Y})" style="mix-blend-mode:multiply"/>`
       );
     });
-    const svg = `<svg class="dataset-card__icon dataset-card__icon--svg" width="${size}" height="${size}" viewBox="-50 0 100 100" role="img" aria-label="Tags: ${this.#escapeHtml(
+    return `<svg class="dataset-card__icon dataset-card__icon--svg" width="${size}" height="${size}" viewBox="-50 0 100 100" role="img" aria-label="Tags: ${this.#escapeHtml(
       limited.join(", ")
-    )}">
-      <defs>${gradients.join("")}</defs>
-      <g transform="scale(${scale}) translate(0, -4)">${petals.join("")}</g>
-    </svg>`;
-    return svg;
+    )}"><defs>${gradients.join("")}</defs><g transform="scale(${
+      P.SCALE
+    }) translate(0,-4)">${petals.join("")}</g></svg>`;
   }
 
   /**
