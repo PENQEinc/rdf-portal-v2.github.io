@@ -40,6 +40,55 @@ class DatasetsManager {
   }
 
   /**
+   * 静的アクセッサ: タグ(文字列 or {id}) からHEX色を取得
+   * @param {string|Object} tag - タグID もしくは {id: string}
+   * @returns {string} HEX色
+   */
+  static getColor(tag) {
+    const id = typeof tag === "object" && tag && tag.id ? tag.id : tag;
+    if (typeof id !== "string") return "#888888";
+    return DatasetsManager.getInstance().getTagColor(id);
+  }
+
+  /**
+   * HEX (#rrggbb) -> {h,s,l}
+   * @param {string} hex
+   * @returns {{h:number,s:number,l:number}}
+   */
+  static hexToHsl(hex) {
+    if (!hex || !/^#([0-9a-f]{6})$/i.test(hex)) return { h: 0, s: 0, l: 50 };
+    const r = parseInt(hex.slice(1, 3), 16) / 255;
+    const g = parseInt(hex.slice(3, 5), 16) / 255;
+    const b = parseInt(hex.slice(5, 7), 16) / 255;
+    const max = Math.max(r, g, b);
+    const min = Math.min(r, g, b);
+    let h, s;
+    const l = (max + min) / 2;
+    if (max === min) {
+      h = s = 0;
+    } else {
+      const d = max - min;
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+      switch (max) {
+        case r:
+          h = (g - b) / d + (g < b ? 6 : 0);
+          break;
+        case g:
+          h = (b - r) / d + 2;
+          break;
+        default:
+          h = (r - g) / d + 4;
+      }
+      h /= 6;
+    }
+    return {
+      h: Math.round(h * 360),
+      s: Math.round(s * 100),
+      l: Math.round(l * 100),
+    };
+  }
+
+  /**
    * データセットを読み込み（キャッシュ機能付き）
    * @param {Object} options - オプション設定
    * @param {boolean} options.forceReload - キャッシュを無視して強制的に再読み込み

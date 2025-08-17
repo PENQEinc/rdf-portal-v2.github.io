@@ -114,7 +114,9 @@ class DatasetCard {
   #generateHeader() {
     const size = this.#options.iconSize || 48;
     const P = DatasetCard.SVG_OVERLAP_PARAMS;
-    const tags = this.#extractTagStrings(this.#getTags());
+    // 生タグオブジェクト配列（tagsWithColors優先）
+    const rawTagObjs = this.#getTags();
+    const tags = this.#extractTagStrings(rawTagObjs);
     if (tags.length === 0) {
       return `<svg class="dataset-card__icon" width="${size}" height="${size}" viewBox="0 0 100 100" role="img" aria-label="No tags"><circle cx="50" cy="50" r="46" fill="#e2e8f0"/></svg>`;
     }
@@ -133,8 +135,12 @@ class DatasetCard {
     const path = `M0 ${P.APEX_Y} C ${P.PETAL_CTRL_X} ${P.PETAL_CTRL_LOW_Y}, ${P.PETAL_CTRL_X} ${P.PETAL_CTRL_TOP_Y}, 0 ${P.PETAL_TOP_Y} C -${P.PETAL_CTRL_X} ${P.PETAL_CTRL_TOP_Y}, -${P.PETAL_CTRL_X} ${P.PETAL_CTRL_LOW_Y}, 0 ${P.APEX_Y}Z`;
     limited.forEach((tag, i) => {
       const angle = start + step * i;
-      const colorHsl = this.#colorForTag(tag);
-      const { h, s, l } = this.#parseHsl(colorHsl);
+      const baseHex = window.DatasetsManager
+        ? window.DatasetsManager.getColor(tag)
+        : "#888888";
+      const { h, s, l } = window.DatasetsManager
+        ? window.DatasetsManager.hexToHsl(baseHex)
+        : { h: 0, s: 0, l: 50 };
       const topHex = this.#hslToHex(h, s, Math.min(100, l + P.GRAD_LIGHTEN_L));
       const idBase = `g_${Math.abs(this.#hashString(tag))}_${i}`;
       const id = P.USE_RANDOM_ID
@@ -142,7 +148,7 @@ class DatasetCard {
         : idBase;
       gradients.push(`<linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1">
         <stop offset="0%" stop-color="${topHex}" stop-opacity="${P.GRAD_OPACITY_START}"/>
-        <stop offset="100%" stop-color="${topHex}" stop-opacity="${P.GRAD_OPACITY_END}"/>
+        <stop offset="100%" stop-color="${baseHex}" stop-opacity="${P.GRAD_OPACITY_END}"/>
       </linearGradient>`);
       petals.push(
         `<path d="${path}" fill="url(#${id})" transform="rotate(${angle} 0 ${P.APEX_Y})" style="mix-blend-mode:multiply"/>`
@@ -253,10 +259,19 @@ class DatasetCard {
     ctx.arc(centerX, centerY, 140, 0, Math.PI * 2);
     ctx.fill();
 
-    // 各花弁描画
+    // 各花弁描画 (キャンバス版)
     petals.forEach((tag, i) => {
       const angle = (Math.PI * 2 * i) / petalCount;
-      const col = this.#colorForTag(tag);
+      const hex = window.DatasetsManager
+        ? window.DatasetsManager.getColor(tag)
+        : null;
+      let hslColor;
+      if (hex && window.DatasetsManager) {
+        const { h, s, l } = window.DatasetsManager.hexToHsl(hex);
+        hslColor = `hsl(${h}, ${s}%, ${l}%)`;
+      } else {
+        hslColor = this.#colorForTag(tag);
+      }
       this.#drawPetal(
         ctx,
         centerX,
@@ -265,13 +280,20 @@ class DatasetCard {
         innerR,
         petalLen,
         petalWidth,
-        col
+        hslColor
       );
     });
-
-    // 中心コア
-    const mainColor = this.#colorForTag(petals[0]);
-    this.#drawCore(ctx, centerX, centerY, 52, mainColor);
+    const firstHex = window.DatasetsManager
+      ? window.DatasetsManager.getColor(petals[0])
+      : null;
+    const coreColor =
+      firstHex && window.DatasetsManager
+        ? (() => {
+            const { h, s, l } = window.DatasetsManager.hexToHsl(firstHex);
+            return `hsl(${h}, ${s}%, ${l}%)`;
+          })()
+        : this.#colorForTag(petals[0]);
+    this.#drawCore(ctx, centerX, centerY, 52, coreColor);
 
     // 追加タグ +n 表示
     if (extraCount > 0) {
@@ -472,6 +494,8 @@ class DatasetCard {
     }
     return h >>> 0;
   }
+
+  // (#fallbackColorHex, #hexToHslObj は DatasetManager へ集約済み)
 
   /** HSL表記の lightness 調整 (簡易パーサ) */
   #adjustHslLightness(hsl, delta) {
