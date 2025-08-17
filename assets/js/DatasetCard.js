@@ -42,6 +42,11 @@ class DatasetCard {
     LENGTH_COMPRESS: 0.12,
     SINGLE_TAG_PETALS: 6,
     ZERO_TAG_COLOR: "#e2e8f0",
+    // 花弁枚数による視覚サイズ補正用スケール境界
+    VISUAL_MIN_SCALE: 0.9, // 多枚数時 (最小) 調整
+    VISUAL_MAX_SCALE: 1.1, // 少枚数時 (最大) 調整
+    VISUAL_EXP: 1.2, // 視覚スケール補間用指数 (多枚数側をやや強調して縮小)
+    SINGLE_PETAL_EMPHASIS: 1.025, // 単一タグ時のわずかな強調倍率
     FULL_CIRCLE_THRESHOLD: 8, // この枚数以上で 360° 均等配置
   };
 
@@ -203,15 +208,23 @@ class DatasetCard {
     const effectiveN = Math.min(Math.max(rawCount, 1), P.MAX_PETALS);
     const tRaw = (effectiveN - 2) / (P.MAX_PETALS - 2);
     const t = Math.max(0, Math.min(1, tRaw));
-    const t2 = Math.pow(t, P.WIDTH_EXP);
+    const tVisual = Math.pow(t, P.VISUAL_EXP);
+    const t2 = Math.pow(t, P.WIDTH_EXP); // 幾何用 (幅/長さ計算)
+    const scaleVisual =
+      P.VISUAL_MAX_SCALE - (P.VISUAL_MAX_SCALE - P.VISUAL_MIN_SCALE) * tVisual;
     const ctrlX = P.WIDTH_MAX - (P.WIDTH_MAX - P.WIDTH_MIN) * t2;
     const lenFactor = 1 - P.LENGTH_COMPRESS * t2;
     const APEX_Y = P.APEX_Y * lenFactor;
     const CTRL_LOW_Y = P.PETAL_CTRL_LOW_Y * lenFactor;
+    // 視覚スケール (t2=0 少枚数→最大 / t2=1 多枚数→最小)
     const path = `M0 ${APEX_Y} C ${ctrlX} ${CTRL_LOW_Y}, ${ctrlX} ${P.PETAL_CTRL_TOP_Y}, 0 ${P.PETAL_TOP_Y} C -${ctrlX} ${P.PETAL_CTRL_TOP_Y}, -${ctrlX} ${CTRL_LOW_Y}, 0 ${APEX_Y}Z`;
     // 0 タグ: フラット灰色一枚
     if (rawCount === 0) {
-      return `<svg class="dataset-card__icon dataset-card__icon--svg" width="${size}" height="${size}" viewBox="-50 0 100 100" role="img" aria-label="No tags"><g transform="scale(${P.SCALE}) translate(0,-4)"><path d="${path}" fill="${P.ZERO_TAG_COLOR}"/></g></svg>`;
+      return `<svg class="dataset-card__icon dataset-card__icon--svg" width="${size}" height="${size}" viewBox="-50 0 100 100" role="img" aria-label="No tags"><g transform="scale(${(
+        P.SCALE * scaleVisual
+      ).toFixed(4)}) translate(0,-4)"><path d="${path}" fill="${
+        P.ZERO_TAG_COLOR
+      }"/></g></svg>`;
     }
     // 1 タグ: 単一グラデ花弁
     if (rawCount === 1) {
@@ -231,9 +244,13 @@ class DatasetCard {
       const grad = `<linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="${topHex}" stop-opacity="${P.GRAD_OPACITY_START}"/><stop offset="100%" stop-color="${baseHex}" stop-opacity="${P.GRAD_OPACITY_END}"/></linearGradient>`;
       return `<svg class="dataset-card__icon dataset-card__icon--svg" width="${size}" height="${size}" viewBox="-50 0 100 100" role="img" aria-label="Tag: ${this.#escapeHtml(
         tags[0]
-      )}"><defs>${grad}</defs><g transform="scale(${
-        P.SCALE
-      }) translate(0,-4)"><path d="${path}" fill="url(#${id})" style="mix-blend-mode:multiply"/></g></svg>`;
+      )}"><defs>${grad}</defs><g transform="scale(${(
+        P.SCALE *
+        scaleVisual *
+        P.SINGLE_PETAL_EMPHASIS
+      ).toFixed(
+        4
+      )}) translate(0,-4)"><path d="${path}" fill="url(#${id})" style="mix-blend-mode:multiply"/></g></svg>`;
     }
     // 2+ タグ: 多花弁
     const arr = tags.slice(0, P.MAX_PETALS);
@@ -281,9 +298,9 @@ class DatasetCard {
     });
     return `<svg class="dataset-card__icon dataset-card__icon--svg" width="${size}" height="${size}" viewBox="-50 0 100 100" role="img" aria-label="Tags: ${this.#escapeHtml(
       arr.join(", ")
-    )}"><defs>${gradients.join("")}</defs><g transform="scale(${
-      P.SCALE
-    }) translate(0,-4)">${petals.join("")}</g></svg>`;
+    )}"><defs>${gradients.join("")}</defs><g transform="scale(${(
+      P.SCALE * scaleVisual
+    ).toFixed(4)}) translate(0,-4)">${petals.join("")}</g></svg>`;
   }
   #hslToHex(h, s, l) {
     s /= 100;
