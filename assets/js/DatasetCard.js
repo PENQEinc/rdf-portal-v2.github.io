@@ -25,29 +25,37 @@ class DatasetCard {
     },
   };
   static SVG = {
-    MAX_PETALS: 10,
-    SCALE: 0.82,
-    APEX_Y: 78,
-    PETAL_TOP_Y: 10,
-    PETAL_CTRL_TOP_Y: 20,
-    PETAL_CTRL_LOW_Y: 55,
-    PETAL_CTRL_X: 32,
-    GRAD_LIGHTEN_L: 12,
-    GRAD_OPACITY_START: 0.85,
-    GRAD_OPACITY_END: 0.05,
-    USE_RANDOM_ID: true,
-    WIDTH_MAX: 32,
-    WIDTH_MIN: 12,
-    WIDTH_EXP: 1.25,
-    LENGTH_COMPRESS: 0.12,
-    SINGLE_TAG_PETALS: 6,
-    ZERO_TAG_COLOR: "#e2e8f0",
-    // 花弁枚数による視覚サイズ補正用スケール境界
-    VISUAL_MIN_SCALE: 0.9, // 多枚数時 (最小) 調整
-    VISUAL_MAX_SCALE: 1.1, // 少枚数時 (最大) 調整
-    VISUAL_EXP: 1.2, // 視覚スケール補間用指数 (多枚数側をやや強調して縮小)
-    SINGLE_PETAL_EMPHASIS: 1.025, // 単一タグ時のわずかな強調倍率
-    FULL_CIRCLE_THRESHOLD: 8, // この枚数以上で 360° 均等配置
+    // 幾何/制御パラメータ ==============================
+    MAX_PETALS: 10, // 同時に描画する最大花弁枚数 (タグ数が多くても打ち止め)
+    SCALE: 0.82, // 全体基礎スケール (viewBox 100x100 を card サイズへ収める調整)
+    APEX_Y: 78, // 花弁先端（下端）Y 座標 (lenFactor で圧縮)
+    PETAL_TOP_Y: 10, // 花弁上端（頂点寄り）Y 座標
+    PETAL_CTRL_TOP_Y: 20, // Bézier 上側制御点 Y
+    PETAL_CTRL_LOW_Y: 55, // Bézier 下側制御点 Y (lenFactor で圧縮)
+
+    // グラデーション関連 ===============================
+    GRAD_OPACITY_START: 1, // グラデ上部 stop の不透明度
+    GRAD_OPACITY_END: 0.2, // グラデ下部 stop の不透明度
+    USE_RANDOM_ID: true, // <defs> の gradient id にランダム要素を含め重複を防ぐ
+
+    // 花弁幅・長さスケーリング =========================
+    WIDTH_MAX: 32, // 最小枚数時の最大半幅
+    WIDTH_MIN: 24, // 最大枚数時の最小半幅
+    WIDTH_EXP: 1.25, // 幅補間用指数 (非線形に細くする)
+    LENGTH_COMPRESS: 0.12, // 枚数増加に伴う縦方向圧縮率 (t2 を掛ける)
+
+    ZERO_TAG_COLOR: "#e2e8f0", // タグ 0 件時のプレースホルダ色
+
+    // 視覚サイズ補正 ===================================
+    VISUAL_MIN_SCALE: 0.9, // 多枚数時の全体縮小下限 (最小)
+    VISUAL_MAX_SCALE: 1.1, // 少枚数時の全体拡大上限 (最大)
+    VISUAL_EXP: 1.2, // 視覚スケール補間指数 (大きいほど多枚数側を強く縮小)
+    SINGLE_PETAL_EMPHASIS: 1.025, // 単一タグ表示時のわずかな追加拡大倍率
+    FULL_CIRCLE_THRESHOLD: 8, // この枚数以上で扇状 → 360° 均等配置に切替
+    // レイアウト角度制御 ==============================
+    TWO_PETAL_SPAN: 50, // 2枚時の扇状角度 (中心対称配置で ±25°)
+    FAN_SPAN_MIN: 70, // 3枚時の扇状角度 (開始値)
+    FAN_SPAN_MAX: 170, // FULL_CIRCLE_THRESHOLD-1 枚時の扇状角度 (その次で 360° へ)
   };
 
   #dataset;
@@ -256,13 +264,21 @@ class DatasetCard {
     const arr = tags.slice(0, P.MAX_PETALS);
     const n = arr.length;
     const fullCircle = n >= P.FULL_CIRCLE_THRESHOLD;
-    const dynamicSpan = fullCircle
-      ? 360
-      : n <= 3
-      ? n <= 1
-        ? 0
-        : 70
-      : Math.min(70 + (n - 3) * 25, 300);
+    let dynamicSpan;
+    if (fullCircle) {
+      dynamicSpan = 360;
+    } else if (n <= 1) {
+      dynamicSpan = 0; // 0/1 枚は回転不要
+    } else if (n === 2) {
+      dynamicSpan = P.TWO_PETAL_SPAN; // 2枚専用角度
+    } else {
+      // 3 <= n < FULL_CIRCLE_THRESHOLD の扇状
+      const spanRange = P.FAN_SPAN_MAX - P.FAN_SPAN_MIN;
+      const denom = P.FULL_CIRCLE_THRESHOLD - 1 - 3; // 例: 8閾値 → 7-3 = 4
+      const ratio = denom > 0 ? (n - 3) / denom : 0; // n=3→0, n=7→1
+      const clamped = Math.max(0, Math.min(1, ratio));
+      dynamicSpan = P.FAN_SPAN_MIN + spanRange * clamped;
+    }
     const step = n === 1 ? 0 : fullCircle ? 360 / n : dynamicSpan / (n - 1);
     const start = fullCircle ? 0 : -dynamicSpan / 2;
     const lightenBase = 8,
