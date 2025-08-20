@@ -65,7 +65,8 @@ class DatasetCard {
     try {
       this.#dataset = dataset || {};
       this.#options = { ...DatasetCard.DEFAULTS.OPTIONS, ...(options || {}) };
-      const el = document.createElement("div");
+      // ルートを <article> に変更 (セマンティクス向上)
+      const el = document.createElement("article");
       el.className = DatasetCard.CARD_CLASS;
       if (Array.isArray(this.#options.customClasses))
         this.#options.customClasses.forEach((c) => c && el.classList.add(c));
@@ -107,13 +108,15 @@ class DatasetCard {
   }
 
   #generateContent() {
-    const iconHtml = this.#options.showIcon
-      ? `<div class="dataset-card__icon-wrapper">${this.#buildPetalSvg()}</div>`
+    const iconPart = this.#options.showIcon
+      ? `<div class="iconwrapper dataset-card__icon-wrapper">${this.#buildPetalSvg()}</div>`
       : "";
-    const titleHtml = this.#generateTitle();
+    const titlePart = this.#generateTitle();
     const descHtml = this.#generateDescription();
     const tagsHtml = this.#options.showTags ? this.#generateTags() : "";
-    return `${iconHtml}<div class="dataset-card__body">${titleHtml}${descHtml}${tagsHtml}</div>`;
+    // icon + title を <header> にまとめる (旧 .dataset-card__head を併記)
+    const headHtml = `<header class="head">${iconPart}${titlePart}</header>`;
+    return `${headHtml}<div class="body">${descHtml}${tagsHtml}</div>`;
   }
   #generateTitle() {
     const ttl =
@@ -145,7 +148,7 @@ class DatasetCard {
     if (this.#options.showFallbackDescription)
       return `<div class="${
         DatasetCard.DESCRIPTION_CLASS
-      } is-fallback">${this.#escapeHtml(
+      } isFallback">${this.#escapeHtml(
         DatasetCard.DEFAULTS.FALLBACK_DESCRIPTION
       )}</div>`;
     return "";
@@ -228,7 +231,7 @@ class DatasetCard {
     const path = `M0 ${APEX_Y} C ${ctrlX} ${CTRL_LOW_Y}, ${ctrlX} ${P.PETAL_CTRL_TOP_Y}, 0 ${P.PETAL_TOP_Y} C -${ctrlX} ${P.PETAL_CTRL_TOP_Y}, -${ctrlX} ${CTRL_LOW_Y}, 0 ${APEX_Y}Z`;
     // 0 タグ: フラット灰色一枚
     if (rawCount === 0) {
-      return `<svg class="dataset-card__icon dataset-card__icon--svg" width="${size}" height="${size}" viewBox="-50 0 100 100" role="img" aria-label="No tags"><g transform="scale(${(
+      return `<svg class="icon -svg" width="${size}" height="${size}" viewBox="-50 0 100 100" role="img" aria-label="No tags"><g transform="scale(${(
         P.SCALE * scaleVisual
       ).toFixed(4)}) translate(0,-4)"><path d="${path}" fill="${
         P.ZERO_TAG_COLOR
@@ -250,7 +253,7 @@ class DatasetCard {
         ? `${idBase}_${Math.floor(Math.random() * 1e5)}`
         : idBase;
       const grad = `<linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="${topHex}" stop-opacity="${P.GRAD_OPACITY_START}"/><stop offset="100%" stop-color="${baseHex}" stop-opacity="${P.GRAD_OPACITY_END}"/></linearGradient>`;
-      return `<svg class="dataset-card__icon dataset-card__icon--svg" width="${size}" height="${size}" viewBox="-50 0 100 100" role="img" aria-label="Tag: ${this.#escapeHtml(
+      return `<svg class="icon -svg" width="${size}" height="${size}" viewBox="-50 0 100 100" role="img" aria-label="Tag: ${this.#escapeHtml(
         tags[0]
       )}"><defs>${grad}</defs><g transform="scale(${(
         P.SCALE *
@@ -312,7 +315,7 @@ class DatasetCard {
         `<path d="${path}" fill="url(#${id})" transform="rotate(${angle} 0 ${APEX_Y})" style="mix-blend-mode:multiply"/>`
       );
     });
-    return `<svg class="dataset-card__icon dataset-card__icon--svg" width="${size}" height="${size}" viewBox="-50 0 100 100" role="img" aria-label="Tags: ${this.#escapeHtml(
+    return `<svg class="icon -svg" width="${size}" height="${size}" viewBox="-50 0 100 100" role="img" aria-label="Tags: ${this.#escapeHtml(
       arr.join(", ")
     )}"><defs>${gradients.join("")}</defs><g transform="scale(${(
       P.SCALE * scaleVisual
