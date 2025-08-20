@@ -22,30 +22,30 @@
 
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1)
 
-  > .title
-    font-weight: 600
-    font-size: 24px
-    line-height: 1
-    margin: 0 0 5px 0
-
   // head: タイトルとアイコンを左右並び
   > .head
     display: flex
     align-items: center
     gap: 8px
-  // svg アイコン (現在は .head > .iconwrapper > .icon 経路) ※ TODO: セレクタ再検討
-  > .icon
-    flex: 0 0 auto
-    width: 48px
-    height: 48px
-    border-radius: 50%
-      /* 見やすさ向上のための軽い枠 */
-    box-shadow: 0 0 0 1px #0002, 0 2px 4px -1px #0003
-    background: radial-gradient(circle at 30% 30%, #fff, #f0f4f8)
-    image-rendering: crisp-edges
-    canvas:focus &
-      outline: 2px solid #2563eb
-      outline-offset: 2px
+    // svg アイコン (現在は .head > .iconwrapper > .icon 経路) ※ TODO: セレクタ再検討
+    > .icon
+      flex: 0 0 auto
+      width: 48px
+      height: 48px
+      border-radius: 50%
+        /* 見やすさ向上のための軽い枠 */
+      box-shadow: 0 0 0 1px #0002, 0 2px 4px -1px #0003
+      background: radial-gradient(circle at 30% 30%, #fff, #f0f4f8)
+      image-rendering: crisp-edges
+      canvas:focus &
+        outline: 2px solid #2563eb
+        outline-offset: 2px
+    > .title
+      font-weight: 600
+      font-size: 18px
+      line-height: 1
+      margin: 0 0 5px 0
+
   // svg アイコン用の見た目微調整 (本来は .icon.-svg をターゲットすべき) ※ 要見直し
   &.-svg
     background: none
@@ -53,11 +53,6 @@
     border-radius: 0
     > g, path
       isolation: isolate
-    > .title
-      flex: 1 1 auto
-      margin: 0
-      font-size: 22px
-      line-height: 1.1
 
   // body 内部要素
   > .body > .description
