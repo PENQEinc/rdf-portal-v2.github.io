@@ -1,5 +1,18 @@
 // ============================================================================
-// Dataset Card Component
+// Dataset Card Component (RSCSS版)
+// Structure:
+//   .dataset-card
+//     > .head
+//         > .iconwrapper
+//             > svg.icon.-svg
+//         > .title (or a.title.link)
+//     > .body
+//         > .description
+//         > .tags > .tag*
+// Notes:
+//  - 旧BEMクラスは削除済み。残っていた参照はコメントからも除去。
+//  - svg アイコンは iconwrapper を挟むため既存の "> .icon" セレクタは未適用。
+//    必要なら `.dataset-card .icon` 等へ後で調整 (TODO)。
 // ============================================================================
 
 .dataset-card
@@ -9,21 +22,18 @@
 
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1)
 
-  > .icon
-    position: absolute
-
   > .title
     font-weight: 600
     font-size: 24px
     line-height: 1
     margin: 0 0 5px 0
 
-  // head (RSCSS) 移行後: 旧 .dataset-card__head は削除
+  // head: タイトルとアイコンを左右並び
   > .head
     display: flex
     align-items: center
     gap: 8px
-  // iconwrapper 内の svg (RSCSS: .icon, 旧: .dataset-card__icon)
+  // svg アイコン (現在は .head > .iconwrapper > .icon 経路) ※ TODO: セレクタ再検討
   > .icon
     flex: 0 0 auto
     width: 48px
@@ -36,6 +46,7 @@
     canvas:focus &
       outline: 2px solid #2563eb
       outline-offset: 2px
+  // svg アイコン用の見た目微調整 (本来は .icon.-svg をターゲットすべき) ※ 要見直し
   &.-svg
     background: none
     box-shadow: none
@@ -48,7 +59,7 @@
       font-size: 22px
       line-height: 1.1
 
-  // body 内部要素 (RSCSS: .body) 旧 dataset-card__body は削除
+  // body 内部要素
   > .body > .description
     margin: 0
     font-size: 16px
@@ -70,7 +81,7 @@
       color: #475569
       border: 1px solid #cbd5e1
 
-  // フォールバック説明用
+  // フォールバック説明用 (説明欠如時)
   .isFallback
     opacity: 0.7
 

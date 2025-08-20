@@ -109,12 +109,12 @@ class DatasetCard {
 
   #generateContent() {
     const iconPart = this.#options.showIcon
-      ? `<div class="iconwrapper dataset-card__icon-wrapper">${this.#buildPetalSvg()}</div>`
+      ? `<div class="iconwrapper">${this.#buildPetalSvg()}</div>`
       : "";
     const titlePart = this.#generateTitle();
     const descHtml = this.#generateDescription();
     const tagsHtml = this.#options.showTags ? this.#generateTags() : "";
-    // icon + title を <header> にまとめる (旧 .dataset-card__head を併記)
+    // icon + title を <header> にまとめる (旧 BEM .dataset-card__head は廃止)
     const headHtml = `<header class="head">${iconPart}${titlePart}</header>`;
     return `${headHtml}<div class="body">${descHtml}${tagsHtml}</div>`;
   }
