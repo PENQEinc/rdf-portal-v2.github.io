@@ -20,7 +20,7 @@ class DatasetCard {
       customClasses: [],
       onClick: null,
       showIcon: true,
-      iconSize: 48,
+      iconSize: 36,
       iconRendering: "svgOverlap",
     },
   };
@@ -146,8 +146,8 @@ class DatasetCard {
     ) {
       const href = this.#escapeHtml(
         this.#options.linkBaseUrl.replace(/\/$/, "") +
-          "/" +
-          encodeURIComponent(this.#dataset.id)
+        "/dataset/?id=" +
+        encodeURIComponent(this.#dataset.id)
       );
       return `<a class="${DatasetCard.TITLE_CLASS} ${DatasetCard.LINK_CLASS}" href="${href}">${safe}</a>`;
     }
@@ -161,11 +161,10 @@ class DatasetCard {
         desc
       )}</div>`;
     if (this.#options.showFallbackDescription)
-      return `<div class="${
-        DatasetCard.DESCRIPTION_CLASS
-      } isFallback">${this.#escapeHtml(
-        DatasetCard.DEFAULTS.FALLBACK_DESCRIPTION
-      )}</div>`;
+      return `<div class="${DatasetCard.DESCRIPTION_CLASS
+        } isFallback">${this.#escapeHtml(
+          DatasetCard.DEFAULTS.FALLBACK_DESCRIPTION
+        )}</div>`;
     return "";
   }
   #generateTags() {
@@ -177,17 +176,15 @@ class DatasetCard {
   }
   #renderTag(tag) {
     if (typeof tag === "string")
-      return `<span class="${
-        DatasetCard.TAG_CLASS
-      }" data-tag="${this.#escapeHtml(tag)}">${this.#escapeHtml(tag)}</span>`;
+      return `<span class="${DatasetCard.TAG_CLASS
+        }" data-tag="${this.#escapeHtml(tag)}">${this.#escapeHtml(tag)}</span>`;
     if (tag && typeof tag === "object" && tag.id) {
       const lang = document.documentElement.lang || "ja";
       const txt = tag.label?.[lang] || tag.label?.ja || tag.label?.en || tag.id;
-      return `<span class="${
-        DatasetCard.TAG_CLASS
-      }" data-tag="${this.#escapeHtml(tag.id)}">${this.#escapeHtml(
-        txt
-      )}</span>`;
+      return `<span class="${DatasetCard.TAG_CLASS
+        }" data-tag="${this.#escapeHtml(tag.id)}">${this.#escapeHtml(
+          txt
+        )}</span>`;
     }
     return "";
   }
@@ -201,18 +198,18 @@ class DatasetCard {
   #extractTagStrings(list) {
     return Array.isArray(list)
       ? list
-          .map((t) => (typeof t === "string" ? t : t?.id || ""))
-          .filter(Boolean)
+        .map((t) => (typeof t === "string" ? t : t?.id || ""))
+        .filter(Boolean)
       : [];
   }
   #escapeHtml(str) {
     return typeof str === "string"
       ? str
-          .replace(/&/g, "&amp;")
-          .replace(/</g, "&lt;")
-          .replace(/>/g, "&gt;")
-          .replace(/"/g, "&quot;")
-          .replace(/'/g, "&#39;")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;")
       : "";
   }
   #hashString(str) {

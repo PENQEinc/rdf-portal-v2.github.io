@@ -52,16 +52,6 @@ function renderDatasets(datasets) {
   iconRendering: 'svgOverlap'
     });
     const cardEl = datasetCard.getElement();
-    const metaWrapper = document.createElement('div');
-    metaWrapper.className = 'c-card__meta-wrapper';
-    metaWrapper.innerHTML = `
-      <div class="c-card__meta">
-        <p><strong>ID:</strong> ${dataset.id}</p>
-        <p><strong>設定ファイル:</strong> <a href="https://github.com/dbcls/rdf-config/tree/master/config/${dataset.id}" target="_blank" rel="noopener">GitHub</a></p>
-      </div>
-      <p><a href="${baseUrl}/dataset/?id=${dataset.id}" class="c-btn c-btn--outline-primary">詳細を見る →</a></p>
-    `;
-    cardEl.appendChild(metaWrapper);
     li.appendChild(cardEl);
     ul.appendChild(li);
   });
