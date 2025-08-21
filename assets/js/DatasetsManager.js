@@ -238,12 +238,12 @@ class DatasetsManager {
     this.#styleElement = document.createElement("style");
     this.#styleElement.id = "datasets-manager-tag-styles";
 
-    // CSSルールを生成
+    // CSSルールを生成 - 擬似要素に背景色を適用
     const cssRules = tags
       .map((tagId) => {
         const color = this.getTagColor(tagId);
         const escapedTagId = CSS.escape(tagId);
-        return `[data-tag="${escapedTagId}"] { background-color: ${color} !important; color: white !important; }`;
+        return `[data-tag="${escapedTagId}"]::before { background-color: ${color}; }`;
       })
       .join("\n");
 
