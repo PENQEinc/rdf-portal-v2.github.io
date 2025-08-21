@@ -56,8 +56,16 @@ function renderEndpoints(endpoints, datasets) {
       datasetMap[dataset.id] = dataset;
     });
   }
+  
+  // エンドポイントをソート: primaryを最初に、それ以外は記述順
+  const sortedEndpoints = [...endpoints].sort((a, b) => {
+    if (a.id === 'primary') return -1;
+    if (b.id === 'primary') return 1;
+    return 0; // 元の順序を維持
+  });
+  
   // エンドポイントのHTMLを生成
-  const endpointsHtml = endpoints.map(endpoint => {
+  const endpointsHtml = sortedEndpoints.map(endpoint => {
     // データセット名のシンプルなリスト生成
     const datasetsHtml = endpoint.dataset.map(datasetId => {
       const dataset = datasetMap[datasetId] || { id: datasetId };
