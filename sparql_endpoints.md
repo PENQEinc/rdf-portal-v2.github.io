@@ -21,7 +21,7 @@ async function loadEndpoints() {
     const datasetLoader = DatasetsManager.getInstance();
     
     // エンドポイント情報とデータセット情報を並行して読み込み
-    const [endpointsResponse, datasetsWithColors] = await Promise.all([
+    const [endpointsResponse, datasets] = await Promise.all([
       fetch(`${baseUrl}/assets/data/temp-endpoints.json`),
       datasetLoader.getDatasets()
     ]);
@@ -37,7 +37,7 @@ async function loadEndpoints() {
     }
     
     // 両方のデータが読み込まれてからレンダリング
-    renderEndpoints(endpoints, datasetsWithColors);
+    renderEndpoints(endpoints, datasets);
     endpointListView.style.display = 'block';
     
   } catch (error) {
@@ -56,21 +56,15 @@ function renderEndpoints(endpoints, datasets) {
       datasetMap[dataset.id] = dataset;
     });
   }
-  
   // エンドポイントのHTMLを生成
   const endpointsHtml = endpoints.map(endpoint => {
-    // データセットタイルのHTML生成
+    // データセット名のシンプルなリスト生成
     const datasetsHtml = endpoint.dataset.map(datasetId => {
       const dataset = datasetMap[datasetId] || { id: datasetId };
+      const datasetName = dataset.title || dataset.id || 'Unknown Dataset';
+      const datasetLink = `${baseUrl}/dataset/?id=${encodeURIComponent(datasetId)}`;
       
-      // DatasetCardクラスを使用してカードを作成
-      const datasetCard = new DatasetCard(dataset, {
-        showDescription: true,
-        showLink: true,
-        linkBaseUrl: baseUrl
-      });
-      
-      return `<li>${datasetCard.getElement().outerHTML}</li>`;
+      return `<li><a href="${datasetLink}">${datasetName}</a></li>`;
     }).join('');
 
     return `
@@ -79,7 +73,7 @@ function renderEndpoints(endpoints, datasets) {
           <article>
             <header>
               <h2>${endpoint.title}</h2>
-              <a href="https://rdfportal.org/${endpoint.id}/sparql" target="endpoint">Link</a>
+              <a href="https://rdfportal.org/${endpoint.id}/sparql" target="endpoint" class="external-link">Endpoint</a>
             </header>
             <ul class="datasets">
               ${datasetsHtml}
