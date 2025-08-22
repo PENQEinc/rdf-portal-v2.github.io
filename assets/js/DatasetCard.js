@@ -76,6 +76,7 @@ class DatasetCard {
   #dataset;
   #options;
   #element;
+  #languageChangeHandler;
   constructor(dataset = {}, options = {}) {
     try {
       this.#dataset = dataset || {};
@@ -89,6 +90,9 @@ class DatasetCard {
       el.innerHTML = this.#generateContent();
       this.#setupEventListeners(el);
       this.#element = el;
+      
+      // 言語変更イベントリスナーを追加
+      this.#setupLanguageListener();
     } catch (e) {
       console.error("DatasetCard constructor error", e);
       const fb = document.createElement("div");
@@ -97,6 +101,17 @@ class DatasetCard {
         this.#dataset?.title || this.#dataset?.id || "Invalid Dataset";
       this.#element = fb;
     }
+  }
+  
+  // 言語変更イベントリスナー設定
+  #setupLanguageListener() {
+    this.#languageChangeHandler = () => {
+      if (this.#element) {
+        this.#element.innerHTML = this.#generateContent();
+        this.#setupEventListeners(this.#element);
+      }
+    };
+    window.addEventListener('languageChange', this.#languageChangeHandler);
   }
 
   static createCards(datasets, options = {}) {
@@ -118,6 +133,12 @@ class DatasetCard {
       container.appendChild(this.#element);
   }
   remove() {
+    // イベントリスナーをクリーンアップ
+    if (this.#languageChangeHandler) {
+      window.removeEventListener('languageChange', this.#languageChangeHandler);
+      this.#languageChangeHandler = null;
+    }
+    
     if (this.#element?.parentNode)
       this.#element.parentNode.removeChild(this.#element);
   }
@@ -155,7 +176,22 @@ class DatasetCard {
   }
   #generateDescription() {
     if (!this.#options.showDescription) return "";
-    const desc = this.#dataset.description?.trim();
+    
+    // 多言語対応: description がオブジェクトの場合の処理
+    let desc = "";
+    if (typeof this.#dataset.description === "string") {
+      // 従来形式（文字列）
+      desc = this.#dataset.description.trim();
+    } else if (typeof this.#dataset.description === "object" && this.#dataset.description) {
+      // 新形式（多言語オブジェクト）
+      const currentLang = this.#getCurrentLanguage();
+      desc = this.#dataset.description[currentLang] || 
+             this.#dataset.description.en || 
+             this.#dataset.description.ja || 
+             "";
+      if (desc) desc = desc.trim();
+    }
+    
     if (desc)
       return `<div class="${DatasetCard.DESCRIPTION_CLASS}">${this.#escapeHtml(
         desc
@@ -166,6 +202,11 @@ class DatasetCard {
           DatasetCard.DEFAULTS.FALLBACK_DESCRIPTION
         )}</div>`;
     return "";
+  }
+  
+  // 現在の言語設定を取得
+  #getCurrentLanguage() {
+    return localStorage.getItem('site-language') || 'en';
   }
   #generateTags() {
     const tags = this.#extractTagStrings(this.#getTags());
