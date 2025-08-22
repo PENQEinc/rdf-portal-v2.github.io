@@ -89,8 +89,9 @@
                 position: relative
     > .space
       flex-grow: 1
-    > .copyrightandpolicy
+    > .bottom
       display: flex
+      align-items: center
       font-size: 12px
       > p
         margin: 0
@@ -99,6 +100,8 @@
           &::before
             content: '/'
             padding: 0 0.4em
+      > .spacer
+        flex-grow: 1
 
 // ページID別ナビゲーションフェードアウト
 // 現在のページと一致しないナビゲーション項目を薄くする
