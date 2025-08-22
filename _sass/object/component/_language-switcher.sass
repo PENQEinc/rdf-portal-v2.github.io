@@ -4,62 +4,62 @@
   align-items: center
   margin-left: auto
 
-.language-toggle
-  background: transparent
-  border: 1px solid rgba(255, 255, 255, 0.3)
-  border-radius: 4px
-  color: white
-  cursor: pointer
-  font-size: 0.9rem
-  padding: 8px 12px
-  position: relative
-  transition: all 0.2s ease
-
-  &:hover
-    background: rgba(255, 255, 255, 0.1)
-    border-color: rgba(255, 255, 255, 0.5)
-
-  .current-lang
-    display: block
-
-  .lang-options
-    display: none
-    position: absolute
-    top: 100%
-    left: 0
-    right: 0
-    background: white
-    border: 1px solid #ddd
+  > button
+    background: transparent
+    border: 1px solid rgba(255, 255, 255, 0.3)
     border-radius: 4px
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1)
-    margin-top: 4px
-    z-index: 1000
+    color: white
+    cursor: pointer
+    font-size: 0.9rem
+    padding: 8px 12px
+    position: relative
+    transition: all 0.2s ease
 
-    span
+    &:hover
+      background: rgba(255, 255, 255, 0.1)
+      border-color: rgba(255, 255, 255, 0.5)
+
+    > .current
       display: block
-      padding: 8px 12px
-      color: #333
-      cursor: pointer
-      transition: background-color 0.2s ease
 
-      &:hover
-        background: #f5f5f5
+    > .options
+      display: none
+      position: absolute
+      top: 100%
+      left: 0
+      right: 0
+      background: white
+      border: 1px solid #ddd
+      border-radius: 4px
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1)
+      margin-top: 4px
+      z-index: 1000
 
-      &:first-child
-        border-radius: 4px 4px 0 0
+      > span
+        display: block
+        padding: 8px 12px
+        color: #333
+        cursor: pointer
+        transition: background-color 0.2s ease
 
-      &:last-child
-        border-radius: 0 0 4px 4px
+        &:hover
+          background: #f5f5f5
 
-  &:focus .lang-options,
-  &:hover .lang-options
-    display: block
+        &:first-child
+          border-radius: 4px 4px 0 0
+
+        &:last-child
+          border-radius: 0 0 4px 4px
+
+    &:focus > .options,
+    &:hover > .options
+      display: block
 
 @media (max-width: 768px)
   .language-switcher
     margin: 1rem 0
     order: -1
 
-  .language-toggle
-    width: 100%
-    text-align: center
+    > button
+      width: 100%
+      text-align: center

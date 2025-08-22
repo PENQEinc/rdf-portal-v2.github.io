@@ -45,9 +45,9 @@
         </ul>
       </nav>
       <div class="language-switcher">
-        <button id="language-toggle" class="language-toggle">
-          <span class="current-lang">EN</span>
-          <span class="lang-options">
+        <button id="language-toggle">
+          <span class="current">EN</span>
+          <span class="options">
             <span data-lang="en">EN</span>
             <span data-lang="ja">日本語</span>
           </span>
@@ -70,36 +70,36 @@
     class LanguageManager {
       static DEFAULT_LANG = 'en';
       static STORAGE_KEY = 'site-language';
-      
+
       static getCurrentLanguage() {
         return localStorage.getItem(this.STORAGE_KEY) || this.DEFAULT_LANG;
       }
-      
+
       static setLanguage(lang) {
         localStorage.setItem(this.STORAGE_KEY, lang);
         this.updateUI();
         this.notifyLanguageChange(lang);
       }
-      
+
       static updateUI() {
         const currentLang = this.getCurrentLanguage();
         const toggle = document.getElementById('language-toggle');
         if (toggle) {
-          const currentSpan = toggle.querySelector('.current-lang');
+          const currentSpan = toggle.querySelector('.current');
           if (currentSpan) {
             currentSpan.textContent = currentLang === 'ja' ? '日本語' : 'EN';
           }
         }
       }
-      
+
       static notifyLanguageChange(lang) {
         // カスタムイベントを発行してDatasetCardなどに通知
         window.dispatchEvent(new CustomEvent('languageChange', { detail: { language: lang } }));
       }
-      
+
       static init() {
         this.updateUI();
-        
+
         // 言語切り替えボタンのイベントリスナー
         const toggle = document.getElementById('language-toggle');
         if (toggle) {
@@ -143,9 +143,9 @@
   <!-- ベースURLをJavaScriptで利用可能にする（全ページ共通） -->
   <script>
     window.SITE_BASE_URL = '{{ site.baseurl }}';
-    
+
     // DOMが読み込まれたら言語管理システムを初期化
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       LanguageManager.init();
     });
   </script>
