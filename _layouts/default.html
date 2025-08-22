@@ -167,10 +167,9 @@
   <script>
     window.SITE_BASE_URL = '{{ site.baseurl }}';
 
-    // DOMが読み込まれたら言語管理システムを初期化
-    document.addEventListener('DOMContentLoaded', function () {
-      LanguageManager.init();
-    });
+    // LanguageSwitcher（言語切り替えUI）はLanguageSwitcher.jsで自動初期化されます
+  </script>
+  <script src="{{ '/assets/js/LanguageSwitcher.js' | relative_url }}"></script>
   </script>
 
   <!-- DatasetsManagerシングルトンクラス（全ページ共通） -->
