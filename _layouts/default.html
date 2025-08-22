@@ -66,33 +66,7 @@
     {{ content }}
   </main>
 
-  <script>
-    function toggleMobileMenu() {
-      const nav = document.getElementById('site-nav');
-      if (nav) {
-        nav.classList.toggle('is-active');
-      }
-    }
-
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', function (event) {
-      const nav = document.getElementById('site-nav');
-      const toggle = document.querySelector('.l-header__menu-toggle');
-
-      // nav要素が存在し、toggle要素も存在する場合のみ処理
-      if (nav && toggle && !nav.contains(event.target) && !toggle.contains(event.target)) {
-        nav.classList.remove('is-active');
-      }
-    });
-
-    // Close mobile menu when window is resized to desktop
-    window.addEventListener('resize', function () {
-      const nav = document.getElementById('site-nav');
-      if (nav && window.innerWidth > 768) {
-        nav.classList.remove('is-active');
-      }
-    });
-  </script>
+  <!-- モバイルメニュー関連のJSは削除済み -->
 
   <!-- ベースURLをJavaScriptで利用可能にする（全ページ共通） -->
   <script>
