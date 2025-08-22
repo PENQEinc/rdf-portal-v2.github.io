@@ -7,16 +7,27 @@
   note:
     - 現状は、フロントエンドから呼び出し動的にページを生成させているが、できればサーバーで処理したい
   props:
-    desc:
+    description:
       en:
       ja:
     endpoint:
     id:
     issued:
-    label:
+    name:
       en:
       ja:
-    provider:
+    creators:
+      en:
+      ja:
+    providers:
+      en:
+      ja:
+    rdf_creators:
+      en:
+      ja:
+    rdf_providers:
+      en:
+      ja:
     tags:
 
 - dataset:

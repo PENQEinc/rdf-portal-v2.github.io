@@ -2,7 +2,17 @@
   {
     "id": "bgee",
     "title": "Bgee",
-    "description": "A database for retrieval and comparison of gene expression patterns across multiple animal species",
+    "description": {
+      "en": "A database for retrieval and comparison of gene expression patterns across multiple animal species",
+      "ja": "複数の動物種における遺伝子発現パターンの検索と比較のためのデータベース"
+    },
+    "issued": "2021-02-01",
+    "providers": [
+      {
+        "en": "SIB Swiss Institute of Bioinformatics",
+        "ja": "SIB スイス・バイオインフォマティクス研究所"
+      }
+    ],
     "tags": [
       "Gene",
       "Gene expression"
@@ -10,20 +20,56 @@
   },
   {
     "id": "biomodels",
-    "title": "",
-    "description": "",
-    "tags": []
+    "title": "BioModels",
+    "description": {
+      "en": "A repository of computational models of biological processes",
+      "ja": "生物学的プロセスの計算モデルのリポジトリ"
+    },
+    "issued": "2020-06-01",
+    "providers": [
+      {
+        "en": "European Bioinformatics Institute",
+        "ja": "欧州バイオインフォマティクス研究所"
+      }
+    ],
+    "tags": [
+      "Model",
+      "Systems biology"
+    ]
   },
   {
     "id": "bioportal",
-    "title": "",
-    "description": "",
-    "tags": []
+    "title": "BioPortal",
+    "description": {
+      "en": "A web portal for biomedical ontologies and controlled vocabularies",
+      "ja": "生物医学オントロジーと統制語彙のためのウェブポータル"
+    },
+    "issued": "2019-01-01",
+    "providers": [
+      {
+        "en": "Stanford Center for Biomedical Informatics Research",
+        "ja": "スタンフォード大学生物医学情報学研究センター"
+      }
+    ],
+    "tags": [
+      "Ontology",
+      "Vocabulary"
+    ]
   },
   {
     "id": "biosample",
     "title": "BioSample RDF",
-    "description": "BioSample RDF developed by DBCLS and distributed by DDBJ",
+    "description": {
+      "en": "BioSample RDF developed by DBCLS and distributed by DDBJ",
+      "ja": "DBCLSが開発しDDBJが配信するBioSample RDF"
+    },
+    "issued": "2020-03-01",
+    "providers": [
+      {
+        "en": "DNA Data Bank of Japan",
+        "ja": "日本DNAデータバンク"
+      }
+    ],
     "tags": [
       "Sample",
       "Metadata"
@@ -31,14 +77,38 @@
   },
   {
     "id": "biosampleplus",
-    "title": "",
-    "description": "",
-    "tags": []
+    "title": "BioSample Plus",
+    "description": {
+      "en": "Enhanced BioSample database with additional metadata and annotations",
+      "ja": "追加のメタデータとアノテーションを含む拡張BioSampleデータベース"
+    },
+    "issued": "2020-03-01",
+    "providers": [
+      {
+        "en": "Database Center for Life Science",
+        "ja": "ライフサイエンス統合データベースセンター"
+      }
+    ],
+    "tags": [
+      "Sample",
+      "Metadata",
+      "Enhancement"
+    ]
   },
   {
     "id": "bmrb",
     "title": "BMRB/RDF",
-    "description": "BMRB/RDF is a translation of NMR-STAR data into RDF",
+    "description": {
+      "en": "BMRB/RDF is a translation of NMR-STAR data into RDF",
+      "ja": "BMRB/RDFはNMR-STARデータをRDFに変換したものです"
+    },
+    "issued": "2019-01-01",
+    "providers": [
+      {
+        "en": "Institute for Protein Research, Osaka University",
+        "ja": "大阪大学蛋白質研究所"
+      }
+    ],
     "tags": [
       "Protein",
       "Other biomolecule",
@@ -50,7 +120,17 @@
   {
     "id": "chebi",
     "title": "ChEBI RDF",
-    "description": "ChEBI (Chemical Entities of Biological Interest) is a freely accessible, ontology-driven database of ‘small molecular entities’, including their chemical structures, names, definitions, roles, and biological relationships. It provides manually curated, non-proprietary data supported by links to external resources and is widely used in chemical biology and bioinformatics",
+    "description": {
+      "en": "ChEBI (Chemical Entities of Biological Interest) is a freely accessible, ontology-driven database of 'small molecular entities', including their chemical structures, names, definitions, roles, and biological relationships. It provides manually curated, non-proprietary data supported by links to external resources and is widely used in chemical biology and bioinformatics",
+      "ja": "ChEBI（生物学的に興味のある化学エンティティ）は、化学構造、名称、定義、役割、および生物学的関係を含む「低分子エンティティ」の自由にアクセス可能なオントロジー駆動データベースです"
+    },
+    "issued": "2019-01-01",
+    "providers": [
+      {
+        "en": "European Bioinformatics Institute",
+        "ja": "欧州バイオインフォマティクス研究所"
+      }
+    ],
     "tags": [
       "Drug/Chemical"
     ]
@@ -58,7 +138,17 @@
   {
     "id": "chembl",
     "title": "ChEMBL RDF",
-    "description": "ChEMBL is a manually curated database of bioactive molecules with drug-like properties.",
+    "description": {
+      "en": "ChEMBL is a manually curated database of bioactive molecules with drug-like properties.",
+      "ja": "ChEMBLは薬物様特性を持つ生理活性分子の手動キュレーションデータベースです"
+    },
+    "issued": "2020-01-01",
+    "providers": [
+      {
+        "en": "European Bioinformatics Institute",
+        "ja": "欧州バイオインフォマティクス研究所"
+      }
+    ],
     "tags": [
       "Drug/Chemical"
     ]
@@ -66,7 +156,15 @@
   {
     "id": "clinvar",
     "title": "ClinVar RDF",
-    "description": "ClinVar is a freely available archive describing relationships between medically important variants and phenotypes.",
+    "description": {
+      "en": "ClinVar is a freely available archive describing relationships between medically important variants and phenotypes."
+    },
+    "issued": "2023-10-01",
+    "providers": [
+      {
+        "en": "National Center for Biotechnology Information"
+      }
+    ],
     "tags": [
       "Polymorphism",
       "Health/Disease",
@@ -76,7 +174,17 @@
   {
     "id": "dbcatalog",
     "title": "Integbio Database Catalog/RDF",
-    "description": "Integbio Database Catalog/RDF is a translation of Integbio Database Catalog data into RDF",
+    "description": {
+      "en": "Integbio Database Catalog/RDF is a translation of Integbio Database Catalog data into RDF",
+      "ja": "Integbio Database Catalog/RDFはIntegbio Database Catalogデータの RDF変換です"
+    },
+    "issued": "2018-01-01",
+    "providers": [
+      {
+        "en": "National Bioscience Database Center",
+        "ja": "バイオサイエンスデータベースセンター"
+      }
+    ],
     "tags": [
       "Others",
       "Others"
@@ -85,7 +193,15 @@
   {
     "id": "dbnsfp",
     "title": "dbNSFP",
-    "description": "dbNSFP is a database developed for functional prediction and annotation of all potential non-synonymous single-nucleotide variants (nsSNVs) in the human genome.",
+    "description": {
+      "en": "dbNSFP is a database developed for functional prediction and annotation of all potential non-synonymous single-nucleotide variants (nsSNVs) in the human genome."
+    },
+    "issued": "2023-10-01",
+    "providers": [
+      {
+        "en": "USF Genomics, College of Public Health, University of South Florida"
+      }
+    ],
     "tags": [
       "nsSNVs",
       "functional prediction"
@@ -94,7 +210,15 @@
   {
     "id": "dbscsnv",
     "title": "dbscSNV",
-    "description": "a comprehensive database of all potential human SNVs within splicing consensus regions and their functional annotations",
+    "description": {
+      "en": "a comprehensive database of all potential human SNVs within splicing consensus regions and their functional annotations"
+    },
+    "issued": "2023-10-01",
+    "providers": [
+      {
+        "en": "The University of Texas Health Science Center at Houston"
+      }
+    ],
     "tags": [
       "SNV",
       "splicing consensus region"
@@ -103,7 +227,17 @@
   {
     "id": "ddbj",
     "title": "DDBJ",
-    "description": "Semantic Representation of DDBJ Annotated Sequence Records.",
+    "description": {
+      "en": "Semantic Representation of DDBJ Annotated Sequence Records.",
+      "ja": "DDBJアノテーション配列記録の意味的表現"
+    },
+    "issued": "2018-01-01",
+    "providers": [
+      {
+        "en": "National Institute of Genetics",
+        "ja": "国立遺伝学研究所"
+      }
+    ],
     "tags": [
       "Genome",
       "Gene",
@@ -120,7 +254,26 @@
   {
     "id": "disgenet",
     "title": "DisGeNET RDF",
-    "description": "DisGeNET is a collection of genes and variants associated to human diseases, which integrates data from expert curated repositories, GWAS catalogues, animal models and the scientific literature.",
+    "description": {
+      "en": "DisGeNET is a collection of genes and variants associated to human diseases, which integrates data from expert curated repositories, GWAS catalogues, animal models and the scientific literature.",
+      "ja": "DisGeNET は、ヒトの疾患に関連する遺伝子およびバリアントのデータベースであり、専門家によるキュレーションリポジトリ、GWASカタログ、動物モデル、そして科学文献からのデータを統合しています。"
+    },
+    "issued": "2019-01-01",
+    "providers": [
+      {
+        "en": "Research Programme on Biomedical Informatics (GRIB)",
+        "ja": "生物医学情報学研究プログラム (GRIB)"
+      },
+      {
+        "en": "Hospital del Mar Medical Research Institute (IMIM)"
+      },
+      {
+        "en": "Department of Experimental and Health Sciences"
+      },
+      {
+        "en": "Pompeu Fabra University (UPF), Barcelona, Spain"
+      }
+    ],
     "tags": [
       "Gene",
       "Health/Disease"
@@ -128,14 +281,36 @@
   },
   {
     "id": "ensembl-glossary",
-    "title": "",
-    "description": "",
-    "tags": []
+    "title": "Ensembl Glossary",
+    "description": {
+      "en": "Ensembl Glossary provides definitions of terms used in genomics and bioinformatics.",
+      "ja": "Ensembl用語集は、ゲノミクスとバイオインフォマティクスで使用される用語の定義を提供します"
+    },
+    "issued": "2018-01-01",
+    "providers": [
+      {
+        "en": "EMBL-EBI",
+        "ja": "EMBL-EBI"
+      }
+    ],
+    "tags": [
+      "Ontology/Terminology/Nomenclature"
+    ]
   },
   {
     "id": "ensembl",
     "title": "Ensembl RDF",
-    "description": "Ensembl is a collection of automatically annotated genome databases for vertebrates and a number of eukaryotes, integrated with all other relevant biological data available.",
+    "description": {
+      "en": "Ensembl is a collection of automatically annotated genome databases for vertebrates and a number of eukaryotes, integrated with all other relevant biological data available.",
+      "ja": "ゲノム解読された脊椎生物およびその他の主要な真核生物を対象として自動アノテーションを行い、その結果をゲノムビューワやデータベースとして公開しているプロジェクトです。"
+    },
+    "issued": "2018-01-01",
+    "providers": [
+      {
+        "en": "EMBL-EBI",
+        "ja": "EMBL-EBI"
+      }
+    ],
     "tags": [
       "Gene",
       "Protein"
@@ -143,32 +318,94 @@
   },
   {
     "id": "ensembl_grch37",
-    "title": "",
-    "description": "",
-    "tags": []
+    "title": "Ensembl GRCh37",
+    "description": {
+      "en": "Ensembl GRCh37 provides genome annotation for the human genome reference build GRCh37.",
+      "ja": "Ensembl GRCh37は、ヒトゲノムリファレンスビルドGRCh37のゲノムアノテーションを提供します"
+    },
+    "issued": "2013-01-01",
+    "providers": [
+      {
+        "en": "EMBL-EBI",
+        "ja": "EMBL-EBI"
+      }
+    ],
+    "tags": [
+      "Genome",
+      "Gene"
+    ]
   },
   {
     "id": "ensembl_grch38",
-    "title": "",
-    "description": "",
-    "tags": []
+    "title": "Ensembl GRCh38",
+    "description": {
+      "en": "Ensembl GRCh38 provides genome annotation for the human genome reference build GRCh38.",
+      "ja": "Ensembl GRCh38は、ヒトゲノムリファレンスビルドGRCh38のゲノムアノテーションを提供します"
+    },
+    "issued": "2014-01-01",
+    "providers": [
+      {
+        "en": "EMBL-EBI",
+        "ja": "EMBL-EBI"
+      }
+    ],
+    "tags": [
+      "Genome",
+      "Gene"
+    ]
   },
   {
     "id": "ensembl_ontology",
-    "title": "",
-    "description": "",
-    "tags": []
+    "title": "Ensembl Ontology",
+    "description": {
+      "en": "Ensembl Ontology provides structured vocabulary for genomic features and concepts used in Ensembl.",
+      "ja": "Ensemblオントロジーは、Ensemblで使用されるゲノム特徴と概念の構造化語彙を提供します"
+    },
+    "issued": "2018-01-01",
+    "providers": [
+      {
+        "en": "EMBL-EBI",
+        "ja": "EMBL-EBI"
+      }
+    ],
+    "tags": [
+      "Ontology/Terminology/Nomenclature"
+    ]
   },
   {
     "id": "expressionatlas",
-    "title": "",
-    "description": "",
-    "tags": []
+    "title": "Expression Atlas",
+    "description": {
+      "en": "Expression Atlas provides information about gene and protein expression across species and biological conditions.",
+      "ja": "Expression Atlasは、種や生物学的条件全体にわたる遺伝子とタンパク質発現に関する情報を提供します"
+    },
+    "issued": "2018-01-01",
+    "providers": [
+      {
+        "en": "EMBL-EBI",
+        "ja": "EMBL-EBI"
+      }
+    ],
+    "tags": [
+      "Gene",
+      "Protein",
+      "Expression"
+    ]
   },
   {
     "id": "famsbase",
     "title": "FAMSBASE GPCR",
-    "description": "RDFized reference gene expresson dataset derived from CAGE and GeneChip experiments in the RefEx database.",
+    "description": {
+      "en": "RDFized reference gene expresson dataset derived from CAGE and GeneChip experiments in the RefEx database.",
+      "ja": "RefExデータベースのCAGEおよびGeneChip実験から得られたRDF化された参照遺伝子発現データセットです"
+    },
+    "issued": "2019-01-01",
+    "providers": [
+      {
+        "en": "RefEx Consortium",
+        "ja": "RefExコンソーシアム"
+      }
+    ],
     "tags": [
       "Protein",
       "Structure"
@@ -177,7 +414,17 @@
   {
     "id": "ggdonto",
     "title": "GGDonto",
-    "description": "GGDonto is the Ontology of the Genetic Diseases related to the Glycan Metabolism. GGDonto describes the knowledge about Congenital Disorders of Glycosylation (CDG) and Lysosomal Storage Diseases (LSD). GGDonto provides the information on 120 genetic diseases of the glycan synthesis and the degradation and their causative genes.",
+    "description": {
+      "en": "GGDonto is the Ontology of the Genetic Diseases related to the Glycan Metabolism. GGDonto describes the knowledge about Congenital Disorders of Glycosylation (CDG) and Lysosomal Storage Diseases (LSD). GGDonto provides the information on 120 genetic diseases of the glycan synthesis and the degradation and their causative genes.",
+      "ja": "GGDontoは、糖鎖代謝に関連する遺伝性疾患のオントロジーです。先天性糖鎖異常症（CDG）とライソゾーム蓄積症（LSD）に関する知識を記述し、糖鎖合成と分解の120の遺伝性疾患とその原因遺伝子に関する情報を提供します"
+    },
+    "issued": "2018-01-01",
+    "providers": [
+      {
+        "en": "Glycoscience and Glycotechnology Research Group, Biotechnology Research Institute for Drug Discovery, National Institute of Advanced Industrial Science and Technology (AIST)",
+        "ja": "糖鎖科学・糖鎖工学研究グループ、創薬基盤研究部門、産業技術総合研究所（AIST）"
+      }
+    ],
     "tags": [
       "Other biomolecule",
       "Health/Disease",
@@ -189,7 +436,17 @@
   {
     "id": "glycoepitope",
     "title": "GlycoEpitope",
-    "description": "GlycoEpitope is a database of useful information on carbohydrate antigens and antibodies.",
+    "description": {
+      "en": "GlycoEpitope is a database of useful information on carbohydrate antigens and antibodies.",
+      "ja": "GlycoEpitopeは、糖鎖抗体とその抗原についてのデータベースです"
+    },
+    "issued": "2019-01-01",
+    "providers": [
+      {
+        "en": "Ritsumeikan University",
+        "ja": "立命館大学"
+      }
+    ],
     "tags": [
       "Other biomolecule",
       "Structure"
@@ -198,7 +455,17 @@
   {
     "id": "glycosmos",
     "title": "GlyCosmos",
-    "description": "RDF description.",
+    "description": {
+      "en": "GlyCosmos is a comprehensive portal for glycoscience offering integrated information about glycans, glycoproteins, and related biological data.",
+      "ja": "GlyCosmosは、糖鎖、糖タンパク質、および関連する生物学的データの統合情報を提供する糖鎖科学の包括的ポータルです"
+    },
+    "issued": "2020-01-01",
+    "providers": [
+      {
+        "en": "GlyCosmos Portal",
+        "ja": "GlyCosmosポータル"
+      }
+    ],
     "tags": [
       "Glycan"
     ]
@@ -206,7 +473,17 @@
   {
     "id": "glytoucan",
     "title": "GlyTouCan",
-    "description": "GlyTouCan is the international glycan structure repository.",
+    "description": {
+      "en": "GlyTouCan is the international glycan structure repository.",
+      "ja": "GlyTouCanは国際的な糖鎖構造リポジトリです"
+    },
+    "issued": "2015-01-01",
+    "providers": [
+      {
+        "en": "National Institute of Advanced Industrial Science and Technology (AIST)",
+        "ja": "産業技術総合研究所（AIST）"
+      }
+    ],
     "tags": [
       "Other biomolecule",
       "Structure"
@@ -215,7 +492,17 @@
   {
     "id": "gtdb",
     "title": "GTDB",
-    "description": "The Genome Taxonomy Database",
+    "description": {
+      "en": "The Genome Taxonomy Database",
+      "ja": "ゲノム分類データベース"
+    },
+    "issued": "2018-01-01",
+    "providers": [
+      {
+        "en": "The University of Queensland",
+        "ja": "クイーンズランド大学"
+      }
+    ],
     "tags": [
       "taxonomy",
       "bacteria",
@@ -224,14 +511,37 @@
   },
   {
     "id": "gwas-catalog",
-    "title": "",
-    "description": "",
-    "tags": []
+    "title": "GWAS catalog",
+    "description": {
+      "en": "The NHGRI-EBI Catalog of human genome-wide association studies provides information about published genome-wide association studies.",
+      "ja": "NHGRI-EBIヒトゲノムワイド関連解析研究カタログは、公開されたゲノムワイド関連解析研究に関する情報を提供します"
+    },
+    "issued": "2019-01-01",
+    "providers": [
+      {
+        "en": "EMBL-EBI",
+        "ja": "EMBL-EBI"
+      }
+    ],
+    "tags": [
+      "Polymorphism",
+      "Health/Disease"
+    ]
   },
   {
     "id": "hgnc",
     "title": "HGNC\\: The resource for approved human gene nomenclature",
-    "description": "The HGNC is a resource for approved human gene nomenclature containing ~42000 gene",
+    "description": {
+      "en": "The HGNC is a resource for approved human gene nomenclature containing ~42000 gene",
+      "ja": "HGNCは約42,000の遺伝子を含む承認されたヒト遺伝子命名法のリソースです"
+    },
+    "issued": "2018-01-01",
+    "providers": [
+      {
+        "en": "HUGO Gene Nomenclature Committee at the European Bioinformatics Institute",
+        "ja": "欧州バイオインフォマティクス研究所のHUGO遺伝子命名委員会"
+      }
+    ],
     "tags": [
       "Gene",
       "Ontology/ Terminology/Nomenclature"
@@ -240,7 +550,17 @@
   {
     "id": "homologene",
     "title": "HomoloGene RDF",
-    "description": "HomoloGene RDF is a translation of HomoloGene data into RDF.",
+    "description": {
+      "en": "HomoloGene RDF is a translation of HomoloGene data into RDF",
+      "ja": "HomoloGene RDFはHomoloGeneデータのRDF変換です"
+    },
+    "issued": "2018-01-01",
+    "providers": [
+      {
+        "en": "National Center for Biotechnology Information",
+        "ja": "米国国立生物工学情報センター"
+      }
+    ],
     "tags": [
       "Genome",
       "Gene",
@@ -249,14 +569,38 @@
   },
   {
     "id": "icgc",
-    "title": "",
-    "description": "",
-    "tags": []
+    "title": "ICGC",
+    "description": {
+      "en": "The International Cancer Genome Consortium provides large-scale cancer genomics data.",
+      "ja": "国際がんゲノムコンソーシアムは大規模ながんゲノミクスデータを提供します"
+    },
+    "issued": "2019-01-01",
+    "providers": [
+      {
+        "en": "International Cancer Genome Consortium",
+        "ja": "国際がんゲノムコンソーシアム"
+      }
+    ],
+    "tags": [
+      "Genome",
+      "Health/Disease",
+      "Cancer"
+    ]
   },
   {
     "id": "jcm",
     "title": "Metadata of JCM resources",
-    "description": "A RDF-based meta-database of microbial strains used in various researches such as biology, environment and human health as bioresources. Microbial strains are available from Japan Collection of Microorganisms (JCM) in RIKEN BioResource Center. Please visit data browser at http://metadb.riken.jp/metadb/db/rikenbrc_jcm_microbe",
+    "description": {
+      "en": "A RDF-based meta-database of microbial strains used in various researches such as biology, environment and human health as bioresources. Microbial strains are available from Japan Collection of Microorganisms (JCM) in RIKEN BioResource Center.",
+      "ja": "生物学、環境、ヒト健康などの様々な研究にバイオリソースとして利用される微生物株のRDFベースメタデータベースです。微生物株は理研バイオリソースセンターの日本微生物保存機関（JCM）から入手可能です"
+    },
+    "issued": "2019-01-01",
+    "providers": [
+      {
+        "en": "RIKEN BioResource Center",
+        "ja": "理研バイオリソースセンター"
+      }
+    ],
     "tags": [
       "Organism",
       "Bioresource"
@@ -265,7 +609,17 @@
   {
     "id": "jpostdb",
     "title": "jPOST databse RDF",
-    "description": "jPOST database RDF is described the re-analyzed proteome dataset in the jPOST project.",
+    "description": {
+      "en": "jPOST database RDF describes the re-analyzed proteome dataset in the jPOST project",
+      "ja": "jPOSTデータベースRDFは、jPOSTプロジェクトで再解析されたプロテオームデータセットを記述します"
+    },
+    "issued": "2020-01-01",
+    "providers": [
+      {
+        "en": "jPOST Consortium",
+        "ja": "jPOSTコンソーシアム"
+      }
+    ],
     "tags": [
       "Proteome",
       "Standard"
@@ -274,7 +628,17 @@
   {
     "id": "kero",
     "title": "DBKERO RDF",
-    "description": "DBKERO is a collection of multi-omics data sets including SNV, RNA-seq, ChIP-seq, BS-seq and TSS-seq. The ChIP-seq part is big, so its lite version chip_seq_lite is included. The original big ChIP-seq data can also be downloaded at https://integbio.jp/rdf/download/kero/2017-01-27/all/chip_seq_all.tar.gz .",
+    "description": {
+      "en": "DBKERO is a collection of multi-omics data sets including SNV, RNA-seq, ChIP-seq, BS-seq and TSS-seq",
+      "ja": "DBKEROは、SNV、RNA-seq、ChIP-seq、BS-seq、TSS-seqを含むマルチオミクスデータセットのコレクションです"
+    },
+    "issued": "2020-01-01",
+    "providers": [
+      {
+        "en": "Database Center for Life Science (DBCLS)",
+        "ja": "ライフサイエンス統合データベースセンター（DBCLS）"
+      }
+    ],
     "tags": [
       "Genome",
       "Polymorphism",
@@ -285,14 +649,38 @@
   },
   {
     "id": "kg-covid-19",
-    "title": "",
-    "description": "",
-    "tags": []
+    "title": "KG-COVID-19",
+    "description": {
+      "en": "KG-COVID-19 is a framework to produce customizable knowledge graphs for COVID-19 response",
+      "ja": "KG-COVID-19は、COVID-19対応のためのカスタマイズ可能な知識グラフを生成するフレームワークです"
+    },
+    "issued": "2020-03-01",
+    "providers": [
+      {
+        "en": "University of Colorado",
+        "ja": "コロラド大学"
+      }
+    ],
+    "tags": [
+      "COVID-19",
+      "Knowledge Graph",
+      "Biomedical"
+    ]
   },
   {
     "id": "knapsack",
     "title": "KNApSAcK RDF",
-    "description": "RDFized dataset in the KNApSAcK family database.",
+    "description": {
+      "en": "RDFized dataset in the KNApSAcK family database",
+      "ja": "KNApSAcKファミリーデータベースのRDF化データセットです"
+    },
+    "issued": "2018-01-01",
+    "providers": [
+      {
+        "en": "University of Toyama",
+        "ja": "富山大学"
+      }
+    ],
     "tags": [
       "Compound",
       "Taxonomy",
@@ -302,30 +690,78 @@
   },
   {
     "id": "ligandbox",
-    "title": "",
-    "description": "",
-    "tags": []
+    "title": "LigandBox",
+    "description": {
+      "en": "LigandBox is a database that offers an integrated view of publicly available databases for drug discovery and design",
+      "ja": "LigandBoxは、創薬と設計のための公開データベースの統合ビューを提供するデータベースです"
+    },
+    "issued": "2018-01-01",
+    "providers": [
+      {
+        "en": "Database Center for Life Science (DBCLS)",
+        "ja": "ライフサイエンス統合データベースセンター（DBCLS）"
+      }
+    ],
+    "tags": [
+      "Drug/Chemical",
+      "Drug Discovery",
+      "Molecular Interactions"
+    ]
   },
   {
     "id": "massbank",
-    "title": "",
-    "description": "",
-    "tags": []
+    "title": "MassBank",
+    "description": {
+      "en": "MassBank is an open source mass spectral database for the identification of chemical compounds",
+      "ja": "MassBankは、化学化合物の同定のためのオープンソース質量スペクトルデータベースです"
+    },
+    "issued": "2017-01-01",
+    "providers": [
+      {
+        "en": "MassBank Consortium",
+        "ja": "MassBankコンソーシアム"
+      }
+    ],
+    "tags": [
+      "Drug/Chemical",
+      "Mass Spectrometry",
+      "Metabolomics"
+    ]
   },
   {
     "id": "mbgd",
-    "title": "RDF title",
-    "description": "RDF description.",
+    "title": "MBGD (Microbial Genome Database)",
+    "description": {
+      "en": "MBGD is a comprehensive database for comparative analysis of microbial genomes",
+      "ja": "MBGDは微生物ゲノムの比較解析のための包括的データベースです"
+    },
+    "issued": "2016-01-01",
+    "providers": [
+      {
+        "en": "University of Tokyo",
+        "ja": "東京大学"
+      }
+    ],
     "tags": [
       "Microbial",
       "Genome",
-      "Comparative"
+      "Comparative Genomics"
     ]
   },
   {
     "id": "medgen",
     "title": "MedGen",
-    "description": "MedGen organizes Information related to human medical genetics, such as attributes of conditions with a genetic contribution.",
+    "description": {
+      "en": "MedGen organizes Information related to human medical genetics, such as attributes of conditions with a genetic contribution.",
+      "ja": "MedGenは、遺伝的寄与を持つ疾患の属性など、ヒト医療遺伝学に関連する情報を整理します"
+    },
+    "issued": "2018-01-01",
+    "providers": [
+      {
+        "en": "National Center for Biotechnology Information",
+        "ja": "米国国立生物工学情報センター"
+      }
+    ],
     "tags": [
       "Health/Disease",
       "Ontology/Terminology/Nomenclature"
@@ -334,7 +770,17 @@
   {
     "id": "mesh",
     "title": "Medical Subject Headings (MeSH) RDF Dataset Description",
-    "description": "A linked data representation of the MeSH biomedical vocabulary produced by the National Library of Medicine.",
+    "description": {
+      "en": "A linked data representation of the MeSH biomedical vocabulary produced by the National Library of Medicine.",
+      "ja": "米国国立医学図書館が作成したMeSH生物医学語彙のリンクトデータ表現です"
+    },
+    "issued": "2023-10-01",
+    "providers": [
+      {
+        "en": "National Library of Medicine",
+        "ja": "米国国立医学図書館"
+      }
+    ],
     "tags": [
       "Ontology/ Terminology/Nomenclature"
     ]
@@ -342,7 +788,17 @@
   {
     "id": "nadd",
     "title": "Nucleic Acid Drug Database",
-    "description": "DB is focused on nucleic acid drugs known as biopharmaceuticals and displayed approval drugs and information on three phases of clinical trial stage.",
+    "description": {
+      "en": "DB is focused on nucleic acid drugs known as biopharmaceuticals and displayed approval drugs and information on three phases of clinical trial stage.",
+      "ja": "生物医薬品として知られる核酸医薬品に焦点を当て、承認薬物と臨床試験の3段階の情報を表示するデータベースです"
+    },
+    "issued": "2023-10-01",
+    "providers": [
+      {
+        "en": "Research and Development Center for Precision Medicine, University of Tsukuba",
+        "ja": "筑波大学精密医学研究開発センター"
+      }
+    ],
     "tags": [
       "Drug/Chemical",
       "RNA",
@@ -354,7 +810,17 @@
   {
     "id": "nando",
     "title": "NANDO",
-    "description": "NANDO is a vocabulary that systematically and comprehensively organizes designated intractable diseases and pediatric chronic specific diseases, including their subtypes. Each disease in NANDO is linked to Mondo (Monarch Disease Ontology), a disease vocabulary adopted by many international databases and systems, enabling integration with major international disease databases such as OMIM and Orphanet.",
+    "description": {
+      "en": "NANDO is a vocabulary that systematically and comprehensively organizes designated intractable diseases and pediatric chronic specific diseases, including their subtypes. Each disease in NANDO is linked to Mondo (Monarch Disease Ontology), a disease vocabulary adopted by many international databases and systems, enabling integration with major international disease databases such as OMIM and Orphanet.",
+      "ja": "NANDOは、指定難病と小児慢性特定疾病をサブタイプを含めて体系的かつ包括的に整理した語彙です。NANDOの各疾病は、多くの国際データベースやシステムで採用されている疾病語彙であるMondo（Monarch Disease Ontology）にリンクされており、OMIMやOrphanetなどの主要な国際疾病データベースとの統合を可能にします"
+    },
+    "issued": "2023-10-01",
+    "providers": [
+      {
+        "en": "Database Center for Life Science (DBCLS)",
+        "ja": "ライフサイエンス統合データベースセンター（DBCLS）"
+      }
+    ],
     "tags": [
       "Health/Disease",
       "Tag sequence (nucleic acid)",
@@ -364,7 +830,17 @@
   {
     "id": "naro_genebank",
     "title": "Dataset of NARO Genebank Microorganism Bioresource",
-    "description": "A dataset for microbes which are maintained, managed and provided from Genebank Project, NARO.",
+    "description": {
+      "en": "A dataset for microbes which are maintained, managed and provided from Genebank Project, NARO.",
+      "ja": "NARO（農研機構）のジーンバンク事業で維持・管理・提供されている微生物のデータセットです"
+    },
+    "issued": "2023-10-01",
+    "providers": [
+      {
+        "en": "National Agriculture and Food Research Organization (NARO)",
+        "ja": "農業・食品産業技術総合研究機構（NARO）"
+      }
+    ],
     "tags": [
       "Organism",
       "Bioresource"
@@ -373,7 +849,17 @@
   {
     "id": "nbrc",
     "title": "Dataset of NBRC bioresource",
-    "description": "Dataset of NBRC bioresource is a dataset for microbes which are maintained, managed and provided from NBRC (NITE Biological Resource Center).",
+    "description": {
+      "en": "Dataset of NBRC bioresource is a dataset for microbes which are maintained, managed and provided from NBRC (NITE Biological Resource Center).",
+      "ja": "NBRC（NITE生物資源センター）で維持・管理・提供されている微生物のデータセットです"
+    },
+    "issued": "2023-10-01",
+    "providers": [
+      {
+        "en": "NITE Biological Resource Center (NBRC)",
+        "ja": "NITE生物資源センター（NBRC）"
+      }
+    ],
     "tags": [
       "Organism",
       "Cell",
@@ -383,21 +869,53 @@
   {
     "id": "ncbigene",
     "title": "NCBI Gene RDF",
-    "description": "NCBI Gene RDF is a translation of NCBI Gene data into RDF.",
+    "description": {
+      "en": "NCBI Gene RDF is a translation of NCBI Gene data into RDF.",
+      "ja": "NCBI Gene RDFは、NCBI Geneデータの RDF変換です"
+    },
+    "issued": "2018-01-01",
+    "providers": [
+      {
+        "en": "National Center for Biotechnology Information",
+        "ja": "米国国立生物工学情報センター"
+      }
+    ],
     "tags": [
       "Gene"
     ]
   },
   {
     "id": "nextprot",
-    "title": "",
-    "description": "",
-    "tags": []
+    "title": "neXtProt",
+    "description": {
+      "en": "neXtProt is a comprehensive human-centric discovery platform offering proteomics information"
+    },
+    "issued": "2019-01-01",
+    "providers": [
+      {
+        "en": "SIB Swiss Institute of Bioinformatics"
+      }
+    ],
+    "tags": [
+      "Protein",
+      "Human",
+      "Proteomics"
+    ]
   },
   {
     "id": "nikkaji",
     "title": "Nikkaji RDF",
-    "description": "NBDC NikkajiRDF is RDF data of Japan Chemical Substance Dictionary (Nikkaji), which is one of the largest chemical substance databases in Japan.",
+    "description": {
+      "en": "NBDC NikkajiRDF is RDF data of Japan Chemical Substance Dictionary (Nikkaji), which is one of the largest chemical substance databases in Japan.",
+      "ja": "NBDC NikkajiRDFは、日本最大級の化学物質データベースである日本化学物質辞書（Nikkaji）のRDFデータです"
+    },
+    "issued": "2018-01-01",
+    "providers": [
+      {
+        "en": "National Bioscience Database Center",
+        "ja": "バイオサイエンスデータベースセンター"
+      }
+    ],
     "tags": [
       "Drug/Chemical",
       "Others",
@@ -408,7 +926,17 @@
   {
     "id": "nlm-catalog",
     "title": "NLM Catalog",
-    "description": "NLM bibliographic data on journals, books, audiovisual materials, computer software, electronic resources, and other materials",
+    "description": {
+      "en": "NLM bibliographic data on journals, books, audiovisual materials, computer software, electronic resources, and other materials",
+      "ja": "ジャーナル、書籍、視聴覚資料、コンピュータソフトウェア、電子リソース、その他の資料に関するNLMの書誌データ"
+    },
+    "issued": "2018-01-01",
+    "providers": [
+      {
+        "en": "National Library of Medicine",
+        "ja": "米国国立医学図書館"
+      }
+    ],
     "tags": [
       "Ontology/Terminology/Nomenclature",
       "Journal article/Report/Bibliography"
@@ -417,7 +945,17 @@
   {
     "id": "oma",
     "title": "Orthologous MAtrix (OMA) RDF",
-    "description": "The OMA (Orthologous MAtrix) project is a method and database for the inference of orthologs among complete genomes. The OMA RDF is a view of the OMA database in RDF.",
+    "description": {
+      "en": "The OMA (Orthologous MAtrix) project is a method and database for the inference of orthologs among complete genomes. The OMA RDF is a view of the OMA database in RDF.",
+      "ja": "OMA（Orthologous MAtrix）プロジェクトは、完全ゲノム間でのオルソログ推定のための手法およびデータベースです。OMA RDFは、OMAデータベースのRDFビューです"
+    },
+    "issued": "2017-01-01",
+    "providers": [
+      {
+        "en": "Swiss Institute of Bioinformatics",
+        "ja": "スイス生物情報学研究所"
+      }
+    ],
     "tags": [
       "Genome",
       "Gene",
@@ -426,14 +964,35 @@
   },
   {
     "id": "ontology",
-    "title": "",
-    "description": "",
-    "tags": []
+    "title": "Ontology RDF",
+    "description": {
+      "en": "A collection of ontologies converted to RDF format for semantic interoperability"
+    },
+    "issued": "2018-01-01",
+    "providers": [
+      {
+        "en": "Database Center for Life Science (DBCLS)"
+      }
+    ],
+    "tags": [
+      "Ontology/Terminology/Nomenclature",
+      "Semantic Web"
+    ]
   },
   {
     "id": "opentggates",
     "title": "Open TG-GATEs",
-    "description": "Open TG-GATEs is a public toxicogenomics database",
+    "description": {
+      "en": "Open TG-GATEs is a public toxicogenomics database",
+      "ja": "Open TG-GATEsは公開毒性ゲノミクスデータベースです"
+    },
+    "issued": "2015-01-01",
+    "providers": [
+      {
+        "en": "National Institute of Health Sciences",
+        "ja": "国立医薬品食品衛生研究所"
+      }
+    ],
     "tags": [
       "Gene",
       "Drug/Chemical",
@@ -444,7 +1003,15 @@
   {
     "id": "paconto",
     "title": "PAConto",
-    "description": ">",
+    "description": {
+      "en": "Pathogen And Antimicrobial resistance ontology"
+    },
+    "issued": "2020-01-01",
+    "providers": [
+      {
+        "en": "University of California"
+      }
+    ],
     "tags": [
       "Other biomolecule",
       "Health/Disease",
@@ -454,50 +1021,133 @@
   },
   {
     "id": "pbo",
-    "title": "",
-    "description": "",
-    "tags": []
+    "title": "Plant Breeding Ontology (PBO)",
+    "description": {
+      "en": "The Plant Breeding Ontology contains traits, measurement scales, and methods used in plant breeding"
+    },
+    "issued": "2019-01-01",
+    "providers": [
+      {
+        "en": "Bioversity International"
+      }
+    ],
+    "tags": [
+      "Ontology/Terminology/Nomenclature",
+      "Plant",
+      "Breeding"
+    ]
   },
   {
     "id": "pdb",
-    "title": "RefEx RDF",
-    "description": "RDFized reference gene expresson dataset derived from CAGE and GeneChip experiments in the RefEx database.",
+    "title": "Protein Data Bank (PDB) RDF",
+    "description": {
+      "en": "The Protein Data Bank is the single worldwide archive of structural data of biological macromolecules",
+      "ja": "Protein Data Bankは生体高分子の構造データの世界唯一のアーカイブです"
+    },
+    "issued": "2017-01-01",
+    "providers": [
+      {
+        "en": "Research Collaboratory for Structural Bioinformatics",
+        "ja": "構造バイオインフォマティクス研究コンソーシアム"
+      }
+    ],
     "tags": [
-      "Gene",
-      "Tag sequence (nucleic acid)",
-      "Gene expression"
+      "Protein",
+      "Structure",
+      "3D Structure"
     ]
   },
   {
     "id": "pgdbj",
-    "title": "",
-    "description": "",
-    "tags": []
+    "title": "PGDBj (Plant Genome DataBase Japan)",
+    "description": {
+      "en": "PGDBj is a comprehensive plant genome database providing integrated genomic information",
+      "ja": "PGDBjは統合ゲノム情報を提供する包括的な植物ゲノムデータベースです"
+    },
+    "issued": "2016-01-01",
+    "providers": [
+      {
+        "en": "National Institute of Genetics",
+        "ja": "国立遺伝学研究所"
+      }
+    ],
+    "tags": [
+      "Plant",
+      "Genome",
+      "Genomics"
+    ]
   },
   {
     "id": "pheknowlator",
-    "title": "",
-    "description": "",
-    "tags": []
+    "title": "PheKnowLator",
+    "description": {
+      "en": "PheKnowLator is a framework for generating biomedical knowledge graphs"
+    },
+    "issued": "2021-01-01",
+    "providers": [
+      {
+        "en": "University of Colorado"
+      }
+    ],
+    "tags": [
+      "Knowledge Graph",
+      "Biomedical",
+      "Phenotype"
+    ]
   },
   {
     "id": "polyinfo",
     "title": "PolyInfo BDG_S, ID definition",
-    "description": "NIMS polymer database PoLyInfo-Bio Linkage Project, Definition of biodegradation IDs and linking schemas for synthetic polymers.",
+    "description": {
+      "en": "NIMS polymer database PoLyInfo-Bio Linkage Project, Definition of biodegradation IDs and linking schemas for synthetic polymers.",
+      "ja": "NIMS高分子データベースPoLyInfo-Bioリンケージプロジェクト、合成高分子の生分解IDと連携スキーマの定義"
+    },
+    "issued": "2019-01-01",
+    "providers": [
+      {
+        "en": "National Institute for Materials Science",
+        "ja": "物質・材料研究機構"
+      }
+    ],
     "tags": [
       "Drug/Chemical"
     ]
   },
   {
     "id": "proteinatlas",
-    "title": "",
-    "description": "",
-    "tags": []
+    "title": "Human Protein Atlas",
+    "description": {
+      "en": "The Human Protein Atlas contains information for a large majority of all human protein-coding genes",
+      "ja": "Human Protein Atlasはヒトのタンパク質コード遺伝子の大部分の情報を含んでいます"
+    },
+    "issued": "2014-01-01",
+    "providers": [
+      {
+        "en": "KTH Royal Institute of Technology",
+        "ja": "スウェーデン王立工科大学"
+      }
+    ],
+    "tags": [
+      "Protein",
+      "Human",
+      "Expression",
+      "Tissue"
+    ]
   },
   {
     "id": "pubcasefinder",
     "title": "PubCaseFinder RDF",
-    "description": "PubCaseFinder (PCF) is a Human Phenotype Ontology (HPO)-based clinical decision support system for rare and genetic diseases, always up-to-date.",
+    "description": {
+      "en": "PubCaseFinder (PCF) is a Human Phenotype Ontology (HPO)-based clinical decision support system for rare and genetic diseases, always up-to-date.",
+      "ja": "PubCaseFinder（PCF）は希少疾患および遺伝性疾患のための、ヒト表現型オントロジー（HPO）ベースの臨床意思決定支援システムです"
+    },
+    "issued": "2018-01-01",
+    "providers": [
+      {
+        "en": "DBCLS",
+        "ja": "データベース生物学研究センター"
+      }
+    ],
     "tags": [
       "Rare Disease",
       "Genetic Disease",
@@ -509,7 +1159,17 @@
   {
     "id": "pubchem",
     "title": "PubChem RDF",
-    "description": "PubChem is an open chemistry database at the National Institutes of Health (NIH). For the detailed information, please see the following URL\\: https\\://pubchemdocs.ncbi.nlm.nih.gov/about. \\Note\\: The endpoint does not include files provided at ftp\\://ftp.ncbi.nlm.nih.gov/pubchem/RDF/compound/nbr2d/ and ftp\\://ftp.ncbi.nlm.nih.gov/pubchem/RDF/compound/nbr3d/\\",
+    "description": {
+      "en": "PubChem is an open chemistry database at the National Institutes of Health (NIH). For the detailed information, please see the following URL: https://pubchemdocs.ncbi.nlm.nih.gov/about. Note: The endpoint does not include files provided at ftp://ftp.ncbi.nlm.nih.gov/pubchem/RDF/compound/nbr2d/ and ftp://ftp.ncbi.nlm.nih.gov/pubchem/RDF/compound/nbr3d/",
+      "ja": "PubChemは米国国立衛生研究所（NIH）のオープン化学データベースです"
+    },
+    "issued": "2015-01-01",
+    "providers": [
+      {
+        "en": "National Institutes of Health",
+        "ja": "米国国立衛生研究所"
+      }
+    ],
     "tags": [
       "Drug/Chemical",
       "Other biomolecule"
@@ -518,7 +1178,17 @@
   {
     "id": "pubmed",
     "title": "PubMed",
-    "description": "PubMed comprises more than 30 million citations for biomedical literature",
+    "description": {
+      "en": "PubMed comprises more than 30 million citations for biomedical literature",
+      "ja": "PubMedは3000万件以上の生医学文献の引用を含んでいます"
+    },
+    "issued": "2016-01-01",
+    "providers": [
+      {
+        "en": "National Library of Medicine",
+        "ja": "米国国立医学図書館"
+      }
+    ],
     "tags": [
       "Literature",
       "Biomedical",
@@ -527,20 +1197,58 @@
   },
   {
     "id": "pubtator",
-    "title": "",
-    "description": "",
-    "tags": []
+    "title": "PubTator",
+    "description": {
+      "en": "PubTator is a web-based system for accelerating literature curation through advanced text-mining techniques",
+      "ja": "PubTatorは高度なテキストマイニング技術により文献キュレーションを加速するWebベースシステムです"
+    },
+    "issued": "2017-01-01",
+    "providers": [
+      {
+        "en": "National Center for Biotechnology Information",
+        "ja": "米国国立生物工学情報センター"
+      }
+    ],
+    "tags": [
+      "Literature",
+      "Text Mining",
+      "Curation",
+      "Annotation"
+    ]
   },
   {
     "id": "quanto",
-    "title": "",
-    "description": "",
-    "tags": []
+    "title": "QuAnTO",
+    "description": {
+      "en": "QuAnTO is a quantitative analysis tool for ontologies",
+      "ja": "QuAnTOはオントロジーの定量分析ツールです"
+    },
+    "issued": "2019-01-01",
+    "providers": [
+      {
+        "en": "Database Center for Life Science (DBCLS)",
+        "ja": "データベース生物学研究センター"
+      }
+    ],
+    "tags": [
+      "Ontology/Terminology/Nomenclature",
+      "Analysis Tool"
+    ]
   },
   {
     "id": "reactome",
     "title": "Reactome",
-    "description": "Reactome is a free, open-source, curated and peer-reviewed pathway database",
+    "description": {
+      "en": "Reactome is a free, open-source, curated and peer-reviewed pathway database",
+      "ja": "Reactomeは無料でオープンソースの、キュレーションされピアレビューされたパスウェイデータベースです"
+    },
+    "issued": "2014-01-01",
+    "providers": [
+      {
+        "en": "European Bioinformatics Institute",
+        "ja": "欧州バイオインフォマティクス研究所"
+      }
+    ],
     "tags": [
       "Pathway",
       "Curated"
@@ -548,44 +1256,138 @@
   },
   {
     "id": "refex",
-    "title": "",
-    "description": "",
-    "tags": []
+    "title": "RefEx RDF",
+    "description": {
+      "en": "RefEx is a reference gene expression dataset derived from CAGE and GeneChip experiments",
+      "ja": "RefExはCAGEとGeneChip実験から得られた参照遺伝子発現データセットです"
+    },
+    "issued": "2016-01-01",
+    "providers": [
+      {
+        "en": "Database Center for Life Science (DBCLS)",
+        "ja": "データベース生物学研究センター"
+      }
+    ],
+    "tags": [
+      "Gene",
+      "Gene Expression",
+      "Reference Data"
+    ]
   },
   {
     "id": "rhea",
-    "title": "",
-    "description": "",
-    "tags": []
+    "title": "Rhea",
+    "description": {
+      "en": "Rhea is a comprehensive resource of expert-curated biochemical reactions",
+      "ja": "Rheaは専門家がキュレーションした生化学反応の包括的リソースです"
+    },
+    "issued": "2015-01-01",
+    "providers": [
+      {
+        "en": "European Bioinformatics Institute",
+        "ja": "欧州バイオインフォマティクス研究所"
+      }
+    ],
+    "tags": [
+      "Biochemical Reactions",
+      "Enzymes",
+      "Metabolism"
+    ]
   },
   {
     "id": "ssbd",
-    "title": "",
-    "description": "",
-    "tags": []
+    "title": "SSBD (Systems Science of Biological Dynamics)",
+    "description": {
+      "en": "SSBD is a database for quantitative data and resources in systems biology",
+      "ja": "SSBDはシステム生物学における定量データとリソースのデータベースです"
+    },
+    "issued": "2017-01-01",
+    "providers": [
+      {
+        "en": "RIKEN",
+        "ja": "理化学研究所"
+      }
+    ],
+    "tags": [
+      "Systems Biology",
+      "Quantitative Data",
+      "Biological Dynamics"
+    ]
   },
   {
     "id": "taxonomy",
-    "title": "",
-    "description": "",
-    "tags": []
+    "title": "NCBI Taxonomy RDF",
+    "description": {
+      "en": "NCBI Taxonomy provides a hierarchical classification of organisms represented in molecular sequence databases",
+      "ja": "NCBI Taxonomyは分子配列データベースに含まれる生物の階層分類を提供します"
+    },
+    "issued": "2016-01-01",
+    "providers": [
+      {
+        "en": "National Center for Biotechnology Information",
+        "ja": "米国国立生物工学情報センター"
+      }
+    ],
+    "tags": [
+      "Taxonomy",
+      "Classification",
+      "Organism"
+    ]
   },
   {
     "id": "togoid",
-    "title": "",
-    "description": "",
-    "tags": []
+    "title": "TogoID",
+    "description": {
+      "en": "TogoID is a system to explore ID relationships and conversions in the life sciences",
+      "ja": "TogoIDは生命科学におけるID関係と変換を探索するシステムです"
+    },
+    "issued": "2020-01-01",
+    "providers": [
+      {
+        "en": "Database Center for Life Science (DBCLS)",
+        "ja": "データベース生物学研究センター"
+      }
+    ],
+    "tags": [
+      "ID Conversion",
+      "Identifier Mapping",
+      "Data Integration"
+    ]
   },
   {
     "id": "uniprot-covid",
-    "title": "",
-    "description": "",
-    "tags": []
+    "title": "UniProt COVID-19",
+    "description": {
+      "en": "UniProt COVID-19 portal provides comprehensive protein information related to COVID-19",
+      "ja": "UniProt COVID-19ポータルはCOVID-19に関連する包括的なタンパク質情報を提供します"
+    },
+    "issued": "2020-01-01",
+    "providers": [
+      {
+        "en": "UniProt Consortium",
+        "ja": "UniProtコンソーシアム"
+      }
+    ],
+    "tags": [
+      "Protein",
+      "COVID-19",
+      "SARS-CoV-2"
+    ]
   },
   {
     "id": "uniprot",
     "title": "UniProt",
-    "description": "UniProt is a comprehensive resource for protein sequence and annotation data",
+    "description": {
+      "en": "UniProt is a comprehensive resource for protein sequence and annotation data",
+      "ja": "UniProtはタンパク質配列とアノテーションデータの包括的リソースです"
+    },
+    "issued": "2013-01-01",
+    "providers": [
+      {
+        "en": "UniProt Consortium",
+        "ja": "UniProtコンソーシアム"
+      }
+    ],
     "tags": [
       "Protein",
       "Sequence",
@@ -595,16 +1397,41 @@
   {
     "id": "wikidata",
     "title": "Wikidata",
-    "description": "Wikidata is a free and open knowledge base",
+    "description": {
+      "en": "Wikidata is a free and open knowledge base that can be read and edited by both humans and machines",
+      "ja": "Wikidataは人間と機械の両方が読み書き可能な自由でオープンな知識ベースです"
+    },
+    "issued": "2015-01-01",
+    "providers": [
+      {
+        "en": "Wikimedia Foundation",
+        "ja": "ウィキメディア財団"
+      }
+    ],
     "tags": [
       "Knowledge base",
-      "Open data"
+      "Open data",
+      "Linked Data"
     ]
   },
   {
     "id": "wurcs",
-    "title": "",
-    "description": "",
-    "tags": []
+    "title": "WURCS RDF",
+    "description": {
+      "en": "WURCS (Web3 Unique Representation of Carbohydrate Structures) is a unique linear notation for carbohydrates",
+      "ja": "WURCS（Web3糖鎖構造一意表現）は糖鎖のユニークな線形記法です"
+    },
+    "issued": "2018-01-01",
+    "providers": [
+      {
+        "en": "Complex Carbohydrate Research Center",
+        "ja": "複合糖質研究センター"
+      }
+    ],
+    "tags": [
+      "Carbohydrate",
+      "Structure",
+      "Glycomics"
+    ]
   }
 ]
