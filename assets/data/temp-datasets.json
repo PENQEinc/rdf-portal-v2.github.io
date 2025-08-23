@@ -13,6 +13,7 @@
         "ja": "SIB スイス・バイオインフォマティクス研究所"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Gene",
       "Gene expression"
@@ -32,6 +33,7 @@
         "ja": "欧州バイオインフォマティクス研究所"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Model",
       "Systems biology"
@@ -51,6 +53,7 @@
         "ja": "スタンフォード大学生物医学情報学研究センター"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Ontology",
       "Vocabulary"
@@ -70,6 +73,7 @@
         "ja": "日本DNAデータバンク"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Sample",
       "Metadata"
@@ -89,6 +93,7 @@
         "ja": "ライフサイエンス統合データベースセンター"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Sample",
       "Metadata",
@@ -109,6 +114,7 @@
         "ja": "大阪大学蛋白質研究所"
       }
     ],
+    "triple_count": 643511337,
     "tags": [
       "Protein",
       "Other biomolecule",
@@ -131,6 +137,7 @@
         "ja": "欧州バイオインフォマティクス研究所"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Drug/Chemical"
     ]
@@ -149,6 +156,7 @@
         "ja": "欧州バイオインフォマティクス研究所"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Drug/Chemical"
     ]
@@ -165,6 +173,7 @@
         "en": "National Center for Biotechnology Information"
       }
     ],
+    "triple_count": 1247658822,
     "tags": [
       "Polymorphism",
       "Health/Disease",
@@ -185,6 +194,7 @@
         "ja": "バイオサイエンスデータベースセンター"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Others",
       "Others"
@@ -202,6 +212,7 @@
         "en": "USF Genomics, College of Public Health, University of South Florida"
       }
     ],
+    "triple_count": null,
     "tags": [
       "nsSNVs",
       "functional prediction"
@@ -219,6 +230,7 @@
         "en": "The University of Texas Health Science Center at Houston"
       }
     ],
+    "triple_count": null,
     "tags": [
       "SNV",
       "splicing consensus region"
@@ -238,6 +250,7 @@
         "ja": "国立遺伝学研究所"
       }
     ],
+    "triple_count": 39574632446,
     "tags": [
       "Genome",
       "Gene",
@@ -274,6 +287,7 @@
         "en": "Pompeu Fabra University (UPF), Barcelona, Spain"
       }
     ],
+    "triple_count": 88379594,
     "tags": [
       "Gene",
       "Health/Disease"
@@ -293,6 +307,7 @@
         "ja": "EMBL-EBI"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Ontology/Terminology/Nomenclature"
     ]
@@ -311,6 +326,7 @@
         "ja": "EMBL-EBI"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Gene",
       "Protein"
@@ -330,6 +346,7 @@
         "ja": "EMBL-EBI"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Genome",
       "Gene"
@@ -349,6 +366,7 @@
         "ja": "EMBL-EBI"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Genome",
       "Gene"
@@ -368,6 +386,7 @@
         "ja": "EMBL-EBI"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Ontology/Terminology/Nomenclature"
     ]
@@ -386,6 +405,7 @@
         "ja": "EMBL-EBI"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Gene",
       "Protein",
@@ -406,6 +426,7 @@
         "ja": "RefExコンソーシアム"
       }
     ],
+    "triple_count": 21297786,
     "tags": [
       "Protein",
       "Structure"
@@ -425,6 +446,7 @@
         "ja": "糖鎖科学・糖鎖工学研究グループ、創薬基盤研究部門、産業技術総合研究所（AIST）"
       }
     ],
+    "triple_count": 39440,
     "tags": [
       "Other biomolecule",
       "Health/Disease",
@@ -447,6 +469,7 @@
         "ja": "立命館大学"
       }
     ],
+    "triple_count": 30150,
     "tags": [
       "Other biomolecule",
       "Structure"
@@ -466,6 +489,7 @@
         "ja": "GlyCosmosポータル"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Glycan"
     ]
@@ -484,6 +508,7 @@
         "ja": "産業技術総合研究所（AIST）"
       }
     ],
+    "triple_count": 1749648,
     "tags": [
       "Other biomolecule",
       "Structure"
@@ -503,6 +528,7 @@
         "ja": "クイーンズランド大学"
       }
     ],
+    "triple_count": null,
     "tags": [
       "taxonomy",
       "bacteria",
@@ -523,6 +549,7 @@
         "ja": "EMBL-EBI"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Polymorphism",
       "Health/Disease"
@@ -542,6 +569,7 @@
         "ja": "欧州バイオインフォマティクス研究所のHUGO遺伝子命名委員会"
       }
     ],
+    "triple_count": 1314653,
     "tags": [
       "Gene",
       "Ontology/ Terminology/Nomenclature"
@@ -561,6 +589,7 @@
         "ja": "米国国立生物工学情報センター"
       }
     ],
+    "triple_count": 1553120,
     "tags": [
       "Genome",
       "Gene",
@@ -581,6 +610,7 @@
         "ja": "国際がんゲノムコンソーシアム"
       }
     ],
+    "triple_count": 577082774,
     "tags": [
       "Genome",
       "Health/Disease",
@@ -601,6 +631,7 @@
         "ja": "理研バイオリソースセンター"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Organism",
       "Bioresource"
@@ -620,6 +651,7 @@
         "ja": "jPOSTコンソーシアム"
       }
     ],
+    "triple_count": 239817763,
     "tags": [
       "Proteome",
       "Standard"
@@ -639,6 +671,7 @@
         "ja": "ライフサイエンス統合データベースセンター（DBCLS）"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Genome",
       "Polymorphism",
@@ -661,6 +694,7 @@
         "ja": "コロラド大学"
       }
     ],
+    "triple_count": null,
     "tags": [
       "COVID-19",
       "Knowledge Graph",
@@ -681,6 +715,7 @@
         "ja": "富山大学"
       }
     ],
+    "triple_count": 3776538,
     "tags": [
       "Compound",
       "Taxonomy",
@@ -702,6 +737,7 @@
         "ja": "ライフサイエンス統合データベースセンター（DBCLS）"
       }
     ],
+    "triple_count": 283928849,
     "tags": [
       "Drug/Chemical",
       "Drug Discovery",
@@ -722,6 +758,7 @@
         "ja": "MassBankコンソーシアム"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Drug/Chemical",
       "Mass Spectrometry",
@@ -742,6 +779,7 @@
         "ja": "東京大学"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Microbial",
       "Genome",
@@ -762,6 +800,7 @@
         "ja": "米国国立生物工学情報センター"
       }
     ],
+    "triple_count": 1609018143,
     "tags": [
       "Health/Disease",
       "Ontology/Terminology/Nomenclature"
@@ -781,6 +820,7 @@
         "ja": "米国国立医学図書館"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Ontology/ Terminology/Nomenclature"
     ]
@@ -799,6 +839,7 @@
         "ja": "筑波大学精密医学研究開発センター"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Drug/Chemical",
       "RNA",
@@ -821,6 +862,7 @@
         "ja": "ライフサイエンス統合データベースセンター（DBCLS）"
       }
     ],
+    "triple_count": 36933,
     "tags": [
       "Health/Disease",
       "Tag sequence (nucleic acid)",
@@ -841,6 +883,7 @@
         "ja": "農業・食品産業技術総合研究機構（NARO）"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Organism",
       "Bioresource"
@@ -860,6 +903,7 @@
         "ja": "NITE生物資源センター（NBRC）"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Organism",
       "Cell",
@@ -880,6 +924,7 @@
         "ja": "米国国立生物工学情報センター"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Gene"
     ]
@@ -896,6 +941,7 @@
         "en": "SIB Swiss Institute of Bioinformatics"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Protein",
       "Human",
@@ -916,6 +962,7 @@
         "ja": "バイオサイエンスデータベースセンター"
       }
     ],
+    "triple_count": 344246952,
     "tags": [
       "Drug/Chemical",
       "Others",
@@ -937,6 +984,7 @@
         "ja": "米国国立医学図書館"
       }
     ],
+    "triple_count": 203480,
     "tags": [
       "Ontology/Terminology/Nomenclature",
       "Journal article/Report/Bibliography"
@@ -956,6 +1004,7 @@
         "ja": "スイス生物情報学研究所"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Genome",
       "Gene",
@@ -974,6 +1023,7 @@
         "en": "Database Center for Life Science (DBCLS)"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Ontology/Terminology/Nomenclature",
       "Semantic Web"
@@ -993,6 +1043,7 @@
         "ja": "国立医薬品食品衛生研究所"
       }
     ],
+    "triple_count": 6800384609,
     "tags": [
       "Gene",
       "Drug/Chemical",
@@ -1012,6 +1063,7 @@
         "en": "University of California"
       }
     ],
+    "triple_count": 81785,
     "tags": [
       "Other biomolecule",
       "Health/Disease",
@@ -1031,6 +1083,7 @@
         "en": "Bioversity International"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Ontology/Terminology/Nomenclature",
       "Plant",
@@ -1051,6 +1104,7 @@
         "ja": "構造バイオインフォマティクス研究コンソーシアム"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Protein",
       "Structure",
@@ -1071,6 +1125,7 @@
         "ja": "国立遺伝学研究所"
       }
     ],
+    "triple_count": 13652175,
     "tags": [
       "Plant",
       "Genome",
@@ -1089,6 +1144,7 @@
         "en": "University of Colorado"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Knowledge Graph",
       "Biomedical",
@@ -1109,6 +1165,7 @@
         "ja": "物質・材料研究機構"
       }
     ],
+    "triple_count": 5446,
     "tags": [
       "Drug/Chemical"
     ]
@@ -1127,6 +1184,7 @@
         "ja": "スウェーデン王立工科大学"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Protein",
       "Human",
@@ -1148,6 +1206,7 @@
         "ja": "データベース生物学研究センター"
       }
     ],
+    "triple_count": 16367389,
     "tags": [
       "Rare Disease",
       "Genetic Disease",
@@ -1170,6 +1229,7 @@
         "ja": "米国国立衛生研究所"
       }
     ],
+    "triple_count": 15277890568,
     "tags": [
       "Drug/Chemical",
       "Other biomolecule"
@@ -1189,6 +1249,7 @@
         "ja": "米国国立医学図書館"
       }
     ],
+    "triple_count": 2531937601,
     "tags": [
       "Literature",
       "Biomedical",
@@ -1209,6 +1270,7 @@
         "ja": "米国国立生物工学情報センター"
       }
     ],
+    "triple_count": 1107708438,
     "tags": [
       "Literature",
       "Text Mining",
@@ -1230,6 +1292,7 @@
         "ja": "データベース生物学研究センター"
       }
     ],
+    "triple_count": 107782639,
     "tags": [
       "Ontology/Terminology/Nomenclature",
       "Analysis Tool"
@@ -1249,6 +1312,7 @@
         "ja": "欧州バイオインフォマティクス研究所"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Pathway",
       "Curated"
@@ -1268,6 +1332,7 @@
         "ja": "データベース生物学研究センター"
       }
     ],
+    "triple_count": 123447475,
     "tags": [
       "Gene",
       "Gene Expression",
@@ -1288,6 +1353,7 @@
         "ja": "欧州バイオインフォマティクス研究所"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Biochemical Reactions",
       "Enzymes",
@@ -1308,6 +1374,7 @@
         "ja": "理化学研究所"
       }
     ],
+    "triple_count": 40300,
     "tags": [
       "Systems Biology",
       "Quantitative Data",
@@ -1328,6 +1395,7 @@
         "ja": "米国国立生物工学情報センター"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Taxonomy",
       "Classification",
@@ -1348,6 +1416,7 @@
         "ja": "データベース生物学研究センター"
       }
     ],
+    "triple_count": 7770732116,
     "tags": [
       "ID Conversion",
       "Identifier Mapping",
@@ -1368,6 +1437,7 @@
         "ja": "UniProtコンソーシアム"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Protein",
       "COVID-19",
@@ -1388,6 +1458,7 @@
         "ja": "UniProtコンソーシアム"
       }
     ],
+    "triple_count": 54381877065,
     "tags": [
       "Protein",
       "Sequence",
@@ -1408,6 +1479,7 @@
         "ja": "ウィキメディア財団"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Knowledge base",
       "Open data",
@@ -1428,6 +1500,7 @@
         "ja": "複合糖質研究センター"
       }
     ],
+    "triple_count": null,
     "tags": [
       "Carbohydrate",
       "Structure",
