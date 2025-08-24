@@ -48,8 +48,9 @@ function renderDatasets(datasets) {
       showDescription: true,
       showTags: true,
       showLink: true,
-  linkBaseUrl: baseUrl,
-  iconRendering: 'svgOverlap'
+      linkBaseUrl: baseUrl,
+      iconRendering: 'svgOverlap',
+      showHeaderMeta: true
     });
     const cardEl = datasetCard.getElement();
     li.appendChild(cardEl);
