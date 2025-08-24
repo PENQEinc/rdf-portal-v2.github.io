@@ -22,6 +22,7 @@ class DatasetCard {
       showIcon: true,
       iconSize: 36,
       iconRendering: "svgOverlap",
+      showHeaderMeta: false, // headerに発行日・トリプル数を表示するか
     },
   };
   static SVG = {
@@ -64,7 +65,7 @@ class DatasetCard {
   static V_ALIGN = {
     MODE: "geometric", // 'geometric' | 'interpolate' 将来切替用
     // geometric モード (既定)
-    CENTER_BASE: 6, // 基本オフセット（下方向に重心を調整）
+    CENTER_BASE: 10, // 基本オフセット（下方向に重心を調整）
     CENTER_FACTOR: 1.0, // 中点差分係数
     // interpolate モード (必要なら MODE を変更し下記を調整）
     SHIFT_MIN: -0.8,
@@ -148,11 +149,28 @@ class DatasetCard {
       ? `<div class="iconwrapper">${this.#buildPetalSvg()}</div>`
       : "";
     const titlePart = this.#generateTitle();
+    const metaPart = this.#options.showHeaderMeta
+      ? this.#generateHeaderMeta()
+      : "";
     const descHtml = this.#generateDescription();
     const tagsHtml = this.#options.showTags ? this.#generateTags() : "";
-    // icon + title を <header> にまとめる (旧 BEM .dataset-card__head は廃止)
-    const headHtml = `<header class="head">${iconPart}${titlePart}</header>`;
+    // icon + title + meta を <header> にまとめる
+    const headHtml = `<header class="head">${iconPart}${titlePart}${metaPart}</header>`;
     return `${headHtml}<div class="body">${descHtml}${tagsHtml}</div>`;
+  }
+  // header用: 発行日とトリプル数を表示
+  #generateHeaderMeta() {
+    const issued = this.#dataset.issued;
+    const tripleCount = this.#dataset.tripleCount;
+    let html = '<div class="meta">';
+    if (issued) {
+      html += `<span class="issued">${this.#escapeHtml(issued)}</span>`;
+    }
+    if (typeof tripleCount === "number") {
+      html += `<span class="triples">${tripleCount.toLocaleString()} triples</span>`;
+    }
+    html += "</div>";
+    return html;
   }
   #generateTitle() {
     const ttl =
