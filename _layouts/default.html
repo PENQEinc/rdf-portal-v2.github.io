@@ -38,7 +38,25 @@
               </li>
             </ul>
           </li>
-          <li data-page-id="datasets"><a href="{{ '/datasets/' | relative_url }}">Datasets</a></li>
+          <li data-page-id="datasets">
+            <a href="{{ '/datasets/' | relative_url }}">Datasets</a>
+            {% if page.pageId == "datasets" %}
+            <div id="DatasetsSortFilter" class="datasets-sort-filter">
+              <div class="sort">
+                <label for="sortSelect">Sort:</label>
+                <select id="sortSelect">
+                  <option value="name">Name</option>
+                  <option value="date">Date</option>
+                  <option value="triples">Triples</option>
+                </select>
+              </div>
+              <div class="filter">
+                <label for="filterInput">Filter:</label>
+                <input type="text" id="filterInput" placeholder="Keyword filter">
+              </div>
+            </div>
+            {% endif %}
+          </li>
           <li data-page-id="statistics"><a href="{{ '/statistics/' | relative_url }}">Statistics</a></li>
           <li data-page-id="documents"><a href="{{ '/documents/' | relative_url }}">Documents</a></li>
           <li data-page-id="about"><a href="{{ '/about/' | relative_url }}">About</a></li>

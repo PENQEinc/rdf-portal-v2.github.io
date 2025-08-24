@@ -24,7 +24,6 @@ async function loadDatasets() {
       return;
     }
     
-    // データが読み込まれてからレンダリング
     renderDatasets(datasets);
     datasetsListView.style.display = 'block';
     
