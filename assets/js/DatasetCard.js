@@ -40,7 +40,7 @@ class DatasetCard {
 
     // 花弁幅・長さスケーリング =========================
     WIDTH_MAX: 32, // 最小枚数時の最大半幅
-    WIDTH_MIN: 24, // 最大枚数時の最小半幅
+    WIDTH_MIN: 12, // 最大枚数時の最小半幅
     WIDTH_EXP: 1.25, // 幅補間用指数 (非線形に細くする)
     LENGTH_COMPRESS: 0.12, // 枚数増加に伴う縦方向圧縮率 (t2 を掛ける)
 
@@ -49,24 +49,24 @@ class DatasetCard {
     ZERO_TAG_COLOR: "#e2e8f0", // タグ 0 件時のプレースホルダ色
 
     // 視覚サイズ補正 ===================================
-    VISUAL_MIN_SCALE: 0.9, // 多枚数時の全体縮小下限 (最小)
+    VISUAL_MIN_SCALE: 1.1, // 多枚数時の全体縮小下限 (最小)
     VISUAL_MAX_SCALE: 1.1, // 少枚数時の全体拡大上限 (最大)
-    VISUAL_EXP: 1.2, // 視覚スケール補間指数 (大きいほど多枚数側を強く縮小)
+    VISUAL_EXP: 1.0, // 視覚スケール補間指数 (大きいほど多枚数側を強く縮小)
     SINGLE_PETAL_EMPHASIS: 1.025, // 単一タグ表示時のわずかな追加拡大倍率
-    FULL_CIRCLE_THRESHOLD: 8, // この枚数以上で扇状 → 360° 均等配置に切替
+    FULL_CIRCLE_THRESHOLD: 11, // この枚数以上で扇状 → 360° 均等配置に切替
     // レイアウト角度制御 ==============================
     TWO_PETAL_SPAN: 50, // 2枚時の扇状角度 (中心対称配置で ±25°)
     FAN_SPAN_MIN: 70, // 3枚時の扇状角度 (開始値)
-    FAN_SPAN_MAX: 170, // FULL_CIRCLE_THRESHOLD-1 枚時の扇状角度 (その次で 360° へ)
+    FAN_SPAN_MAX: 110, // FULL_CIRCLE_THRESHOLD-1 枚時の扇状角度 (その次で 360° へ)
   };
 
   // 垂直位置調整: アイコンとテキストの視覚中心を合わせるための調整定数
   static V_ALIGN = {
     MODE: "geometric", // 'geometric' | 'interpolate' 将来切替用
     // geometric モード (既定)
-    CENTER_BASE: -1.2, // 基本オフセット
+    CENTER_BASE: 6, // 基本オフセット（下方向に重心を調整）
     CENTER_FACTOR: 1.0, // 中点差分係数
-    // interpolate モード (必要なら MODE を変更し下記を調整)
+    // interpolate モード (必要なら MODE を変更し下記を調整）
     SHIFT_MIN: -0.8,
     SHIFT_MAX: 0.9,
     SHIFT_EXP: 0.9,
@@ -111,7 +111,7 @@ class DatasetCard {
         this.#setupEventListeners(this.#element);
       }
     };
-    window.addEventListener('languageChange', this.#languageChangeHandler);
+    window.addEventListener("languageChange", this.#languageChangeHandler);
   }
 
   static createCards(datasets, options = {}) {
@@ -135,7 +135,7 @@ class DatasetCard {
   remove() {
     // イベントリスナーをクリーンアップ
     if (this.#languageChangeHandler) {
-      window.removeEventListener('languageChange', this.#languageChangeHandler);
+      window.removeEventListener("languageChange", this.#languageChangeHandler);
       this.#languageChangeHandler = null;
     }
 
@@ -167,8 +167,8 @@ class DatasetCard {
     ) {
       const href = this.#escapeHtml(
         this.#options.linkBaseUrl.replace(/\/$/, "") +
-        "/dataset/?id=" +
-        encodeURIComponent(this.#dataset.id)
+          "/dataset/?id=" +
+          encodeURIComponent(this.#dataset.id)
       );
       return `<a class="${DatasetCard.TITLE_CLASS} ${DatasetCard.LINK_CLASS}" href="${href}">${safe}</a>`;
     }
@@ -182,10 +182,14 @@ class DatasetCard {
     if (typeof this.#dataset.description === "string") {
       // 従来形式（文字列）
       desc = this.#dataset.description.trim();
-    } else if (typeof this.#dataset.description === "object" && this.#dataset.description) {
+    } else if (
+      typeof this.#dataset.description === "object" &&
+      this.#dataset.description
+    ) {
       // 新形式（多言語オブジェクト）
       const currentLang = this.#getCurrentLanguage();
-      desc = this.#dataset.description[currentLang] ||
+      desc =
+        this.#dataset.description[currentLang] ||
         this.#dataset.description.en ||
         this.#dataset.description.ja ||
         "";
@@ -197,16 +201,17 @@ class DatasetCard {
         desc
       )}</div>`;
     if (this.#options.showFallbackDescription)
-      return `<div class="${DatasetCard.DESCRIPTION_CLASS
-        } isFallback">${this.#escapeHtml(
-          DatasetCard.DEFAULTS.FALLBACK_DESCRIPTION
-        )}</div>`;
+      return `<div class="${
+        DatasetCard.DESCRIPTION_CLASS
+      } isFallback">${this.#escapeHtml(
+        DatasetCard.DEFAULTS.FALLBACK_DESCRIPTION
+      )}</div>`;
     return "";
   }
 
   // 現在の言語設定を取得
   #getCurrentLanguage() {
-    return localStorage.getItem('site-language') || 'en';
+    return localStorage.getItem("site-language") || "en";
   }
   #generateTags() {
     const tags = this.#extractTagStrings(this.#getTags());
@@ -217,15 +222,17 @@ class DatasetCard {
   }
   #renderTag(tag) {
     if (typeof tag === "string")
-      return `<span class="${DatasetCard.TAG_CLASS
-        }" data-tag="${this.#escapeHtml(tag)}">${this.#escapeHtml(tag)}</span>`;
+      return `<span class="${
+        DatasetCard.TAG_CLASS
+      }" data-tag="${this.#escapeHtml(tag)}">${this.#escapeHtml(tag)}</span>`;
     if (tag && typeof tag === "object" && tag.id) {
       const lang = document.documentElement.lang || "ja";
       const txt = tag.label?.[lang] || tag.label?.ja || tag.label?.en || tag.id;
-      return `<span class="${DatasetCard.TAG_CLASS
-        }" data-tag="${this.#escapeHtml(tag.id)}">${this.#escapeHtml(
-          txt
-        )}</span>`;
+      return `<span class="${
+        DatasetCard.TAG_CLASS
+      }" data-tag="${this.#escapeHtml(tag.id)}">${this.#escapeHtml(
+        txt
+      )}</span>`;
     }
     return "";
   }
@@ -239,18 +246,18 @@ class DatasetCard {
   #extractTagStrings(list) {
     return Array.isArray(list)
       ? list
-        .map((t) => (typeof t === "string" ? t : t?.id || ""))
-        .filter(Boolean)
+          .map((t) => (typeof t === "string" ? t : t?.id || ""))
+          .filter(Boolean)
       : [];
   }
   #escapeHtml(str) {
     return typeof str === "string"
       ? str
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#39;")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;")
       : "";
   }
   #hashString(str) {

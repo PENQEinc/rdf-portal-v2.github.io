@@ -3,8 +3,8 @@
 
 
 - datasets
-  desc: dataset 一覧を取得
-  note:
+  _desc: dataset 一覧を取得
+  _note:
     - 現状は、フロントエンドから呼び出し動的にページを生成させているが、できればサーバーで処理したい
   props:
     description:
@@ -16,23 +16,24 @@
     name:
       en:
       ja:
-    creators:
+    creators[]:
       en:
       ja:
-    providers:
+    providers[]:
       en:
       ja:
-    rdf_creators:
+    rdf_creators[]:
       en:
       ja:
-    rdf_providers:
+    rdf_providers[]:
       en:
       ja:
-    tags:
+    triple_count:
+    tags[]:
 
 - dataset:
-  desc: dataset 詳細情報取得
-  note: 
+  _desc: dataset 詳細情報取得
+  _note: 
     - GitHub から直接取れるから、もしかしたらいらない？　回数制限はない？
     - データセット個別ページはフロントで動的に生成しているが、できれば SSR にしたい
   props:
