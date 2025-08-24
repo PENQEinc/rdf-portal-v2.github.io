@@ -161,12 +161,12 @@ class DatasetCard {
   // header用: 発行日とトリプル数を表示
   #generateHeaderMeta() {
     const issued = this.#dataset.issued;
-    const tripleCount = this.#dataset.tripleCount;
+    const tripleCount = this.#dataset.triple_count;
     let html = '<div class="meta">';
     if (issued) {
       html += `<span class="issued">${this.#escapeHtml(issued)}</span>`;
     }
-    if (typeof tripleCount === "number") {
+    if (tripleCount && typeof tripleCount === "number") {
       html += `<span class="triples">${tripleCount.toLocaleString()} triples</span>`;
     }
     html += "</div>";
