@@ -87,7 +87,7 @@ function initSortAndFilter(datasets) {
       }
 
       // sort with order
-      const sortValue = sortSelect ? sortSelect.value : 'name';
+    const sortValue = sortSelect ? sortSelect.value : 'date';
       const order = orderSelect ? orderSelect.value : 'desc'; // 'asc' or 'desc'
       if (sortValue === 'name') {
         out.sort((a, b) => {
