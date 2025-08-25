@@ -65,6 +65,7 @@ function renderDatasets(datasets) {
 function initSortAndFilter(datasets) {
   const sortSelect = document.getElementById('sortSelect');
   const filterInput = document.getElementById('filterInput');
+  const orderSelect = document.getElementById('sortOrder');
 
   function applySortFilter() {
     try {
@@ -85,14 +86,27 @@ function initSortAndFilter(datasets) {
         });
       }
 
-      // sort
+      // sort with order
       const sortValue = sortSelect ? sortSelect.value : 'name';
+      const order = orderSelect ? orderSelect.value : 'desc'; // 'asc' or 'desc'
       if (sortValue === 'name') {
-        out.sort((a, b) => (a.title || a.id || '').toString().localeCompare((b.title || b.id || '').toString()));
+        out.sort((a, b) => {
+          const A = (a.title || a.id || '').toString();
+          const B = (b.title || b.id || '').toString();
+          return order === 'asc' ? A.localeCompare(B) : B.localeCompare(A);
+        });
       } else if (sortValue === 'date') {
-        out.sort((a, b) => ((b.issued || '') > (a.issued || '')) ? 1 : ((b.issued || '') < (a.issued || '')) ? -1 : 0);
+        out.sort((a, b) => {
+          const ta = Date.parse(a.issued || '') || 0;
+          const tb = Date.parse(b.issued || '') || 0;
+          return order === 'asc' ? ta - tb : tb - ta; // asc: older->newer, desc: newer->older
+        });
       } else if (sortValue === 'triples') {
-        out.sort((a, b) => (Number(b.triple_count || 0) - Number(a.triple_count || 0)));
+        out.sort((a, b) => {
+          const na = Number(a.triple_count || 0);
+          const nb = Number(b.triple_count || 0);
+          return order === 'asc' ? na - nb : nb - na;
+        });
       }
 
       // visual debug: set attribute and log
@@ -109,6 +123,7 @@ function initSortAndFilter(datasets) {
 
   if (sortSelect) sortSelect.addEventListener('change', applySortFilter);
   if (filterInput) filterInput.addEventListener('input', applySortFilter);
+  if (orderSelect) orderSelect.addEventListener('change', applySortFilter);
 
   // run once to reflect current control values and to verify handler wiring
   try {
