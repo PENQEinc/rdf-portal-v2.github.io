@@ -5,16 +5,55 @@
   background-color: var(--color-page-bg)
   a
     text-decoration: underline
-  > .title
+  > header
     margin: 10px 0 18px
-    font-size: 32px
-    font-weight: 500
-    line-height: 0.8
-    letter-spacing: -0.04em
-    &::after
-      content: ''
-      display: block
-      width: 100%
-      border-top: 1px solid #000
-      margin-top: -3px
+    display: flex
+    align-items: flex-end
+    // &::after
+    //   content: ''
+    //   display: block
+    //   width: 100%
+    //   border-top: 1px solid #000
+    //   margin-top: -3px
+    > .title
+      // border-bottom: 1px solid #000
+      margin-bottom: -3px
+      font-size: 32px
+      font-weight: 500
+      line-height: 0.8
+      letter-spacing: -0.04em
+      flex-grow: 1
+      &::after
+        content: ''
+        display: block
+        width: 100%
+        border-top: 1px solid #000
+        margin-top: -3px
   > .content
+  &[data-is-small-heading='true']
+    > header
+      margin-top: 0
+      > a
+        border: var(--border-button)
+        border-radius: var(--border-radius-button)
+        display: inline-block
+        width: 20px
+        height: 20px
+        margin-right: 6px
+        position: relative
+        top: 5px
+        &::before
+          content: ''
+          position: absolute
+          top: 6px
+          left: 8px
+          width: 6px
+          height: 6px
+          border-top: solid 1px #000
+          border-left: solid 1px #000
+          transform: rotate(-45deg)
+        &:hover
+          background-color: var(--bgcolor-button-hover)
+      > .title
+        margin-bottom: -2px
+        font-size: 20px

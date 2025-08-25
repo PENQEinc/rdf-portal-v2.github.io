@@ -3,6 +3,8 @@ layout: page
 title: Dataset Details
 description: データセットの詳細情報を表示します
 permalink: /dataset/
+isSmallHeading: true
+backToListURL: /datasets/
 ---
 
 <div id="loading" class="loading">
@@ -146,7 +148,6 @@ function renderDatasetDetails(datasetId, metadata, rawYaml) {
   const baseUrl = '{{ site.baseurl }}' || '';
   
   const html = `
-    <a href="${baseUrl}/datasets/" class="back-link">データセット一覧に戻る</a>
     
     <div class="dataset-header">
       <h1>${metadata.title || datasetId}</h1>
