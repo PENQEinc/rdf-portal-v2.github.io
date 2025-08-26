@@ -41,6 +41,7 @@ function renderDatasets(datasets) {
       showDescription: true,
       showTags: true,
       showLink: true,
+      linkBaseUrl: window.SITE_BASE_URL || "",
       iconRendering: 'svgOverlap',
       showHeaderMeta: true
     });

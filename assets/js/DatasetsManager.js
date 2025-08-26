@@ -122,8 +122,7 @@ class DatasetsManager {
       }
     }
 
-    // 新しい読み込み処理を開始（fetch fallback）
-    this.#loadingPromise = this.#fetchDatasets();
+
 
     try {
       const datasets = await this.#loadingPromise;
@@ -239,24 +238,7 @@ class DatasetsManager {
    * 実際のデータ取得処理
    * @returns {Promise<Array>} データセット配列
    */
-  async #fetchDatasets() {
-    const baseUrl = window.SITE_BASE_URL || "";
-    const url = `${baseUrl}${DatasetsManager.DATA_URL_PATH}`;
-
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const datasets = await response.json();
-
-    if (!Array.isArray(datasets)) {
-      throw new Error("Invalid data format: expected array");
-    }
-
-    return datasets;
-  }
+  // #fetchDatasetsは不要になったため削除
 
   /**
    * キャッシュをクリア
