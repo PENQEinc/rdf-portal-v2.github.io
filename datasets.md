@@ -65,9 +65,51 @@ function renderDatasets(datasets) {
 function initSortAndFilter(datasets) {
   const sortSelect = document.getElementById('sortSelect');
   const filterInput = document.getElementById('filterInput');
+  // tagSelect will be created dynamically if the layout doesn't include it
+  let tagSelect = document.getElementById('tagSelect');
   const orderSelect = document.getElementById('sortOrder');
   const sortSegment = document.getElementById('sortSegment');
   const sortOrderSegment = document.getElementById('sortOrderSegment');
+
+  // populate tag select from DatasetsManager (if available)
+  (async function populateTags() {
+    try {
+      const mgr = DatasetsManager.getInstance();
+      if (typeof mgr.getAvailableTags === 'function') {
+        const tags = await mgr.getAvailableTags();
+        if (!tagSelect) {
+          // try to find container in layout
+          const datasetsNav = document.getElementById('DatasetsListView');
+          // create a small control area above the list if not present
+          const ctrl = document.createElement('div');
+          ctrl.className = 'datasets-controls';
+          tagSelect = document.createElement('select');
+          tagSelect.id = 'tagSelect';
+          ctrl.appendChild(tagSelect);
+          datasetsNav.parentNode.insertBefore(ctrl, datasetsNav);
+        }
+
+        // clear and add options
+        tagSelect.innerHTML = '';
+        const optAll = document.createElement('option');
+        optAll.value = '';
+        optAll.textContent = 'All tags';
+        tagSelect.appendChild(optAll);
+        tags.forEach(t => {
+          const o = document.createElement('option');
+          o.value = t.id;
+          o.textContent = `${t.id} (${t.count})`;
+          tagSelect.appendChild(o);
+        });
+
+        tagSelect.addEventListener('change', () => {
+          applySortFilter();
+        });
+      }
+    } catch (e) {
+      console.warn('populateTags failed', e);
+    }
+  })();
 
   function applySortFilter() {
     try {
@@ -76,6 +118,9 @@ function initSortAndFilter(datasets) {
 
       // filter (keyword)
       const q = filterInput ? filterInput.value.trim().toLowerCase() : '';
+      // tag filter (select)
+      const tag = tagSelect ? tagSelect.value : '';
+
       if (q) {
         out = out.filter((ds) => {
           const title = (ds.title || ds.id || '').toString().toLowerCase();
@@ -86,6 +131,10 @@ function initSortAndFilter(datasets) {
           }
           return title.includes(q) || desc.includes(q);
         });
+      }
+
+      if (tag) {
+        out = out.filter((ds) => Array.isArray(ds.tags) && ds.tags.includes(tag));
       }
 
       // sort with order (support segmented control + toggle)

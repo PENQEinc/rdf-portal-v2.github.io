@@ -32,13 +32,13 @@
       box-shadow: 0 0 0 3px rgba(0,122,255,0.12)
 
     // active / selected state
-    &.-active
-      background: var(--color-key, #007aff)
-      color: #fff
-
-    // pressed state for aria-pressed compatibility
-    &[aria-pressed="true"]
-      background: var(--color-key, #007aff)
+    &.-active, &[aria-pressed="true"]
+      // fallback background color for older browsers
+      background-color: var(--color-key)
+      // gradient for more polished look (top -> bottom)
+      background-image: linear-gradient(180deg, var(--color-key), blue)
+      background-repeat: no-repeat
+      background-size: cover
       color: #fff
 
   // reduce visual noise on very small screens

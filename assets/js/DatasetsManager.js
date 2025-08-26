@@ -162,6 +162,33 @@ class DatasetsManager {
   }
 
   /**
+   * 利用可能なタグ一覧を取得する
+   * @returns {Promise<Array<{id:string,count:number,color:string}>>}
+   */
+  async getAvailableTags() {
+    const datasets = await this.loadDatasets();
+    const counts = new Map();
+    datasets.forEach((dataset) => {
+      if (Array.isArray(dataset.tags)) {
+        dataset.tags.forEach((tag) => {
+          if (!tag) return;
+          counts.set(tag, (counts.get(tag) || 0) + 1);
+        });
+      }
+    });
+
+    const result = Array.from(counts.entries()).map(([id, count]) => ({
+      id,
+      count,
+      color: this.getTagColor(id),
+    }));
+
+    // 件数の多い順、同数なら名前順でソートして返す
+    result.sort((a, b) => b.count - a.count || a.id.localeCompare(b.id));
+    return result;
+  }
+
+  /**
    * 指定したタグIDの色を取得（ハッシュベース）
    * @param {string} tagId - タグID
    * @returns {string} タグの色（#付きの16進数）
