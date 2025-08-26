@@ -13,6 +13,10 @@ description: RDFポータルサイトへようこそ。データセットやエ�
 <span>In this portal, each dataset comes with a summary,</span><br>
 <span>downloadable files and a SPARQL endpoint.</span></p>
 
+
+<!-- JekyllでJSONデータを埋め込む -->
+<script type="application/json" id="datasets-json">{{ site.data.datasets | jsonify }}</script>
+
 <div id="TopPageTilingDatasetsView">
   <div class="container"></div>
 </div>

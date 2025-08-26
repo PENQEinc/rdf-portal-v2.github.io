@@ -94,6 +94,7 @@ class DatasetsManager {
    * @param {boolean} options.forceReload - キャッシュを無視して強制的に再読み込み
    * @returns {Promise<Array>} データセット配列のPromise
    */
+
   async loadDatasets(options = {}) {
     const { forceReload = false } = options;
 
@@ -107,7 +108,21 @@ class DatasetsManager {
       return this.#loadingPromise;
     }
 
-    // 新しい読み込み処理を開始
+    // JSON埋め込みがあればそれを優先
+    const jsonEl = document.getElementById('datasets-json');
+    if (jsonEl) {
+      try {
+        const datasets = JSON.parse(jsonEl.textContent);
+        this.#datasets = datasets;
+        this.#cacheTimestamp = Date.now();
+        return datasets;
+      } catch (e) {
+        console.error('Failed to parse embedded datasets-json:', e);
+        throw e;
+      }
+    }
+
+    // 新しい読み込み処理を開始（fetch fallback）
     this.#loadingPromise = this.#fetchDatasets();
 
     try {
