@@ -66,6 +66,8 @@ function initSortAndFilter(datasets) {
   const sortSelect = document.getElementById('sortSelect');
   const filterInput = document.getElementById('filterInput');
   const orderSelect = document.getElementById('sortOrder');
+  const sortSegment = document.getElementById('sortSegment');
+  const sortOrderSegment = document.getElementById('sortOrderSegment');
 
   function applySortFilter() {
     try {
@@ -86,9 +88,22 @@ function initSortAndFilter(datasets) {
         });
       }
 
-      // sort with order
-    const sortValue = sortSelect ? sortSelect.value : 'date';
-      const order = orderSelect ? orderSelect.value : 'desc'; // 'asc' or 'desc'
+      // sort with order (support segmented control + toggle)
+      let sortValue = 'date';
+      if (sortSegment) {
+        const active = sortSegment.querySelector('button.active');
+        if (active) sortValue = active.dataset.sort || sortValue;
+      } else if (sortSelect) {
+        sortValue = sortSelect.value;
+      }
+      const order = (function(){
+        if (sortOrderSegment) {
+          const a = sortOrderSegment.querySelector('button.active');
+          if (a) return a.dataset.order || 'desc';
+        }
+        if (orderSelect) return orderSelect.value;
+        return 'desc';
+      })();
       if (sortValue === 'name') {
         out.sort((a, b) => {
           const A = (a.title || a.id || '').toString();
@@ -124,6 +139,30 @@ function initSortAndFilter(datasets) {
   if (sortSelect) sortSelect.addEventListener('change', applySortFilter);
   if (filterInput) filterInput.addEventListener('input', applySortFilter);
   if (orderSelect) orderSelect.addEventListener('change', applySortFilter);
+  // segmented control handlers
+  if (sortSegment) {
+    sortSegment.addEventListener('click', (e) => {
+      const btn = e.target.closest('button');
+      if (!btn) return;
+      // update active
+      Array.from(sortSegment.querySelectorAll('button')).forEach(b => {
+        b.classList.toggle('active', b === btn);
+        b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+      });
+      applySortFilter();
+    });
+  }
+  if (sortOrderSegment) {
+    sortOrderSegment.addEventListener('click', (e) => {
+      const btn = e.target.closest('button');
+      if (!btn) return;
+      Array.from(sortOrderSegment.querySelectorAll('button')).forEach(b => {
+        b.classList.toggle('active', b === btn);
+        b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+      });
+      applySortFilter();
+    });
+  }
 
   // run once to reflect current control values and to verify handler wiring
   try {
