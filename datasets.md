@@ -160,7 +160,7 @@ function initSortAndFilter(datasets) {
       // visual debug: set attribute and log
       const container = document.getElementById('DatasetsListView');
       if (container && sortValue) container.dataset.sortedBy = sortValue;
-      console.info('[Datasets] applySortFilter:', { sort: sortValue, query: q, count: out.length });
+  console.info('[Datasets] applySortFilter:', { sort: sortValue, tag: tag, count: out.length });
       if (out.length > 0) console.debug('[Datasets] first 3 ids after sort:', out.slice(0, 3).map(d => d.id || d.title));
 
       renderDatasets(out);
