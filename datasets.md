@@ -64,7 +64,6 @@ function renderDatasets(datasets) {
 // 将来のソート/フィルタ初期化用（現時点は空実装）
 function initSortAndFilter(datasets) {
   const sortSelect = document.getElementById('sortSelect');
-  const filterInput = document.getElementById('filterInput');
   // tagSelect will be created dynamically if the layout doesn't include it
   let tagSelect = document.getElementById('tagSelect');
   const orderSelect = document.getElementById('sortOrder');
@@ -116,23 +115,8 @@ function initSortAndFilter(datasets) {
       if (!Array.isArray(datasets)) return;
       let out = datasets.slice();
 
-      // filter (keyword)
-      const q = filterInput ? filterInput.value.trim().toLowerCase() : '';
       // tag filter (select)
       const tag = tagSelect ? tagSelect.value : '';
-
-      if (q) {
-        out = out.filter((ds) => {
-          const title = (ds.title || ds.id || '').toString().toLowerCase();
-          let desc = '';
-          if (typeof ds.description === 'string') desc = ds.description.toLowerCase();
-          else if (ds.description && typeof ds.description === 'object') {
-            desc = (ds.description.en || ds.description.ja || '').toString().toLowerCase();
-          }
-          return title.includes(q) || desc.includes(q);
-        });
-      }
-
       if (tag) {
         out = out.filter((ds) => Array.isArray(ds.tags) && ds.tags.includes(tag));
       }
@@ -186,7 +170,6 @@ function initSortAndFilter(datasets) {
   }
 
   if (sortSelect) sortSelect.addEventListener('change', applySortFilter);
-  if (filterInput) filterInput.addEventListener('input', applySortFilter);
   if (orderSelect) orderSelect.addEventListener('change', applySortFilter);
   // segmented control handlers
   if (sortSegment) {
