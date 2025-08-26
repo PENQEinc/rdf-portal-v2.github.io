@@ -41,18 +41,27 @@
           <li data-page-id="datasets">
             <a href="{{ '/datasets/' | relative_url }}">Datasets</a>
             {% if page.pageId == "datasets" %}
-            <div id="DatasetsSortFilter" class="datasets-sort-filter">
+            <div id="DatasetsSortFilterView">
               <div class="sort">
-                <label for="sortSelect">Sort:</label>
-                <select id="sortSelect">
-                  <option value="name">Name</option>
-                  <option value="date">Date</option>
-                  <option value="triples">Triples</option>
-                </select>
+                <label for="sortSegment">Sort:</label>
+                <div id="sortSegment" class="segmented-button" role="tablist" aria-label="Sort datasets">
+                  <button type="button" class="-active" data-sort="date" aria-pressed="true">Date</button>
+                  <button type="button" data-sort="name" aria-pressed="false">Name</button>
+                  <button type="button" data-sort="triples" aria-pressed="false">Triples</button>
+                </div>
+              </div>
+              <div class="order">
+                <label for="sortOrderSegment">Order:</label>
+                <div id="sortOrderSegment" class="segmented-button" role="tablist" aria-label="Sort order">
+                  <button type="button" class="-active" data-order="desc" aria-pressed="true">Desc</button>
+                  <button type="button" data-order="asc" aria-pressed="false">Asc</button>
+                </div>
               </div>
               <div class="filter">
-                <label for="filterInput">Filter:</label>
-                <input type="text" id="filterInput" placeholder="Keyword filter">
+                <label for="tagSelect">Filter:</label>
+                <select id="tagSelect" aria-label="Filter tags">
+                  <option value="">All tags</option>
+                </select>
               </div>
             </div>
             {% endif %}

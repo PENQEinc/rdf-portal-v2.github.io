@@ -1,0 +1,47 @@
+.segmented-button
+  // Block: segmented-button (RSCSS)
+  display: inline-flex
+  align-items: stretch
+  border-radius: 6px
+  overflow: hidden
+  border: 1px solid rgba(0,0,0,0.2)
+  background: #fff
+
+  > button
+    // Element: button (direct child)
+    appearance: none
+    -webkit-appearance: none
+    background: transparent
+    border: 0
+    padding: 6px 12px
+    font-size: 13px
+    color: #333
+    cursor: pointer
+    line-height: 1
+    display: inline-flex
+    align-items: center
+    justify-content: center
+
+    // visual separator between buttons
+    & + button
+      border-left: 1px solid rgba(0,0,0,0.06)
+
+    // keyboard focus
+    &:focus
+      outline: none
+      box-shadow: 0 0 0 3px rgba(0,122,255,0.12)
+
+    // active / selected state
+    &.-active, &[aria-pressed="true"]
+      // fallback background color for older browsers
+      background-color: var(--color-key)
+      // gradient for more polished look (top -> bottom)
+      background-image: linear-gradient(180deg, var(--color-key), blue)
+      background-repeat: no-repeat
+      background-size: cover
+      color: #fff
+
+  // reduce visual noise on very small screens
+  @media (max-width: 480px)
+    > button
+      padding: 6px 8px
