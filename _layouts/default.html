@@ -41,12 +41,12 @@
           <li data-page-id="datasets">
             <a href="{{ '/datasets/' | relative_url }}">Datasets</a>
             {% if page.pageId == "datasets" %}
-            <div id="DatasetsSortFilter" class="datasets-sort-filter">
+            <div id="DatasetsSortFilterView">
               <div class="sort">
                 <label for="sortSegment">Sort:</label>
                 <div id="sortSegment" class="segmented-button" role="tablist" aria-label="Sort datasets">
-                  <button type="button" data-sort="name" aria-pressed="false">Name</button>
                   <button type="button" class="-active" data-sort="date" aria-pressed="true">Date</button>
+                  <button type="button" data-sort="name" aria-pressed="false">Name</button>
                   <button type="button" data-sort="triples" aria-pressed="false">Triples</button>
                 </div>
               </div>
