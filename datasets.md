@@ -91,14 +91,14 @@ function initSortAndFilter(datasets) {
       // sort with order (support segmented control + toggle)
       let sortValue = 'date';
       if (sortSegment) {
-        const active = sortSegment.querySelector('button.active');
+        const active = sortSegment.querySelector('button.-active');
         if (active) sortValue = active.dataset.sort || sortValue;
       } else if (sortSelect) {
         sortValue = sortSelect.value;
       }
       const order = (function(){
         if (sortOrderSegment) {
-          const a = sortOrderSegment.querySelector('button.active');
+          const a = sortOrderSegment.querySelector('button.-active');
           if (a) return a.dataset.order || 'desc';
         }
         if (orderSelect) return orderSelect.value;
@@ -146,7 +146,7 @@ function initSortAndFilter(datasets) {
       if (!btn) return;
       // update active
       Array.from(sortSegment.querySelectorAll('button')).forEach(b => {
-        b.classList.toggle('active', b === btn);
+        b.classList.toggle('-active', b === btn);
         b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
       });
       applySortFilter();
@@ -157,7 +157,7 @@ function initSortAndFilter(datasets) {
       const btn = e.target.closest('button');
       if (!btn) return;
       Array.from(sortOrderSegment.querySelectorAll('button')).forEach(b => {
-        b.classList.toggle('active', b === btn);
+        b.classList.toggle('-active', b === btn);
         b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
       });
       applySortFilter();
