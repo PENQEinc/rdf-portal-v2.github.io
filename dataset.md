@@ -149,17 +149,22 @@ function renderDatasetDetails(datasetId, metadata, rawYaml) {
   
   const html = `
     
-    <div class="dataset-header">
-      <h1>${metadata.title || datasetId}</h1>
-      <div class="dataset-id">ID: ${datasetId}</div>
-    </div>
+    <h2>${metadata.title || datasetId}</h2>
     
-    ${metadata.description ? `
-    <div class="metadata-section">
-      <h3>説明</h3>
-      <p>${metadata.description}</p>
-    </div>
-    ` : ''}
+    ${metadata.description ? `<p class="description">${metadata.description}</p>` : ''}
+
+    <ul class="links">
+      ${metadata.website ? `<li><a class="external-link" href="${metadata.website}" target="_blank">Website</a></li>` : ''}
+    </ul>
+
+    <section>
+      <h3>Specifications</h3>
+      <table>
+        <tbody>
+        
+        </tbody>
+      </table>
+    </section>
     
     <div class="metadata-section">
       <h3>基本情報</h3>
