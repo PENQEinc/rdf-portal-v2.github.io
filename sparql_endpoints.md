@@ -6,93 +6,28 @@ description: SPARQLエンドポイントの一覧を表示します
 permalink: /sparql_endpoints/
 ---
 
-<div id="EndpointsListView"></div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  loadEndpoints();
-});
-
-async function loadEndpoints() {
-  const endpointListView = document.getElementById('EndpointsListView');
-  
-  try {
-    const baseUrl = window.SITE_BASE_URL || '';
-    const datasetLoader = DatasetsManager.getInstance();
-    
-    // エンドポイント情報とデータセット情報を並行して読み込み
-    const [endpointsResponse, datasets] = await Promise.all([
-      fetch(`${baseUrl}/assets/data/temp-endpoints.json`),
-      datasetLoader.getDatasets()
-    ]);
-    
-    if (!endpointsResponse.ok) {
-      throw new Error('Failed to fetch endpoints list');
-    }
-    
-    const endpoints = await endpointsResponse.json();
-    
-    if (!endpoints || endpoints.length === 0) {
-      return;
-    }
-    
-    // 両方のデータが読み込まれてからレンダリング
-    renderEndpoints(endpoints, datasets);
-    endpointListView.style.display = 'block';
-    
-  } catch (error) {
-    console.error('Error loading endpoints:', error);
-  }
-}
-
-function renderEndpoints(endpoints, datasets) {
-  const endpointListView = document.getElementById('EndpointsListView');
-  const baseUrl = window.SITE_BASE_URL || '';
-  
-  // データセット情報をIDでマップ化
-  const datasetMap = {};
-  if (datasets && Array.isArray(datasets)) {
-    datasets.forEach(dataset => {
-      datasetMap[dataset.id] = dataset;
-    });
-  }
-  
-  // エンドポイントをソート: primaryを最初に、それ以外は記述順
-  const sortedEndpoints = [...endpoints].sort((a, b) => {
-    if (a.id === 'primary') return -1;
-    if (b.id === 'primary') return 1;
-    return 0; // 元の順序を維持
-  });
-  
-  // エンドポイントのHTMLを生成
-  const endpointsHtml = sortedEndpoints.map(endpoint => {
-    // データセット名のシンプルなリスト生成
-    const datasetsHtml = endpoint.dataset.map(datasetId => {
-      const dataset = datasetMap[datasetId] || { id: datasetId };
-      const datasetName = dataset.title || dataset.id || 'Unknown Dataset';
-      const datasetLink = `${baseUrl}/dataset/?id=${encodeURIComponent(datasetId)}`;
-      
-      return `<li><a href="${datasetLink}">${datasetName}</a></li>`;
-    }).join('');
-
-    return `
-      <ul class="endpoints">
-        <li class="endpoint">
-          <article>
-            <header>
-              <h2>${endpoint.title}</h2>
-              <a href="https://rdfportal.org/${endpoint.id}/sparql" target="endpoint" class="external-link">Endpoint</a>
-            </header>
-            <ul class="datasets">
-              ${datasetsHtml}
-            </ul>
-          </article>
-        </li>
-      </ul>
-    `;
-  }).join('');
-  
-  endpointListView.innerHTML = endpointsHtml;
-}
-
-</script>
+<div id="EndpointsListView">
+  <ul class="endpoints">
+  {% assign dataset_map = site.data.datasets | index_by: "id" %}
+  {% for endpoint in site.data.endpoints %}
+    <li class="endpoint">
+      <article>
+        <header>
+          <h2>{{ endpoint.title }}</h2>
+          <a href="https://rdfportal.org/{{ endpoint.id }}/sparql" target="endpoint" class="external-link">Endpoint</a>
+        </header>
+        <ul class="datasets">
+          {% for dataset_id in endpoint.dataset %}
+            {% assign dataset = site.data.datasets | where: "id", dataset_id | first %}
+            <li>
+              <a href="/dataset/?id={{ dataset_id | url_encode }}">
+                {% if dataset and dataset.title %}{{ dataset.title }}{% else %}{{ dataset_id }}{% endif %}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </article>
+    </li>
+  {% endfor %}
+  </ul>
+</div>
