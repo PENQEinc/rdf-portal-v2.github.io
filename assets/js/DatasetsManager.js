@@ -94,6 +94,7 @@ class DatasetsManager {
    * @param {boolean} options.forceReload - キャッシュを無視して強制的に再読み込み
    * @returns {Promise<Array>} データセット配列のPromise
    */
+
   async loadDatasets(options = {}) {
     const { forceReload = false } = options;
 
@@ -107,8 +108,21 @@ class DatasetsManager {
       return this.#loadingPromise;
     }
 
-    // 新しい読み込み処理を開始
-    this.#loadingPromise = this.#fetchDatasets();
+    // JSON埋め込みがあればそれを優先
+    const jsonEl = document.getElementById('datasets-json');
+    if (jsonEl) {
+      try {
+        const datasets = JSON.parse(jsonEl.textContent);
+        this.#datasets = datasets;
+        this.#cacheTimestamp = Date.now();
+        return datasets;
+      } catch (e) {
+        console.error('Failed to parse embedded datasets-json:', e);
+        throw e;
+      }
+    }
+
+
 
     try {
       const datasets = await this.#loadingPromise;
@@ -224,24 +238,7 @@ class DatasetsManager {
    * 実際のデータ取得処理
    * @returns {Promise<Array>} データセット配列
    */
-  async #fetchDatasets() {
-    const baseUrl = window.SITE_BASE_URL || "";
-    const url = `${baseUrl}${DatasetsManager.DATA_URL_PATH}`;
-
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const datasets = await response.json();
-
-    if (!Array.isArray(datasets)) {
-      throw new Error("Invalid data format: expected array");
-    }
-
-    return datasets;
-  }
+  // #fetchDatasetsは不要になったため削除
 
   /**
    * キャッシュをクリア
