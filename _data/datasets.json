@@ -13,7 +13,6 @@
         "ja": "SIB スイス・バイオインフォマティクス研究所"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -45,7 +44,6 @@
         "ja": "欧州バイオインフォマティクス研究所"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -77,7 +75,6 @@
         "ja": "スタンフォード大学生物医学情報学研究センター"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -109,7 +106,6 @@
         "ja": "日本DNAデータバンク"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -141,7 +137,6 @@
         "ja": "ライフサイエンス統合データベースセンター"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -174,7 +169,6 @@
         "ja": "大阪大学蛋白質研究所"
       }
     ],
-    "triple_count": 643511337,
     "statistics": {
       "number_of_triples": 643511337,
       "number_of_instances": 35671672,
@@ -209,7 +203,6 @@
         "ja": "欧州バイオインフォマティクス研究所"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -240,7 +233,6 @@
         "ja": "欧州バイオインフォマティクス研究所"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -269,7 +261,6 @@
         "en": "National Center for Biotechnology Information"
       }
     ],
-    "triple_count": 1247658822,
     "statistics": {
       "number_of_triples": 1247658822,
       "number_of_instances": 192529889,
@@ -302,7 +293,6 @@
         "ja": "バイオサイエンスデータベースセンター"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 117526,
       "number_of_instances": 10299,
@@ -332,7 +322,6 @@
         "en": "USF Genomics, College of Public Health, University of South Florida"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -362,7 +351,6 @@
         "en": "The University of Texas Health Science Center at Houston"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -394,7 +382,6 @@
         "ja": "国立遺伝学研究所"
       }
     ],
-    "triple_count": 39574632446,
     "statistics": {
       "number_of_triples": 39574632446,
       "number_of_instances": 4316173038,
@@ -443,7 +430,6 @@
         "en": "Pompeu Fabra University (UPF), Barcelona, Spain"
       }
     ],
-    "triple_count": 88379594,
     "statistics": {
       "number_of_triples": 88379594,
       "number_of_instances": 8752100,
@@ -475,7 +461,6 @@
         "ja": "EMBL-EBI"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -506,7 +491,6 @@
         "ja": "EMBL-EBI"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -538,7 +522,6 @@
         "ja": "EMBL-EBI"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -570,7 +553,6 @@
         "ja": "EMBL-EBI"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -602,7 +584,6 @@
         "ja": "EMBL-EBI"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -633,7 +614,6 @@
         "ja": "EMBL-EBI"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -666,7 +646,6 @@
         "ja": "RefExコンソーシアム"
       }
     ],
-    "triple_count": 21297786,
     "statistics": {
       "number_of_triples": 21297786,
       "number_of_instances": 5858908,
@@ -698,7 +677,6 @@
         "ja": "糖鎖科学・糖鎖工学研究グループ、創薬基盤研究部門、産業技術総合研究所（AIST）"
       }
     ],
-    "triple_count": 39440,
     "statistics": {
       "number_of_triples": 39440,
       "number_of_instances": 1705,
@@ -733,7 +711,6 @@
         "ja": "立命館大学"
       }
     ],
-    "triple_count": 30150,
     "statistics": {
       "number_of_triples": 30150,
       "number_of_instances": 5726,
@@ -765,7 +742,6 @@
         "ja": "GlyCosmosポータル"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -796,7 +772,6 @@
         "ja": "産業技術総合研究所（AIST）"
       }
     ],
-    "triple_count": 1749648,
     "statistics": {
       "number_of_triples": 1749648,
       "number_of_instances": 375657,
@@ -828,7 +803,6 @@
         "ja": "クイーンズランド大学"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -861,7 +835,6 @@
         "ja": "EMBL-EBI"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -893,7 +866,6 @@
         "ja": "欧州バイオインフォマティクス研究所のHUGO遺伝子命名委員会"
       }
     ],
-    "triple_count": 1314653,
     "statistics": {
       "number_of_triples": 1314653,
       "number_of_instances": 355645,
@@ -925,7 +897,6 @@
         "ja": "米国国立生物工学情報センター"
       }
     ],
-    "triple_count": 1553120,
     "statistics": {
       "number_of_triples": 1553120,
       "number_of_instances": 319471,
@@ -958,7 +929,6 @@
         "ja": "国際がんゲノムコンソーシアム"
       }
     ],
-    "triple_count": 577082774,
     "statistics": {
       "number_of_triples": 577082774,
       "number_of_instances": 51410015,
@@ -991,7 +961,6 @@
         "ja": "理研バイオリソースセンター"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 1106776,
       "number_of_instances": 257250,
@@ -1023,7 +992,6 @@
         "ja": "jPOSTコンソーシアム"
       }
     ],
-    "triple_count": 239817763,
     "statistics": {
       "number_of_triples": 239817763,
       "number_of_instances": 68502884,
@@ -1055,7 +1023,6 @@
         "ja": "ライフサイエンス統合データベースセンター（DBCLS）"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 11198913244,
       "number_of_instances": 965303305,
@@ -1090,7 +1057,6 @@
         "ja": "コロラド大学"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -1123,7 +1089,6 @@
         "ja": "富山大学"
       }
     ],
-    "triple_count": 3776538,
     "statistics": {
       "number_of_triples": 3776538,
       "number_of_instances": 711388,
@@ -1157,7 +1122,6 @@
         "ja": "ライフサイエンス統合データベースセンター（DBCLS）"
       }
     ],
-    "triple_count": 283928849,
     "statistics": {
       "number_of_triples": 283928849,
       "number_of_instances": 87362723,
@@ -1190,7 +1154,6 @@
         "ja": "MassBankコンソーシアム"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -1223,7 +1186,6 @@
         "ja": "東京大学"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 1609018143,
       "number_of_instances": 273443876,
@@ -1256,7 +1218,6 @@
         "ja": "米国国立生物工学情報センター"
       }
     ],
-    "triple_count": 1609018143,
     "statistics": {
       "number_of_triples": 126664418,
       "number_of_instances": 2717458,
@@ -1288,7 +1249,6 @@
         "ja": "米国国立医学図書館"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -1319,7 +1279,6 @@
         "ja": "筑波大学精密医学研究開発センター"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 948,
       "number_of_instances": 112,
@@ -1354,7 +1313,6 @@
         "ja": "ライフサイエンス統合データベースセンター（DBCLS）"
       }
     ],
-    "triple_count": 36933,
     "statistics": {
       "number_of_triples": 36933,
       "number_of_instances": 2780,
@@ -1387,7 +1345,6 @@
         "ja": "農業・食品産業技術総合研究機構（NARO）"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 132210,
       "number_of_instances": 52884,
@@ -1419,7 +1376,6 @@
         "ja": "NITE生物資源センター（NBRC）"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 868816,
       "number_of_instances": 172348,
@@ -1452,7 +1408,6 @@
         "ja": "米国国立生物工学情報センター"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -1481,7 +1436,6 @@
         "en": "SIB Swiss Institute of Bioinformatics"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -1514,7 +1468,6 @@
         "ja": "バイオサイエンスデータベースセンター"
       }
     ],
-    "triple_count": 344246952,
     "statistics": {
       "number_of_triples": 344246952,
       "number_of_instances": 25789378,
@@ -1548,7 +1501,6 @@
         "ja": "米国国立医学図書館"
       }
     ],
-    "triple_count": 203480,
     "statistics": {
       "number_of_triples": 203480,
       "number_of_instances": 39010,
@@ -1580,7 +1532,6 @@
         "ja": "スイス生物情報学研究所"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -1611,7 +1562,6 @@
         "en": "Database Center for Life Science (DBCLS)"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -1643,7 +1593,6 @@
         "ja": "国立医薬品食品衛生研究所"
       }
     ],
-    "triple_count": 6800384609,
     "statistics": {
       "number_of_triples": 6800384609,
       "number_of_instances": 1497955718,
@@ -1675,7 +1624,6 @@
         "en": "University of California"
       }
     ],
-    "triple_count": 81785,
     "statistics": {
       "number_of_triples": 81785,
       "number_of_instances": 9296,
@@ -1707,7 +1655,6 @@
         "en": "Bioversity International"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -1740,7 +1687,6 @@
         "ja": "構造バイオインフォマティクス研究コンソーシアム"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -1773,7 +1719,6 @@
         "ja": "国立遺伝学研究所"
       }
     ],
-    "triple_count": 13652175,
     "statistics": {
       "number_of_triples": 13652175,
       "number_of_instances": 1963733,
@@ -1804,7 +1749,6 @@
         "en": "University of Colorado"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -1837,7 +1781,6 @@
         "ja": "物質・材料研究機構"
       }
     ],
-    "triple_count": 5446,
     "statistics": {
       "number_of_triples": 5446,
       "number_of_instances": 1328,
@@ -1868,7 +1811,6 @@
         "ja": "スウェーデン王立工科大学"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -1902,7 +1844,6 @@
         "ja": "データベース生物学研究センター"
       }
     ],
-    "triple_count": 16367389,
     "statistics": {
       "number_of_triples": 16367389,
       "number_of_instances": 1719564,
@@ -1937,7 +1878,6 @@
         "ja": "米国国立衛生研究所"
       }
     ],
-    "triple_count": 15277890568,
     "statistics": {
       "number_of_triples": 15277890568,
       "number_of_instances": 3242206543,
@@ -1969,7 +1909,6 @@
         "ja": "米国国立医学図書館"
       }
     ],
-    "triple_count": 2531937601,
     "statistics": {
       "number_of_triples": 2531937601,
       "number_of_instances": 194957460,
@@ -2002,7 +1941,6 @@
         "ja": "米国国立生物工学情報センター"
       }
     ],
-    "triple_count": 1107708438,
     "statistics": {
       "number_of_triples": 1107708438,
       "number_of_instances": 221933712,
@@ -2036,7 +1974,6 @@
         "ja": "データベース生物学研究センター"
       }
     ],
-    "triple_count": 107782639,
     "statistics": {
       "number_of_triples": 107782639,
       "number_of_instances": 21955729,
@@ -2068,7 +2005,6 @@
         "ja": "欧州バイオインフォマティクス研究所"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -2100,7 +2036,6 @@
         "ja": "データベース生物学研究センター"
       }
     ],
-    "triple_count": 123447475,
     "statistics": {
       "number_of_triples": 123447475,
       "number_of_instances": 19828635,
@@ -2133,7 +2068,6 @@
         "ja": "欧州バイオインフォマティクス研究所"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -2166,7 +2100,6 @@
         "ja": "理化学研究所"
       }
     ],
-    "triple_count": 40300,
     "statistics": {
       "number_of_triples": 40300,
       "number_of_instances": 6644,
@@ -2199,7 +2132,6 @@
         "ja": "米国国立生物工学情報センター"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -2232,7 +2164,6 @@
         "ja": "データベース生物学研究センター"
       }
     ],
-    "triple_count": 7770732116,
     "statistics": {
       "number_of_triples": 7770732116,
       "number_of_instances": 0,
@@ -2265,7 +2196,6 @@
         "ja": "UniProtコンソーシアム"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -2298,7 +2228,6 @@
         "ja": "UniProtコンソーシアム"
       }
     ],
-    "triple_count": 54381877065,
     "statistics": {
       "number_of_triples": 54381877065,
       "number_of_instances": 9554097609,
@@ -2331,7 +2260,6 @@
         "ja": "ウィキメディア財団"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 0,
       "number_of_instances": 0,
@@ -2364,7 +2292,6 @@
         "ja": "複合糖質研究センター"
       }
     ],
-    "triple_count": null,
     "statistics": {
       "number_of_triples": 6213789,
       "number_of_instances": 817535,

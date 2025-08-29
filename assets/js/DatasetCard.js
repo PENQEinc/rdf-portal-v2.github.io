@@ -161,7 +161,7 @@ class DatasetCard {
   // header用: 発行日とトリプル数を表示
   #generateHeaderMeta() {
     const issued = this.#dataset.issued;
-    const tripleCount = this.#dataset.triple_count;
+    const tripleCount = this.#dataset.statistics?.number_of_triples;
     let html = '<div class="meta">';
     if (issued) {
       html += `<span class="issued">${this.#escapeHtml(issued)}</span>`;
@@ -185,8 +185,8 @@ class DatasetCard {
     ) {
       const href = this.#escapeHtml(
         this.#options.linkBaseUrl.replace(/\/$/, "") +
-          "/dataset/?id=" +
-          encodeURIComponent(this.#dataset.id)
+        "/dataset/?id=" +
+        encodeURIComponent(this.#dataset.id)
       );
       return `<a class="${DatasetCard.TITLE_CLASS} ${DatasetCard.LINK_CLASS}" href="${href}">${safe}</a>`;
     }
@@ -219,11 +219,10 @@ class DatasetCard {
         desc
       )}</div>`;
     if (this.#options.showFallbackDescription)
-      return `<div class="${
-        DatasetCard.DESCRIPTION_CLASS
-      } isFallback">${this.#escapeHtml(
-        DatasetCard.DEFAULTS.FALLBACK_DESCRIPTION
-      )}</div>`;
+      return `<div class="${DatasetCard.DESCRIPTION_CLASS
+        } isFallback">${this.#escapeHtml(
+          DatasetCard.DEFAULTS.FALLBACK_DESCRIPTION
+        )}</div>`;
     return "";
   }
 
@@ -240,17 +239,15 @@ class DatasetCard {
   }
   #renderTag(tag) {
     if (typeof tag === "string")
-      return `<span class="${
-        DatasetCard.TAG_CLASS
-      }" data-tag="${this.#escapeHtml(tag)}">${this.#escapeHtml(tag)}</span>`;
+      return `<span class="${DatasetCard.TAG_CLASS
+        }" data-tag="${this.#escapeHtml(tag)}">${this.#escapeHtml(tag)}</span>`;
     if (tag && typeof tag === "object" && tag.id) {
       const lang = document.documentElement.lang || "ja";
       const txt = tag.label?.[lang] || tag.label?.ja || tag.label?.en || tag.id;
-      return `<span class="${
-        DatasetCard.TAG_CLASS
-      }" data-tag="${this.#escapeHtml(tag.id)}">${this.#escapeHtml(
-        txt
-      )}</span>`;
+      return `<span class="${DatasetCard.TAG_CLASS
+        }" data-tag="${this.#escapeHtml(tag.id)}">${this.#escapeHtml(
+          txt
+        )}</span>`;
     }
     return "";
   }
@@ -264,18 +261,18 @@ class DatasetCard {
   #extractTagStrings(list) {
     return Array.isArray(list)
       ? list
-          .map((t) => (typeof t === "string" ? t : t?.id || ""))
-          .filter(Boolean)
+        .map((t) => (typeof t === "string" ? t : t?.id || ""))
+        .filter(Boolean)
       : [];
   }
   #escapeHtml(str) {
     return typeof str === "string"
       ? str
-          .replace(/&/g, "&amp;")
-          .replace(/</g, "&lt;")
-          .replace(/>/g, "&gt;")
-          .replace(/"/g, "&quot;")
-          .replace(/'/g, "&#39;")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;")
       : "";
   }
   #hashString(str) {
