@@ -1,0 +1,27 @@
+#StatisticsTableView
+  font-size: 14px
+  line-height: 1
+  white-space: nowrap
+  width: 100%
+  overflow: hidden
+  > .inner
+    overflow: scroll
+    > table
+      min-width: 100%
+      text-align: left
+      border-collapse: collapse
+      background: white
+      border-top: solid 1px #666
+      th, td
+        padding: 8px 2px
+      > thead
+        > tr
+          > th
+            cursor: pointer
+            border-bottom: solid 1px #000
+      > tbody
+        > tr
+          > td
+            border-bottom: solid 1px #999
+          &:hover
+            background-color: #f1f1f1

@@ -6,43 +6,44 @@ description: RDFデータセットの統計情報一覧
 permalink: /statistics/
 ---
 
-<table id="statistics-table">
-  <thead>
-    <tr>
-      <th data-sort="title">データセット</th>
-  <th data-sort="number_of_triples">トリプル数</th>
-  <th data-sort="number_of_links">リンク数</th>
-  <th data-sort="number_of_classes">クラス数</th>
-  <th data-sort="number_of_instances">インスタンス数</th>
-  <th data-sort="number_of_literals">リテラル数</th>
-  <th data-sort="number_of_subjects">サブジェクト数</th>
-  <th data-sort="number_of_properties">プロパティ数</th>
-  <th data-sort="number_of_objects">オブジェクト数</th>
-      <!-- 必要な統計項目を追加 -->
-    </tr>
-  </thead>
-  <tbody>
-    {% for dataset in site.data.datasets %}
-      <tr>
-        <td data-key="title">{{ dataset.title }}</td>
-  <td data-key="number_of_triples">{{ dataset.statistics.number_of_triples }}</td>
-  <td data-key="number_of_links">{{ dataset.statistics.number_of_links }}</td>
-  <td data-key="number_of_classes">{{ dataset.statistics.number_of_classes }}</td>
-  <td data-key="number_of_instances">{{ dataset.statistics.number_of_instances }}</td>
-  <td data-key="number_of_literals">{{ dataset.statistics.number_of_literals }}</td>
-  <td data-key="number_of_subjects">{{ dataset.statistics.number_of_subjects }}</td>
-  <td data-key="number_of_properties">{{ dataset.statistics.number_of_properties }}</td>
-  <td data-key="number_of_objects">{{ dataset.statistics.number_of_objects }}</td>
-        <!-- 必要な統計項目を追加 -->
-      </tr>
-    {% endfor %}
-  </tbody>
-</table>
-
+<div id="StatisticsTableView">
+  <div class="inner">
+    <table>
+      <thead>
+        <tr>
+          <th data-sort="title">Dataset</th>
+          <th data-sort="number_of_triples">Triples</th>
+          <th data-sort="number_of_links">Links</th>
+          <th data-sort="number_of_classes">Classes</th>
+          <th data-sort="number_of_instances">Instances</th>
+          <th data-sort="number_of_literals">Literals</th>
+          <th data-sort="number_of_subjects">Subjects</th>
+          <th data-sort="number_of_properties">Properties</th>
+          <th data-sort="number_of_objects">Objects</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for dataset in site.data.datasets %}
+          <tr>
+            <td data-key="title">{{ dataset.title }}</td>
+            <td data-key="number_of_triples">{{ dataset.statistics.number_of_triples }}</td>
+            <td data-key="number_of_links">{{ dataset.statistics.number_of_links }}</td>
+            <td data-key="number_of_classes">{{ dataset.statistics.number_of_classes }}</td>
+            <td data-key="number_of_instances">{{ dataset.statistics.number_of_instances }}</td>
+            <td data-key="number_of_literals">{{ dataset.statistics.number_of_literals }}</td>
+            <td data-key="number_of_subjects">{{ dataset.statistics.number_of_subjects }}</td>
+            <td data-key="number_of_properties">{{ dataset.statistics.number_of_properties }}</td>
+            <td data-key="number_of_objects">{{ dataset.statistics.number_of_objects }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  </div>
 <script>
 // 簡易テーブルソート（数値・文字列対応）
 document.addEventListener('DOMContentLoaded', function() {
-  const table = document.getElementById('statistics-table');
+  const table = document.querySelector('#StatisticsTableView > .inner > table');
   if (!table) return;
   table.querySelectorAll('th[data-sort]').forEach(th => {
     th.addEventListener('click', function() {
