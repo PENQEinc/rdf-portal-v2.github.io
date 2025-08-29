@@ -15,7 +15,7 @@ backToListURL: /datasets/
   <p>データセットの読み込みに失敗しました。</p>
 </div>
 
-<div id="dataset-details" class="dataset-details" style="display: none;">
+<div id="DatasetDetailsView" class="dataset-details" style="display: none;">
   <!-- データセット詳細がここに動的に生成されます -->
 </div>
 
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
 async function loadDatasetDetails() {
   const loadingEl = document.getElementById('loading');
   const errorEl = document.getElementById('error');
-  const detailsEl = document.getElementById('dataset-details');
+  const detailsEl = document.getElementById('DatasetDetailsView');
   
   // URLパラメータからデータセットIDを取得
   const urlParams = new URLSearchParams(window.location.search);
@@ -144,7 +144,7 @@ function parseSimpleYaml(yamlText) {
 }
 
 function renderDatasetDetails(datasetId, metadata, rawYaml) {
-  const detailsEl = document.getElementById('dataset-details');
+  const detailsEl = document.getElementById('DatasetDetailsView');
   const baseUrl = '{{ site.baseurl }}' || '';
   
   const html = `
