@@ -14,6 +14,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "sib",
     "tags": [
       "Gene",
       "Gene expression"
@@ -34,6 +46,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "ebi",
     "tags": [
       "Model",
       "Systems biology"
@@ -54,6 +78,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "bioportal",
     "tags": [
       "Ontology",
       "Vocabulary"
@@ -74,6 +110,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "ebi",
     "tags": [
       "Sample",
       "Metadata"
@@ -94,6 +142,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Sample",
       "Metadata",
@@ -115,6 +175,18 @@
       }
     ],
     "triple_count": 643511337,
+    "statistics": {
+      "number_of_triples": 643511337,
+      "number_of_instances": 35671672,
+      "number_of_subjects": 35925543,
+      "number_of_properties": 2761,
+      "number_of_objects": 38021747,
+      "number_of_literals": 2025054,
+      "number_of_classes": 411,
+      "number_of_datatypes": 5,
+      "number_of_links": 0
+    },
+    "endpoint": "pdb",
     "tags": [
       "Protein",
       "Other biomolecule",
@@ -138,6 +210,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "ebi",
     "tags": [
       "Drug/Chemical"
     ]
@@ -157,6 +241,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "ebi",
     "tags": [
       "Drug/Chemical"
     ]
@@ -174,6 +270,18 @@
       }
     ],
     "triple_count": 1247658822,
+    "statistics": {
+      "number_of_triples": 1247658822,
+      "number_of_instances": 192529889,
+      "number_of_subjects": 218249949,
+      "number_of_properties": 179,
+      "number_of_objects": 303864454,
+      "number_of_literals": 78321575,
+      "number_of_classes": 73,
+      "number_of_datatypes": 3,
+      "number_of_links": 0
+    },
+    "endpoint": "ncbi",
     "tags": [
       "Polymorphism",
       "Health/Disease",
@@ -195,6 +303,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 117526,
+      "number_of_instances": 10299,
+      "number_of_subjects": 14730,
+      "number_of_properties": 41,
+      "number_of_objects": 38065,
+      "number_of_literals": 19721,
+      "number_of_classes": 9,
+      "number_of_datatypes": 4,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Others",
       "Others"
@@ -213,6 +333,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "med2rdf",
     "tags": [
       "nsSNVs",
       "functional prediction"
@@ -231,6 +363,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "med2rdf",
     "tags": [
       "SNV",
       "splicing consensus region"
@@ -251,6 +395,18 @@
       }
     ],
     "triple_count": 39574632446,
+    "statistics": {
+      "number_of_triples": 39574632446,
+      "number_of_instances": 4316173038,
+      "number_of_subjects": 6198487494,
+      "number_of_properties": 151,
+      "number_of_objects": 7674713042,
+      "number_of_literals": 1775755355,
+      "number_of_classes": 110,
+      "number_of_datatypes": 4,
+      "number_of_links": 0
+    },
+    "endpoint": "ddbj",
     "tags": [
       "Genome",
       "Gene",
@@ -288,6 +444,18 @@
       }
     ],
     "triple_count": 88379594,
+    "statistics": {
+      "number_of_triples": 88379594,
+      "number_of_instances": 8752100,
+      "number_of_subjects": 8752519,
+      "number_of_properties": 99,
+      "number_of_objects": 39820060,
+      "number_of_literals": 30507457,
+      "number_of_classes": 71,
+      "number_of_datatypes": 9,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Gene",
       "Health/Disease"
@@ -308,6 +476,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "ebi",
     "tags": [
       "Ontology/Terminology/Nomenclature"
     ]
@@ -327,6 +507,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "ebi",
     "tags": [
       "Gene",
       "Protein"
@@ -347,6 +539,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "ebi",
     "tags": [
       "Genome",
       "Gene"
@@ -367,6 +571,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "ebi",
     "tags": [
       "Genome",
       "Gene"
@@ -387,6 +603,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "ebi",
     "tags": [
       "Ontology/Terminology/Nomenclature"
     ]
@@ -406,6 +634,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "ebi",
     "tags": [
       "Gene",
       "Protein",
@@ -427,6 +667,18 @@
       }
     ],
     "triple_count": 21297786,
+    "statistics": {
+      "number_of_triples": 21297786,
+      "number_of_instances": 5858908,
+      "number_of_subjects": 5858909,
+      "number_of_properties": 30,
+      "number_of_objects": 6378250,
+      "number_of_literals": 488759,
+      "number_of_classes": 16,
+      "number_of_datatypes": 3,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Protein",
       "Structure"
@@ -447,6 +699,18 @@
       }
     ],
     "triple_count": 39440,
+    "statistics": {
+      "number_of_triples": 39440,
+      "number_of_instances": 1705,
+      "number_of_subjects": 1782,
+      "number_of_properties": 943,
+      "number_of_objects": 8977,
+      "number_of_literals": 4963,
+      "number_of_classes": 23,
+      "number_of_datatypes": 2,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Other biomolecule",
       "Health/Disease",
@@ -470,6 +734,18 @@
       }
     ],
     "triple_count": 30150,
+    "statistics": {
+      "number_of_triples": 30150,
+      "number_of_instances": 5726,
+      "number_of_subjects": 8678,
+      "number_of_properties": 35,
+      "number_of_objects": 10723,
+      "number_of_literals": 5453,
+      "number_of_classes": 24,
+      "number_of_datatypes": 2,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Other biomolecule",
       "Structure"
@@ -490,6 +766,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Glycan"
     ]
@@ -509,6 +797,18 @@
       }
     ],
     "triple_count": 1749648,
+    "statistics": {
+      "number_of_triples": 1749648,
+      "number_of_instances": 375657,
+      "number_of_subjects": 375657,
+      "number_of_properties": 30,
+      "number_of_objects": 502463,
+      "number_of_literals": 126879,
+      "number_of_classes": 20,
+      "number_of_datatypes": 5,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Other biomolecule",
       "Structure"
@@ -529,6 +829,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "taxonomy",
       "bacteria",
@@ -550,6 +862,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "ebi",
     "tags": [
       "Polymorphism",
       "Health/Disease"
@@ -570,6 +894,18 @@
       }
     ],
     "triple_count": 1314653,
+    "statistics": {
+      "number_of_triples": 1314653,
+      "number_of_instances": 355645,
+      "number_of_subjects": 355645,
+      "number_of_properties": 9,
+      "number_of_objects": 776470,
+      "number_of_literals": 464474,
+      "number_of_classes": 18,
+      "number_of_datatypes": 1,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Gene",
       "Ontology/ Terminology/Nomenclature"
@@ -590,6 +926,18 @@
       }
     ],
     "triple_count": 1553120,
+    "statistics": {
+      "number_of_triples": 1553120,
+      "number_of_instances": 319471,
+      "number_of_subjects": 319471,
+      "number_of_properties": 8,
+      "number_of_objects": 773372,
+      "number_of_literals": 222872,
+      "number_of_classes": 3,
+      "number_of_datatypes": 1,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Genome",
       "Gene",
@@ -611,6 +959,18 @@
       }
     ],
     "triple_count": 577082774,
+    "statistics": {
+      "number_of_triples": 577082774,
+      "number_of_instances": 51410015,
+      "number_of_subjects": 51410016,
+      "number_of_properties": 66,
+      "number_of_objects": 30906909,
+      "number_of_literals": 20735685,
+      "number_of_classes": 9,
+      "number_of_datatypes": 1,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Genome",
       "Health/Disease",
@@ -632,6 +992,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 1106776,
+      "number_of_instances": 257250,
+      "number_of_subjects": 257250,
+      "number_of_properties": 37,
+      "number_of_objects": 439741,
+      "number_of_literals": 181813,
+      "number_of_classes": 18,
+      "number_of_datatypes": 4,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Organism",
       "Bioresource"
@@ -652,6 +1024,18 @@
       }
     ],
     "triple_count": 239817763,
+    "statistics": {
+      "number_of_triples": 239817763,
+      "number_of_instances": 68502884,
+      "number_of_subjects": 68502952,
+      "number_of_properties": 77,
+      "number_of_objects": 79998555,
+      "number_of_literals": 11392480,
+      "number_of_classes": 86,
+      "number_of_datatypes": 6,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Proteome",
       "Standard"
@@ -672,6 +1056,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 11198913244,
+      "number_of_instances": 965303305,
+      "number_of_subjects": 965396913,
+      "number_of_properties": 74,
+      "number_of_objects": 7487172343,
+      "number_of_literals": 1785025220,
+      "number_of_classes": 44,
+      "number_of_datatypes": 4,
+      "number_of_links": 0
+    },
+    "endpoint": "kero",
     "tags": [
       "Genome",
       "Polymorphism",
@@ -695,6 +1091,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "covid",
     "tags": [
       "COVID-19",
       "Knowledge Graph",
@@ -716,6 +1124,18 @@
       }
     ],
     "triple_count": 3776538,
+    "statistics": {
+      "number_of_triples": 3776538,
+      "number_of_instances": 711388,
+      "number_of_subjects": 712296,
+      "number_of_properties": 33,
+      "number_of_objects": 1781448,
+      "number_of_literals": 457162,
+      "number_of_classes": 20,
+      "number_of_datatypes": 4,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Compound",
       "Taxonomy",
@@ -738,6 +1158,18 @@
       }
     ],
     "triple_count": 283928849,
+    "statistics": {
+      "number_of_triples": 283928849,
+      "number_of_instances": 87362723,
+      "number_of_subjects": 92822893,
+      "number_of_properties": 12,
+      "number_of_objects": 120779192,
+      "number_of_literals": 17010664,
+      "number_of_classes": 20,
+      "number_of_datatypes": 4,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Drug/Chemical",
       "Drug Discovery",
@@ -759,6 +1191,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Drug/Chemical",
       "Mass Spectrometry",
@@ -780,6 +1224,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 1609018143,
+      "number_of_instances": 273443876,
+      "number_of_subjects": 309702751,
+      "number_of_properties": 79,
+      "number_of_objects": 472067973,
+      "number_of_literals": 74289149,
+      "number_of_classes": 32,
+      "number_of_datatypes": 5,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Microbial",
       "Genome",
@@ -801,6 +1257,18 @@
       }
     ],
     "triple_count": 1609018143,
+    "statistics": {
+      "number_of_triples": 126664418,
+      "number_of_instances": 2717458,
+      "number_of_subjects": 3864020,
+      "number_of_properties": 65,
+      "number_of_objects": 30474902,
+      "number_of_literals": 4147574,
+      "number_of_classes": 4,
+      "number_of_datatypes": 1,
+      "number_of_links": 0
+    },
+    "endpoint": "ncbi",
     "tags": [
       "Health/Disease",
       "Ontology/Terminology/Nomenclature"
@@ -821,6 +1289,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "ncbi",
     "tags": [
       "Ontology/ Terminology/Nomenclature"
     ]
@@ -840,6 +1320,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 948,
+      "number_of_instances": 112,
+      "number_of_subjects": 112,
+      "number_of_properties": 16,
+      "number_of_objects": 568,
+      "number_of_literals": 162,
+      "number_of_classes": 5,
+      "number_of_datatypes": 2,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Drug/Chemical",
       "RNA",
@@ -863,6 +1355,18 @@
       }
     ],
     "triple_count": 36933,
+    "statistics": {
+      "number_of_triples": 36933,
+      "number_of_instances": 2780,
+      "number_of_subjects": 2780,
+      "number_of_properties": 19,
+      "number_of_objects": 16434,
+      "number_of_literals": 20499,
+      "number_of_classes": 4,
+      "number_of_datatypes": 3,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Health/Disease",
       "Tag sequence (nucleic acid)",
@@ -884,6 +1388,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 132210,
+      "number_of_instances": 52884,
+      "number_of_subjects": 26442,
+      "number_of_properties": 4,
+      "number_of_objects": 79326,
+      "number_of_literals": 52884,
+      "number_of_classes": 2850,
+      "number_of_datatypes": 1,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Organism",
       "Bioresource"
@@ -904,6 +1420,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 868816,
+      "number_of_instances": 172348,
+      "number_of_subjects": 172348,
+      "number_of_properties": 33,
+      "number_of_objects": 342897,
+      "number_of_literals": 129439,
+      "number_of_classes": 11,
+      "number_of_datatypes": 3,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Organism",
       "Cell",
@@ -925,6 +1453,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "ncbi",
     "tags": [
       "Gene"
     ]
@@ -942,6 +1482,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "sib",
     "tags": [
       "Protein",
       "Human",
@@ -963,6 +1515,18 @@
       }
     ],
     "triple_count": 344246952,
+    "statistics": {
+      "number_of_triples": 344246952,
+      "number_of_instances": 25789378,
+      "number_of_subjects": 42867660,
+      "number_of_properties": 28,
+      "number_of_objects": 164414153,
+      "number_of_literals": 72955196,
+      "number_of_classes": 43957,
+      "number_of_datatypes": 4,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Drug/Chemical",
       "Others",
@@ -985,6 +1549,18 @@
       }
     ],
     "triple_count": 203480,
+    "statistics": {
+      "number_of_triples": 203480,
+      "number_of_instances": 39010,
+      "number_of_subjects": 39010,
+      "number_of_properties": 6,
+      "number_of_objects": 162648,
+      "number_of_literals": 162647,
+      "number_of_classes": 1,
+      "number_of_datatypes": 1,
+      "number_of_links": 0
+    },
+    "endpoint": "ncbi",
     "tags": [
       "Ontology/Terminology/Nomenclature",
       "Journal article/Report/Bibliography"
@@ -1005,6 +1581,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "sib",
     "tags": [
       "Genome",
       "Gene",
@@ -1024,6 +1612,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Ontology/Terminology/Nomenclature",
       "Semantic Web"
@@ -1044,6 +1644,18 @@
       }
     ],
     "triple_count": 6800384609,
+    "statistics": {
+      "number_of_triples": 6800384609,
+      "number_of_instances": 1497955718,
+      "number_of_subjects": 1497955718,
+      "number_of_properties": 38,
+      "number_of_objects": 2765961664,
+      "number_of_literals": 1267395887,
+      "number_of_classes": 65,
+      "number_of_datatypes": 5,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Gene",
       "Drug/Chemical",
@@ -1064,6 +1676,18 @@
       }
     ],
     "triple_count": 81785,
+    "statistics": {
+      "number_of_triples": 81785,
+      "number_of_instances": 9296,
+      "number_of_subjects": 9329,
+      "number_of_properties": 117,
+      "number_of_objects": 16396,
+      "number_of_literals": 8586,
+      "number_of_classes": 63,
+      "number_of_datatypes": 3,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Other biomolecule",
       "Health/Disease",
@@ -1084,6 +1708,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Ontology/Terminology/Nomenclature",
       "Plant",
@@ -1105,6 +1741,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "pdb",
     "tags": [
       "Protein",
       "Structure",
@@ -1126,6 +1774,18 @@
       }
     ],
     "triple_count": 13652175,
+    "statistics": {
+      "number_of_triples": 13652175,
+      "number_of_instances": 1963733,
+      "number_of_subjects": 1963741,
+      "number_of_properties": 35,
+      "number_of_objects": 5728073,
+      "number_of_literals": 1858372,
+      "number_of_classes": 11,
+      "number_of_datatypes": 2,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Plant",
       "Genome",
@@ -1145,6 +1805,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "covid",
     "tags": [
       "Knowledge Graph",
       "Biomedical",
@@ -1166,6 +1838,18 @@
       }
     ],
     "triple_count": 5446,
+    "statistics": {
+      "number_of_triples": 5446,
+      "number_of_instances": 1328,
+      "number_of_subjects": 1329,
+      "number_of_properties": 18,
+      "number_of_objects": 3293,
+      "number_of_literals": 2117,
+      "number_of_classes": 14,
+      "number_of_datatypes": 3,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Drug/Chemical"
     ]
@@ -1185,6 +1869,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "proteinatlas",
     "tags": [
       "Protein",
       "Human",
@@ -1207,6 +1903,18 @@
       }
     ],
     "triple_count": 16367389,
+    "statistics": {
+      "number_of_triples": 16367389,
+      "number_of_instances": 1719564,
+      "number_of_subjects": 2128002,
+      "number_of_properties": 15,
+      "number_of_objects": 2176841,
+      "number_of_literals": 116725,
+      "number_of_classes": 8,
+      "number_of_datatypes": 2,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Rare Disease",
       "Genetic Disease",
@@ -1230,6 +1938,18 @@
       }
     ],
     "triple_count": 15277890568,
+    "statistics": {
+      "number_of_triples": 15277890568,
+      "number_of_instances": 3242206543,
+      "number_of_subjects": 3961621679,
+      "number_of_properties": 127,
+      "number_of_objects": 4459433649,
+      "number_of_literals": 813082494,
+      "number_of_classes": 281938,
+      "number_of_datatypes": 7,
+      "number_of_links": 0
+    },
+    "endpoint": "pubchem",
     "tags": [
       "Drug/Chemical",
       "Other biomolecule"
@@ -1250,6 +1970,18 @@
       }
     ],
     "triple_count": 2531937601,
+    "statistics": {
+      "number_of_triples": 2531937601,
+      "number_of_instances": 194957460,
+      "number_of_subjects": 390607060,
+      "number_of_properties": 41,
+      "number_of_objects": 582849523,
+      "number_of_literals": 223825051,
+      "number_of_classes": 2,
+      "number_of_datatypes": 3,
+      "number_of_links": 0
+    },
+    "endpoint": "ncbi",
     "tags": [
       "Literature",
       "Biomedical",
@@ -1271,6 +2003,18 @@
       }
     ],
     "triple_count": 1107708438,
+    "statistics": {
+      "number_of_triples": 1107708438,
+      "number_of_instances": 221933712,
+      "number_of_subjects": 221933712,
+      "number_of_properties": 6,
+      "number_of_objects": 25723106,
+      "number_of_literals": 14,
+      "number_of_classes": 1,
+      "number_of_datatypes": 2,
+      "number_of_links": 0
+    },
+    "endpoint": "ncbi",
     "tags": [
       "Literature",
       "Text Mining",
@@ -1293,6 +2037,18 @@
       }
     ],
     "triple_count": 107782639,
+    "statistics": {
+      "number_of_triples": 107782639,
+      "number_of_instances": 21955729,
+      "number_of_subjects": 21955729,
+      "number_of_properties": 37,
+      "number_of_objects": 31484031,
+      "number_of_literals": 10369656,
+      "number_of_classes": 9,
+      "number_of_datatypes": 4,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Ontology/Terminology/Nomenclature",
       "Analysis Tool"
@@ -1313,6 +2069,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "ebi",
     "tags": [
       "Pathway",
       "Curated"
@@ -1333,6 +2101,18 @@
       }
     ],
     "triple_count": 123447475,
+    "statistics": {
+      "number_of_triples": 123447475,
+      "number_of_instances": 19828635,
+      "number_of_subjects": 24260736,
+      "number_of_properties": 47,
+      "number_of_objects": 27438991,
+      "number_of_literals": 22820176,
+      "number_of_classes": 10,
+      "number_of_datatypes": 9,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Gene",
       "Gene Expression",
@@ -1354,6 +2134,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "ebi",
     "tags": [
       "Biochemical Reactions",
       "Enzymes",
@@ -1375,6 +2167,18 @@
       }
     ],
     "triple_count": 40300,
+    "statistics": {
+      "number_of_triples": 40300,
+      "number_of_instances": 6644,
+      "number_of_subjects": 6644,
+      "number_of_properties": 33,
+      "number_of_objects": 9329,
+      "number_of_literals": 3807,
+      "number_of_classes": 18,
+      "number_of_datatypes": 4,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Systems Biology",
       "Quantitative Data",
@@ -1396,6 +2200,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Taxonomy",
       "Classification",
@@ -1417,6 +2233,18 @@
       }
     ],
     "triple_count": 7770732116,
+    "statistics": {
+      "number_of_triples": 7770732116,
+      "number_of_instances": 0,
+      "number_of_subjects": 7772603802,
+      "number_of_properties": 75,
+      "number_of_objects": 7772603802,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "ID Conversion",
       "Identifier Mapping",
@@ -1438,6 +2266,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "covid",
     "tags": [
       "Protein",
       "COVID-19",
@@ -1459,6 +2299,18 @@
       }
     ],
     "triple_count": 54381877065,
+    "statistics": {
+      "number_of_triples": 54381877065,
+      "number_of_instances": 9554097609,
+      "number_of_subjects": 11388277803,
+      "number_of_properties": 200,
+      "number_of_objects": 10609965660,
+      "number_of_literals": 1131363044,
+      "number_of_classes": 157,
+      "number_of_datatypes": 11,
+      "number_of_links": 0
+    },
+    "endpoint": "sib",
     "tags": [
       "Protein",
       "Sequence",
@@ -1480,6 +2332,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 0,
+      "number_of_instances": 0,
+      "number_of_subjects": 0,
+      "number_of_properties": 0,
+      "number_of_objects": 0,
+      "number_of_literals": 0,
+      "number_of_classes": 0,
+      "number_of_datatypes": 0,
+      "number_of_links": 0
+    },
+    "endpoint": "wikidata",
     "tags": [
       "Knowledge base",
       "Open data",
@@ -1501,6 +2365,18 @@
       }
     ],
     "triple_count": null,
+    "statistics": {
+      "number_of_triples": 6213789,
+      "number_of_instances": 817535,
+      "number_of_subjects": 1365653,
+      "number_of_properties": 56,
+      "number_of_objects": 1138140,
+      "number_of_literals": 40435,
+      "number_of_classes": 14,
+      "number_of_datatypes": 4,
+      "number_of_links": 0
+    },
+    "endpoint": "primary",
     "tags": [
       "Carbohydrate",
       "Structure",
