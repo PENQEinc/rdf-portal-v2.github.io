@@ -37,12 +37,19 @@ document.addEventListener('DOMContentLoaded', async function() {
 
   // タグ選択肢生成
   if (tagSelect) {
-    const allTags = Array.from(new Set(datasets.flatMap(ds => ds.tags || []))).sort();
+    // タグごとの件数集計
+    const tagCounts = {};
+    datasets.forEach(ds => {
+      (ds.tags || []).forEach(tag => {
+        tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+      });
+    });
+    const allTags = Object.keys(tagCounts).sort();
     allTags.forEach(tag => {
       if (!Array.from(tagSelect.options).some(opt => opt.value === tag)) {
         const opt = document.createElement('option');
         opt.value = tag;
-        opt.textContent = tag;
+        opt.textContent = `${tag} (${tagCounts[tag]})`;
         tagSelect.appendChild(opt);
       }
     });
