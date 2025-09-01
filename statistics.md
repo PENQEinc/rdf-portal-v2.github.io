@@ -7,9 +7,7 @@ permalink: /statistics/
 ---
 
 <script type="application/json" id="datasets-json">{{ site.data.datasets | jsonify }}</script>
-<div id="TagStatsBar">
-  <div class="inner"></div>
-</div>
+<div id="TagStatsBar"></div>
 <div id="StatisticsTableView">
   <div class="inner">
     <table>
@@ -50,30 +48,32 @@ permalink: /statistics/
 
 document.addEventListener('DOMContentLoaded', async function() {
   // タグ統計バー描画
-  const barEl = document.getElementById('TagStatsBar');
-  if (barEl && window.DatasetsManager) {
+  const barsContainerEl = document.querySelector('#TagStatsBar');
+  if (barsContainerEl && window.DatasetsManager) {
     const mgr = window.DatasetsManager.getInstance();
     const tags = await mgr.getAvailableTags();
     if (tags.length) {
-      const totalTagCount = tags.reduce((acc, tag) => acc + tag.count, 0);
-      console.log(totalTagCount)
+      // const totalTagCount = tags.reduce((acc, tag) => acc + tag.count, 0);
       const maxCount = Math.max(...tags.map(t => t.count));
       const barContainer = document.createElement('div');
       barContainer.className = 'tag-stats-bar';
+      const inner = document.createElement('div');
+      inner.className = 'inner';
+      barContainer.append(inner);
       tags.forEach(tagObj => {
         const { id, count, color } = tagObj;
         const bar = document.createElement('div');
         bar.className = 'bar';
-        bar.style.width = `${tagObj.count / totalTagCount * 100}%`;
-        bar.style.height = '20px';
+        // bar.style.width = `${tagObj.count / totalTagCount * 100}%`;
+        bar.style.height = `${tagObj.count / maxCount * 100}%`;
         bar.style.background = color;
         bar.title = `${id}: ${count}`;
         bar.innerHTML = `<span class=\"label\">${id}</span>`;
         // bar.innerHTML = `<span class=\"tag-label\" style=\"writing-mode:vertical-lr; font-size:10px;\">${id}</span><span class=\"tag-value\" style=\"display:block; font-size:10px;\">${count}</span>`;
-        barContainer.appendChild(bar);
+        inner.appendChild(bar);
       });
-      barEl.innerHTML = '';
-      barEl.appendChild(barContainer);
+      barsContainerEl.innerHTML = '';
+      barsContainerEl.appendChild(barContainer);
     }
   }
 
