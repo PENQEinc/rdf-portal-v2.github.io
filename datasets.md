@@ -65,13 +65,13 @@ document.addEventListener('DOMContentLoaded', async function() {
     // ソートキー
     let sortKey = 'date';
     if (sortSegment) {
-      const activeBtn = sortSegment.querySelector('button.-active[data-sort]');
+      const activeBtn = sortSegment.querySelector('button[data-sort][aria-pressed="true"]');
       if (activeBtn) sortKey = activeBtn.getAttribute('data-sort');
     }
     // ソート順
     let sortOrder = 'desc';
     if (sortOrderSegment) {
-      const activeOrderBtn = sortOrderSegment.querySelector('button.-active[data-order]');
+      const activeOrderBtn = sortOrderSegment.querySelector('button[data-order][aria-pressed="true"]');
       if (activeOrderBtn) sortOrder = activeOrderBtn.getAttribute('data-order');
     }
     // 実際のソート
@@ -125,15 +125,15 @@ document.addEventListener('DOMContentLoaded', async function() {
   if (tagSelect) tagSelect.addEventListener('change', () => renderDatasets(getFilteredSortedDatasets()));
   if (sortSegment) sortSegment.addEventListener('click', e => {
     if (e.target.matches('button[data-sort]')) {
-      sortSegment.querySelectorAll('button').forEach(btn => btn.classList.remove('-active'));
-      e.target.classList.add('-active');
+      sortSegment.querySelectorAll('button').forEach(btn => btn.setAttribute('aria-pressed', 'false'));
+      e.target.setAttribute('aria-pressed', 'true');
       renderDatasets(getFilteredSortedDatasets());
     }
   });
   if (sortOrderSegment) sortOrderSegment.addEventListener('click', e => {
     if (e.target.matches('button[data-order]')) {
-      sortOrderSegment.querySelectorAll('button').forEach(btn => btn.classList.remove('-active'));
-      e.target.classList.add('-active');
+      sortOrderSegment.querySelectorAll('button').forEach(btn => btn.setAttribute('aria-pressed', 'false'));
+      e.target.setAttribute('aria-pressed', 'true');
       renderDatasets(getFilteredSortedDatasets());
     }
   });
