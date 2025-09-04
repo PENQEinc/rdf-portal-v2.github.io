@@ -1,2 +1,12 @@
+
+
 docs
+
+# build artefacts
 _site
+
+# tasks to do
+LOG.md
+
+# SASS cache
+.sass-cache

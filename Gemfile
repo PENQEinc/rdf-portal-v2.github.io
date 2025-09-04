@@ -1,5 +1,9 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-gem "webrick"
+gem 'webrick'
 
-gem "github-pages", group: :jekyll_plugins
+gem 'jekyll-feed'
+
+gem 'kramdown-parser-gfm'
+
+gem 'jekyll', group: :jekyll_plugins
