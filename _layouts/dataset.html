@@ -1,0 +1,108 @@
+---
+layout: page
+title: Dataset Details
+description: データセットの詳細情報を表示します
+---
+
+<div id="dataset-details" class="dataset-details">
+    <a href="{{ site.baseurl }}/datasets/" class="back-link"
+        >データセット一覧に戻る</a
+    >
+    <div class="dataset-header">
+        <h1>{{ page.dataset.title }}</h1>
+        <div class="dataset-id">ID: {{ page.dataset.id }}</div>
+    </div>
+    <div class="metadata-section">
+        <h3>説明</h3>
+        <p>{{page.description}}</p>
+    </div>
+    <div class="metadata-section">
+        <h3>基本情報</h3>
+        <div class="metadata-grid">
+            {% if page.dataset.website %}
+            <div class="metadata-item">
+                <div class="metadata-label">ウェブサイト</div>
+                <div class="metadata-value">
+                    <a href="{{page.dataset.website}}"
+                        >{{page.dataset.website}}</a
+                    >
+                </div>
+            </div>
+            {% endif %} {% if page.dataset.issued %}
+            <div class="metadata-item">
+                <div class="metadata-label">発行日</div>
+                <div class="metadata-value">{{page.dataset.issued}}</div>
+            </div>
+            {% endif %} {% if page.dataset.updated %}
+            <div class="metadata-item">
+                <div class="metadata-label">更新日</div>
+                <div class="metadata-value">{{page.dataset.updated}}</div>
+            </div>
+            {% endif %} {% if page.dataset.version %}
+            <div class="metadata-item">
+                <div class="metadata-label">バージョン</div>
+                <div class="metadata-value">{{page.dataset.version}}</div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="metadata-section">
+        <h3>タグ</h3>
+        <div class="metadata-item">
+            <div class="metadata-value">
+                <div class="tags">
+                    {% for tag in page.dataset.tags %}
+                    <span class="tag">{{ tag }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="metadata-section">
+        <h3>リンク</h3>
+        <div class="metadata-grid">
+            <div class="metadata-value">
+                <div class="metadata-item">
+                    <div class="metadata-label">設定ファイル</div>
+                    <div class="metadata-value">
+                        <a
+                            href="https://github.com/dbcls/rdf-config/tree/master/config/{{page.dataset.id}}"
+                            >https://github.com/dbcls/rdf-config/tree/master/config/{{page.dataset.id}}</a
+                        >
+                    </div>
+                </div>
+                <div class="metadata-item">
+                    <div class="metadata-label">メタデータファイル</div>
+                    <div class="metadata-value">
+                        <a
+                            href="https://github.com/dbcls/rdf-config/tree/master/config/{{page.dataset.id}}/metadata.yaml"
+                            >https://github.com/dbcls/rdf-config/tree/master/config/{{page.dataset.id}}/metadata.yaml</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="expandable-section">
+        <button class="expand-toggle" onclick="toggleRawMetadata()">
+            生のメタデータを表示
+        </button>
+        <div id="raw-metadata" style="display: none" class="raw-metadata">
+            {{page.dataset | jsonify}}
+        </div>
+    </div>
+</div>
+<script>
+    function toggleRawMetadata() {
+        const rawMetadata = document.getElementById("raw-metadata");
+        const button = document.querySelector(".expand-toggle");
+
+        if (rawMetadata.style.display === "none") {
+            rawMetadata.style.display = "block";
+            button.textContent = "生のメタデータを隠す";
+        } else {
+            rawMetadata.style.display = "none";
+            button.textContent = "生のメタデータを表示";
+        }
+    }
+</script>

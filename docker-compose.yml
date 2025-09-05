@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  jekyll:
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "4000:4000"
+    command: sh -c "bundle lock --add-platform aarch64-linux && bundle exec jekyll serve --host 0.0.0.0"

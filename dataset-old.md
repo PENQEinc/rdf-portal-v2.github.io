@@ -2,7 +2,7 @@
 layout: page
 title: Dataset Details
 description: データセットの詳細情報を表示します
-permalink: /dataset/
+permalink: /dataset-old/
 ---
 
 <div id="loading" class="loading">
@@ -26,11 +26,11 @@ async function loadDatasetDetails() {
   const loadingEl = document.getElementById('loading');
   const errorEl = document.getElementById('error');
   const detailsEl = document.getElementById('dataset-details');
-  
+
   // URLパラメータからデータセットIDを取得
   const urlParams = new URLSearchParams(window.location.search);
   const datasetId = urlParams.get('id');
-  
+
   if (!datasetId) {
     loadingEl.style.display = 'none';
     const baseUrl = '{{ site.baseurl }}' || '';
@@ -38,26 +38,26 @@ async function loadDatasetDetails() {
     errorEl.style.display = 'block';
     return;
   }
-  
+
   try {
     // GitHubからメタデータを取得
     const metadataUrl = `https://raw.githubusercontent.com/dbcls/rdf-config/master/config/${datasetId}/metadata.yaml`;
     const response = await fetch(metadataUrl);
-    
+
     if (!response.ok) {
       throw new Error(`Failed to fetch metadata: ${response.status}`);
     }
-    
+
     const yamlText = await response.text();
     const metadata = parseSimpleYaml(yamlText);
-    
+
     loadingEl.style.display = 'none';
     renderDatasetDetails(datasetId, metadata, yamlText);
     detailsEl.style.display = 'block';
-    
+
     // ページタイトルを更新
     document.title = `${metadata.title || datasetId} - RDF Portal`;
-    
+
   } catch (error) {
     console.error('Error loading dataset details:', error);
     loadingEl.style.display = 'none';
@@ -77,14 +77,14 @@ function parseSimpleYaml(yamlText) {
   let currentKey = null;
   let currentValue = '';
   let inMultiline = false;
-  
+
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
     const trimmed = line.trim();
-    
+
     // Skip comments and empty lines
     if (!trimmed || trimmed.startsWith('#')) continue;
-    
+
     // Handle array items
     if (trimmed.startsWith('- ')) {
       if (currentKey) {
@@ -96,20 +96,20 @@ function parseSimpleYaml(yamlText) {
       }
       continue;
     }
-    
+
     // Handle key-value pairs
     const match = trimmed.match(/^(\w+):\s*(.*)$/);
     if (match) {
       const [, key, value] = match;
-      
+
       if (currentKey && inMultiline) {
         metadata[currentKey] = currentValue.trim();
       }
-      
+
       currentKey = key;
       currentValue = value.replace(/^["'](.*)["']$/, '$1'); // Remove quotes
       inMultiline = false;
-      
+
       // Check if this is a multiline value or array
       if (!value.trim() || value.trim() === '[' || value.trim() === '{') {
         inMultiline = true;
@@ -132,34 +132,34 @@ function parseSimpleYaml(yamlText) {
       currentValue += (currentValue ? ' ' : '') + trimmed;
     }
   }
-  
+
   // Handle last key if multiline
   if (currentKey && inMultiline) {
     metadata[currentKey] = currentValue.trim();
   }
-  
+
   return metadata;
 }
 
 function renderDatasetDetails(datasetId, metadata, rawYaml) {
   const detailsEl = document.getElementById('dataset-details');
   const baseUrl = '{{ site.baseurl }}' || '';
-  
+
   const html = `
     <a href="${baseUrl}/datasets/" class="back-link">データセット一覧に戻る</a>
-    
+
     <div class="dataset-header">
       <h1>${metadata.title || datasetId}</h1>
       <div class="dataset-id">ID: ${datasetId}</div>
     </div>
-    
+
     ${metadata.description ? `
     <div class="metadata-section">
       <h3>説明</h3>
       <p>${metadata.description}</p>
     </div>
     ` : ''}
-    
+
     <div class="metadata-section">
       <h3>基本情報</h3>
       <div class="metadata-grid">
@@ -173,14 +173,14 @@ function renderDatasetDetails(datasetId, metadata, rawYaml) {
         ${renderMetadataItem('バージョン', metadata.version)}
       </div>
     </div>
-    
+
     ${metadata.tags ? `
     <div class="metadata-section">
       <h3>タグ</h3>
       ${renderMetadataItem('', metadata.tags, 'tags')}
     </div>
     ` : ''}
-    
+
     <div class="metadata-section">
       <h3>リンク</h3>
       <div class="metadata-grid">
@@ -188,7 +188,7 @@ function renderDatasetDetails(datasetId, metadata, rawYaml) {
         ${renderMetadataItem('メタデータファイル', `https://github.com/dbcls/rdf-config/blob/master/config/${datasetId}/metadata.yaml`, 'link')}
       </div>
     </div>
-    
+
     <div class="expandable-section">
       <button class="expand-toggle" onclick="toggleRawMetadata()">
         生のメタデータを表示
@@ -198,13 +198,13 @@ function renderDatasetDetails(datasetId, metadata, rawYaml) {
       </div>
     </div>
   `;
-  
+
   detailsEl.innerHTML = html;
 }
 
 function renderMetadataItem(label, value, type = 'text') {
   if (!value) return '';
-  
+
   let valueHtml;
   if (Array.isArray(value)) {
     if (type === 'tags') {
@@ -217,7 +217,7 @@ function renderMetadataItem(label, value, type = 'text') {
   } else {
     valueHtml = escapeHtml(value);
   }
-  
+
   return `
     <div class="metadata-item">
       <div class="metadata-label">${label}</div>
@@ -235,7 +235,7 @@ function escapeHtml(text) {
 function toggleRawMetadata() {
   const rawMetadata = document.getElementById('raw-metadata');
   const button = document.querySelector('.expand-toggle');
-  
+
   if (rawMetadata.style.display === 'none') {
     rawMetadata.style.display = 'block';
     button.textContent = '生のメタデータを隠す';
