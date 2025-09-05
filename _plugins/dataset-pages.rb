@@ -1,4 +1,4 @@
-# _plugins/datasets_generator.rb
+# _data/datasets.json からdatasets を使い、それぞれの静的なページを作成する
 module Jekyll
   class DatasetPage < PageWithoutAFile
     def initialize(site, base, dir, dataset)
