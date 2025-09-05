@@ -186,7 +186,8 @@ class DatasetCard {
       const href = this.#escapeHtml(
         this.#options.linkBaseUrl.replace(/\/$/, "") +
           "/dataset/" +
-          encodeURIComponent(this.#dataset.id),
+          encodeURIComponent(this.#dataset.id) +
+          "/",
       );
       return `<a class="${DatasetCard.TITLE_CLASS} ${DatasetCard.LINK_CLASS}" href="${href}">${safe}</a>`;
     }
