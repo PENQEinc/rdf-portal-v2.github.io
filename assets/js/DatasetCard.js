@@ -161,7 +161,7 @@ class DatasetCard {
   // header用: 発行日とトリプル数を表示
   #generateHeaderMeta() {
     const issued = this.#dataset.issued;
-    const tripleCount = this.#dataset.triple_count;
+    const tripleCount = this.#dataset.statistics?.number_of_triples;
     let html = '<div class="meta">';
     if (issued) {
       html += `<span class="issued">${this.#escapeHtml(issued)}</span>`;
@@ -185,8 +185,9 @@ class DatasetCard {
     ) {
       const href = this.#escapeHtml(
         this.#options.linkBaseUrl.replace(/\/$/, "") +
-          "/dataset/?id=" +
-          encodeURIComponent(this.#dataset.id)
+          "/dataset/" +
+          encodeURIComponent(this.#dataset.id) +
+          "/",
       );
       return `<a class="${DatasetCard.TITLE_CLASS} ${DatasetCard.LINK_CLASS}" href="${href}">${safe}</a>`;
     }
@@ -216,13 +217,13 @@ class DatasetCard {
 
     if (desc)
       return `<div class="${DatasetCard.DESCRIPTION_CLASS}">${this.#escapeHtml(
-        desc
+        desc,
       )}</div>`;
     if (this.#options.showFallbackDescription)
       return `<div class="${
         DatasetCard.DESCRIPTION_CLASS
       } isFallback">${this.#escapeHtml(
-        DatasetCard.DEFAULTS.FALLBACK_DESCRIPTION
+        DatasetCard.DEFAULTS.FALLBACK_DESCRIPTION,
       )}</div>`;
     return "";
   }
@@ -249,7 +250,7 @@ class DatasetCard {
       return `<span class="${
         DatasetCard.TAG_CLASS
       }" data-tag="${this.#escapeHtml(tag.id)}">${this.#escapeHtml(
-        txt
+        txt,
       )}</span>`;
     }
     return "";
@@ -327,7 +328,7 @@ class DatasetCard {
       return `<svg class="icon -svg" width="${size}" height="${size}" viewBox="-50 0 100 100" role="img" aria-label="No tags"><g transform="scale(${(
         P.SCALE * scaleVisual
       ).toFixed(4)}) translate(0,${translateY.toFixed(
-        4
+        4,
       )})"><path d="${path}" fill="${P.ZERO_TAG_COLOR}"/></g></svg>`;
     }
     // 1 タグ: 単一グラデ花弁
@@ -347,13 +348,13 @@ class DatasetCard {
         : idBase;
       const grad = `<linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="${topHex}" stop-opacity="${P.GRAD_OPACITY_START}"/><stop offset="100%" stop-color="${baseHex}" stop-opacity="${P.GRAD_OPACITY_END}"/></linearGradient>`;
       return `<svg class="icon -svg" width="${size}" height="${size}" viewBox="-50 0 100 100" role="img" aria-label="Tag: ${this.#escapeHtml(
-        tags[0]
+        tags[0],
       )}"><defs>${grad}</defs><g transform="scale(${(
         P.SCALE *
         scaleVisual *
         P.SINGLE_PETAL_EMPHASIS
       ).toFixed(4)}) translate(0,${translateY.toFixed(
-        4
+        4,
       )})"><path d="${path}" fill="url(#${id})" style="mix-blend-mode:multiply"/></g></svg>`;
     }
     // 2+ タグ: 多花弁
@@ -395,25 +396,25 @@ class DatasetCard {
       const topHex = this.#hslToHex(
         hsl.h,
         hsl.s,
-        Math.min(100, hsl.l + lightenL)
+        Math.min(100, hsl.l + lightenL),
       );
       const idBase = `g_${Math.abs(this.#hashString(tag))}_${i}`;
       const id = P.USE_RANDOM_ID
         ? `${idBase}_${Math.floor(Math.random() * 1e5)}`
         : idBase;
       gradients.push(
-        `<linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="${topHex}" stop-opacity="${P.GRAD_OPACITY_START}"/><stop offset="100%" stop-color="${baseHex}" stop-opacity="${P.GRAD_OPACITY_END}"/></linearGradient>`
+        `<linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="${topHex}" stop-opacity="${P.GRAD_OPACITY_START}"/><stop offset="100%" stop-color="${baseHex}" stop-opacity="${P.GRAD_OPACITY_END}"/></linearGradient>`,
       );
       petals.push(
-        `<path d="${path}" fill="url(#${id})" transform="rotate(${angle} 0 ${APEX_Y})" style="mix-blend-mode:multiply"/>`
+        `<path d="${path}" fill="url(#${id})" transform="rotate(${angle} 0 ${APEX_Y})" style="mix-blend-mode:multiply"/>`,
       );
     });
     return `<svg class="icon -svg" width="${size}" height="${size}" viewBox="-50 0 100 100" role="img" aria-label="Tags: ${this.#escapeHtml(
-      arr.join(", ")
+      arr.join(", "),
     )}"><defs>${gradients.join("")}</defs><g transform="scale(${(
       P.SCALE * scaleVisual
     ).toFixed(4)}) translate(0,${translateY.toFixed(4)})">${petals.join(
-      ""
+      "",
     )}</g></svg>`;
   }
   #hslToHex(h, s, l) {

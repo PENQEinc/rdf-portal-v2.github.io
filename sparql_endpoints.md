@@ -17,13 +17,14 @@ permalink: /sparql_endpoints/
           <a href="https://rdfportal.org/{{ endpoint.id }}/sparql" target="endpoint" class="external-link">Endpoint</a>
         </header>
         <ul class="datasets">
-          {% for dataset_id in endpoint.dataset %}
-            {% assign dataset = site.data.datasets | where: "id", dataset_id | first %}
-            <li>
-                <a href="{{ site.baseurl }}/dataset/?id={{ dataset_id | url_encode }}">
-                {% if dataset and dataset.title %}{{ dataset.title }}{% else %}{{ dataset_id }}{% endif %}
-              </a>
-            </li>
+          {% for dataset in site.data.datasets %}
+            {% if dataset.endpoint == endpoint.id %}
+              <li>
+                <a href="{{ site.baseurl }}/dataset/?id={{ dataset.id | url_encode }}">
+                  {{ dataset.title }}
+                </a>
+              </li>
+            {% endif %}
           {% endfor %}
         </ul>
       </article>

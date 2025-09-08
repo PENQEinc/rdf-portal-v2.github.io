@@ -1,149 +1,54 @@
 [
   {
     "id": "bioportal",
-    "title": "BioPortal",
-    "dataset": [
-      "bioportal"
-    ]
+    "title": "BioPortal"
   },
   {
     "id": "covid",
-    "title": "COVID-19",
-    "dataset": [
-      "uniprot-covid",
-      "kg-covid-19",
-      "pheknowlator"
-    ]
+    "title": "COVID-19"
   },
   {
     "id": "ddbj",
-    "title": "DDBJ",
-    "dataset": [
-      "ddbj"
-    ]
+    "title": "DDBJ"
   },
   {
     "id": "ebi",
-    "title": "EBI",
-    "dataset": [
-      "biosample",
-      "biomodels",
-      "chembl",
-      "expressionatlas",
-      "chebi",
-      "reactome",
-      "ensembl_grch37",
-      "ensembl_grch38",
-      "gwas-catalog",
-      "ensembl-glossary",
-      "ensembl_ontology",
-      "ensembl"
-    ]
+    "title": "EBI"
   },
   {
     "id": "kero",
-    "title": "KERO",
-    "dataset": [
-      "kero"
-    ]
+    "title": "KERO"
   },
   {
     "id": "med2rdf",
-    "title": "Med2RDF",
-    "dataset": [
-      "dbnsfp",
-      "dbscsnv"
-    ]
+    "title": "Med2RDF"
   },
   {
     "id": "ncbi",
-    "title": "NCBI",
-    "dataset": [
-      "pubmed",
-      "pubtator",
-      "clinvar",
-      "medgen",
-      "nlm-catalog",
-      "mesh",
-      "ncbigene"
-    ]
+    "title": "NCBI"
   },
   {
     "id": "pdb",
-    "title": "PDB",
-    "dataset": [
-      "pdb",
-      "bmrb"
-    ]
+    "title": "PDB"
   },
   {
     "id": "primary",
-    "title": "Primary",
-    "dataset": [
-      "disgenet",
-      "ggdonto",
-      "nadd",
-      "naro_genebank",
-      "opentggates",
-      "paconto",
-      "pgdbj",
-      "quanto",
-      "refex",
-      "ssbd",
-      "famsbase",
-      "ligandbox",
-      "glycoepitope",
-      "glytoucan",
-      "hgnc",
-      "homologene",
-      "knapsack",
-      "polyinfo",
-      "icgc",
-      "mbgd",
-      "jcm",
-      "dbcatalog",
-      "nando",
-      "nikkaji",
-      "nbrc",
-      "pubcasefinder",
-      "wurcs",
-      "jpostdb",
-      "gtdb",
-      "massbank",
-      "glycosmos",
-      "togoid"
-    ]
+    "title": "Primary"
   },
   {
     "id": "proteinatlas",
-    "title": "Protein Atlas",
-    "dataset": [
-      "proteinatlas"
-    ]
+    "title": "Protein Atlas"
   },
   {
     "id": "pubchem",
-    "title": "PubChem",
-    "dataset": [
-      "pubchem"
-    ]
+    "title": "PubChem"
   },
   {
     "id": "sib",
-    "title": "SIB",
-    "dataset": [
-      "bgee",
-      "nextprot",
-      "rhea",
-      "uniprot",
-      "oma"
-    ]
+    "title": "SIB"
   },
   {
     "id": "wikidata",
-    "title": "Wikidata",
-    "dataset": [
-      "wikidata"
-    ]
+    "title": "Wikidata"
   }
 ]

@@ -2,136 +2,102 @@
 layout: page
 title: Statistics
 pageId: statistics
-description: RDFデータセットの統計情報を表示します
+description: RDFデータセットの統計情報一覧
 permalink: /statistics/
 ---
 
-<div class="p-hero">
-  <h1 class="p-hero__title">統計情報</h1>
-  <p class="p-hero__description">RDFデータセットとエンドポイントの統計情報を表示します。</p>
-</div>
-
-<div id="loading" class="p-loading">
-  <p>統計情報を読み込み中...</p>
-</div>
-
-<div id="error" class="p-error" style="display: none;">
-  <p>統計情報の読み込みに失敗しました。</p>
-</div>
-
-<div id="statistics-content" style="display: none;">
-  <div class="c-card-grid">
-    <div class="c-card">
-      <h3 class="c-card__title">データセット統計</h3>
-      <div class="c-card__content">
-        <div class="u-text-center">
-          <div id="dataset-count" class="u-mb-sm">
-            <span class="u-text-lg u-fw-bold u-text-primary">-</span>
-            <p class="u-text-sm u-text-muted">総データセット数</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="c-card">
-      <h3 class="c-card__title">エンドポイント統計</h3>
-      <div class="c-card__content">
-        <div class="u-text-center">
-          <div id="endpoint-count" class="u-mb-sm">
-            <span class="u-text-lg u-fw-bold u-text-primary">-</span>
-            <p class="u-text-sm u-text-muted">エンドポイント数</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="c-card">
-      <h3 class="c-card__title">データ更新情報</h3>
-      <div class="c-card__content">
-        <div class="u-text-center">
-          <div id="last-update" class="u-mb-sm">
-            <span class="u-text-lg u-fw-bold u-text-primary">-</span>
-            <p class="u-text-sm u-text-muted">最終更新日</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="c-card u-mt-lg">
-    <h3 class="c-card__title">詳細統計</h3>
-    <div class="c-card__content">
-      <h4 class="u-mb-md">データ統計</h4>
-      <ul class="u-mb-md">
-        <li>トリプル数: 統計情報を取得中...</li>
-        <li>データセット数: <span id="dataset-count-detail">取得中...</span></li>
-        <li>エンドポイント数: <span id="endpoint-count-detail">取得中...</span></li>
-      </ul>
-      
-      <p class="u-text-sm u-text-muted">統計情報は定期的に更新されます。</p>
-    </div>
+<script type="application/json" id="datasets-json">{{ site.data.datasets | jsonify }}</script>
+<div id="TagStatsBar"></div>
+<div id="StatisticsTableView">
+  <div class="inner">
+    <table>
+      <thead>
+        <tr>
+          <th data-sort="title">Dataset</th>
+          <th data-sort="number_of_triples">Triples</th>
+          <th data-sort="number_of_links">Links</th>
+          <th data-sort="number_of_classes">Classes</th>
+          <th data-sort="number_of_instances">Instances</th>
+          <th data-sort="number_of_literals">Literals</th>
+          <th data-sort="number_of_subjects">Subjects</th>
+          <th data-sort="number_of_properties">Properties</th>
+          <th data-sort="number_of_objects">Objects</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for dataset in site.data.datasets %}
+          <tr>
+            <td data-key="title">{{ dataset.title }}</td>
+            <td data-key="number_of_triples">{{ dataset.statistics.number_of_triples }}</td>
+            <td data-key="number_of_links">{{ dataset.statistics.number_of_links }}</td>
+            <td data-key="number_of_classes">{{ dataset.statistics.number_of_classes }}</td>
+            <td data-key="number_of_instances">{{ dataset.statistics.number_of_instances }}</td>
+            <td data-key="number_of_literals">{{ dataset.statistics.number_of_literals }}</td>
+            <td data-key="number_of_subjects">{{ dataset.statistics.number_of_subjects }}</td>
+            <td data-key="number_of_properties">{{ dataset.statistics.number_of_properties }}</td>
+            <td data-key="number_of_objects">{{ dataset.statistics.number_of_objects }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  loadStatistics();
+// タグ統計棒グラフ描画（DatasetsManagerで集計）
+
+document.addEventListener('DOMContentLoaded', async function() {
+  // タグ統計バー描画
+  const barsContainerEl = document.querySelector('#TagStatsBar');
+  if (barsContainerEl && window.DatasetsManager) {
+    const mgr = window.DatasetsManager.getInstance();
+    const tags = await mgr.getAvailableTags();
+    if (tags.length) {
+      // const totalTagCount = tags.reduce((acc, tag) => acc + tag.count, 0);
+      const maxCount = Math.max(...tags.map(t => t.count));
+      const barContainer = document.createElement('div');
+      barContainer.className = 'tag-stats-bar';
+      const inner = document.createElement('div');
+      inner.className = 'inner';
+      barContainer.append(inner);
+      tags.forEach(tagObj => {
+        const { id, count, color } = tagObj;
+        const bar = document.createElement('div');
+        bar.className = 'bar';
+        // bar.style.width = `${tagObj.count / totalTagCount * 100}%`;
+        bar.style.height = `${tagObj.count / maxCount * 100}%`;
+        bar.style.background = color;
+        bar.title = `${id}: ${count}`;
+        bar.innerHTML = `<span class=\"label\">${id}</span>`;
+        // bar.innerHTML = `<span class=\"tag-label\" style=\"writing-mode:vertical-lr; font-size:10px;\">${id}</span><span class=\"tag-value\" style=\"display:block; font-size:10px;\">${count}</span>`;
+        inner.appendChild(bar);
+      });
+      barsContainerEl.innerHTML = '';
+      barsContainerEl.appendChild(barContainer);
+    }
+  }
+
+  // 簡易テーブルソート（数値・文字列対応）
+  const table = document.querySelector('#StatisticsTableView > .inner > table');
+  if (table) {
+    table.querySelectorAll('th[data-sort]').forEach(th => {
+      th.addEventListener('click', function() {
+        const sortKey = th.getAttribute('data-sort');
+        const rows = Array.from(table.tBodies[0].rows);
+        const isNumber = sortKey !== 'title';
+        const asc = !th.classList.contains('asc');
+        rows.sort((a, b) => {
+          const va = a.querySelector(`[data-key='${sortKey}']`)?.textContent || a.cells[th.cellIndex].textContent;
+          const vb = b.querySelector(`[data-key='${sortKey}']`)?.textContent || b.cells[th.cellIndex].textContent;
+          if (isNumber) return asc ? va - vb : vb - va;
+          return asc ? va.localeCompare(vb) : vb.localeCompare(va);
+        });
+        rows.forEach(row => table.tBodies[0].appendChild(row));
+        table.querySelectorAll('th').forEach(h => h.classList.remove('asc', 'desc'));
+        th.classList.add(asc ? 'asc' : 'desc');
+      });
+    });
+  }
 });
 
-function loadStatistics() {
-  const loadingEl = document.getElementById('loading');
-  const errorEl = document.getElementById('error');
-  const contentEl = document.getElementById('statistics-content');
-  
-  // 実際のAPIが利用可能になるまでは固定値で表示
-  const baseUrl = '/rdf-portal-v2.github.io' || '';
-  
-  // データセット数を取得
-  fetch(`${baseUrl}/assets/data/temp-datasets.txt`)
-    .then(function(response) {
-      if (!response.ok) {
-        throw new Error('Failed to fetch dataset count');
-      }
-      return response.text();
-    })
-    .then(function(text) {
-      const datasetIds = text.trim().split('\n').filter(id => id.trim());
-      const datasetCount = datasetIds.length;
-      
-      // エンドポイント数を取得（仮の値）
-      const endpointCount = 5; // 実際のAPIが利用可能になったら更新
-      
-      loadingEl.style.display = 'none';
-      contentEl.style.display = 'block';
-      
-      // 統計情報を表示
-      document.getElementById('dataset-count').innerHTML = `
-        <span class="u-text-lg u-fw-bold u-text-primary">${datasetCount}</span>
-        <p class="u-text-sm u-text-muted">総データセット数</p>
-      `;
-      
-      document.getElementById('endpoint-count').innerHTML = `
-        <span class="u-text-lg u-fw-bold u-text-primary">${endpointCount}</span>
-        <p class="u-text-sm u-text-muted">エンドポイント数</p>
-      `;
-      
-      document.getElementById('last-update').innerHTML = `
-        <span class="u-text-lg u-fw-bold u-text-primary">今日</span>
-        <p class="u-text-sm u-text-muted">最終更新日</p>
-      `;
-      
-      // 詳細統計
-      document.getElementById('dataset-count-detail').textContent = datasetCount;
-      document.getElementById('endpoint-count-detail').textContent = endpointCount;
-    })
-    .catch(function(error) {
-      console.error('Error loading statistics:', error);
-      loadingEl.style.display = 'none';
-      errorEl.innerHTML = `
-        <p>統計情報の読み込みに失敗しました。</p>
-        <p>エラー: ${error.message}</p>
-      `;
-      errorEl.style.display = 'block';
-    });
-}
 </script>
